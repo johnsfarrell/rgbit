@@ -1,0 +1,16 @@
+const REFRESH_TIME = 1000 * 10;
+const REFRESH_BALANCE = 3;
+const INITIAL_DATE = new Date();
+const INITIAL_BALANCE = 5;
+const REDIRECT_URL = "http://localhost:3000";
+const COLORIZE_FLASK_URL = "http://127.0.0.1:5000";
+const COLORIZE_FLASK_API = `${COLORIZE_FLASK_URL}/api`;
+
+module.exports = {
+  REFRESH_BALANCE,
+  REFRESH_TIME,
+  INITIAL_DATE,
+  INITIAL_BALANCE,
+  REDIRECT_URL,
+  COLORIZE_FLASK_API,
+};
