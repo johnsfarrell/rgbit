@@ -2,6 +2,9 @@
  * Descriptions for webcontent.
  */
 
+import { AboutLink, AboutProfile } from "../components/about";
+import AboutPoster from "../components/about/AboutPoster";
+
 interface ProfileProps {
   name: string;
   src: string;
@@ -58,6 +61,13 @@ export const RESOURCES: ResourceProps[] = [
   },
 ];
 
+export const POSTERS = [
+  {
+    src: "research/poster.jpeg",
+    alt: "Research Poster",
+  },
+];
+
 export const BALANCE_DESCRIPTION = "Color restoration on cooldown!";
 
 export const COLOR_DETECTED_IN_IMAGE =
@@ -75,7 +85,7 @@ Valid Response: {
  ‎  status: 200, 
  ‎  balance: number, 
  ‎  refresh: number, 
- ‎  message: string 
+ ‎  message: string,
 }
 
 Invalid Response: {
@@ -127,7 +137,62 @@ model.`;
 export const TEAM_BLURB = `The rgbaddies team is a group of undergraduate students at Brown
 University with a passion for computer vision and machine learning.`;
 
+export const RESEARCH_BLURB = `Our research focused on optimizing a VGG19-based convolutional neural
+network to restore color to grayscale images. We trained our model on the MIT Places dataset. A few optimizations we made included 
+using a perceptual loss function, skip connections, and augmenting the dataset to be robust against image dimension shifting. 
+More specifics about our research can be found on our research poster below!`;
+
 export const COLOR_DECTED_BLURB = `Our model is meant for restoring color to grayscale images.
 We detected your uploaded image already has color. Are you sure you would like to continue?`;
 
 export const RESEARCH_TOAST_HEADLINE = "Our Research Poster!";
+
+export const API_KEY_GENERATION_QUESTION = "How are API keys generated?";
+
+export const API_KEY_GENERATION_STEPS = [
+  "The user connects to our website.",
+  "We first check if the user has an existing API key, saved as a cookie. If the user does not have an API key, we create a new one.",
+  "To create an API key, we generate a unique device-browser fingerprint using FingerprintJS. This fingerprint is unique to device and browser, meaning every browser on every device gets its own API key. This fingerprint is then encrypted using MD5 for privacy and security. The encrypted fingerprint is the API key.",
+  "The next step is to verify the API key. To verify the API key, we create a signature using RSA-OAEP encryption. We use a client key to encrypt the API key - this is our signature. We then send the API key and signature to the server to be verified.",
+  "The server verifies the API key by decrypting the signature using the server key. If the API key and the decrypted signature match, the API key is authentic. Both the client and server keys are kept secret, although the server key could be made public. The client key must remain private, as it is used to sign the API key.",
+  "Now that the server has verified the API key, it is stored to our database, and the user is given access to the API.",
+];
+
+export const FAQS: { question: string; answer: string[] }[] = [
+  {
+    question: API_KEY_GENERATION_QUESTION,
+    answer: API_KEY_GENERATION_STEPS,
+  },
+];
+
+export const ABOUT_HEADER = "About RGBaddies";
+
+export const TEAM_HEADER = "Team";
+
+export const RESEARCH_HEADER = "Research";
+
+export const ABOUTS: {
+  header: string;
+  blurb: string;
+  content: any[];
+  Component: (props: any) => JSX.Element | null;
+}[] = [
+  {
+    header: ABOUT_HEADER,
+    blurb: ABOUT_BLURB,
+    content: RESOURCES,
+    Component: AboutLink,
+  },
+  {
+    header: TEAM_HEADER,
+    blurb: TEAM_BLURB,
+    content: PROFILES,
+    Component: AboutProfile,
+  },
+  {
+    header: RESEARCH_HEADER,
+    blurb: RESEARCH_BLURB,
+    content: POSTERS,
+    Component: AboutPoster,
+  },
+];

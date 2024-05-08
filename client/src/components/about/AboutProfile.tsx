@@ -9,7 +9,7 @@ interface AboutProfileProps {
 
 const Profile = ({ name, src, bio, linkedinUrl }: AboutProfileProps) => {
   return (
-    <Card w={{ base: "xs", sm: "md" }}>
+    <Card w={{ base: "xs", sm: "md" }} m={2}>
       <Flex alignItems="center" gap={10} p={5}>
         <Flex flex="1" gap="4" alignItems="center" flexWrap="wrap">
           <Avatar name={name} src={src} />
