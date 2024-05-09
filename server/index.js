@@ -34,7 +34,7 @@ app.use(
   })
 );
 
-app.use(express.static("service/models/modelv3op"));
+app.use(express.static("static"));
 
 app.use(logger);
 
