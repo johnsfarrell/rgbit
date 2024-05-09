@@ -1,10 +1,13 @@
 {
-  "name": "server",
-  "version": "1.0.0",
-  "description": "",
+  "name": "rgbit-server",
+  "version": "0.0.0",
   "main": "index.js",
   "scripts": {
     "start": "nodemon index.js"
+  },
+  "engines": {
+    "npm": "9.6.7",
+    "node": "18.17.0"
   },
   "keywords": [],
   "author": "",
