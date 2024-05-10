@@ -1,6 +1,5 @@
 import {
   Button,
-  Flex,
   Image,
   Modal,
   ModalBody,
@@ -23,7 +22,6 @@ import {
   VERIFICATION_ERROR_TOAST,
 } from "../../utils/toasts";
 import { ACTIVE_HOVER } from "../../utils/animations";
-import Models from "./Models";
 
 const ColorizeModal = ({ props }: Props) => {
   const { isOpen, onClose, file, hasColor, setHasColor } = props;
@@ -88,19 +86,15 @@ const ColorizeModal = ({ props }: Props) => {
           </ModalBody>
 
           <ModalFooter justifyContent="center" flexDir="column" gap={2}>
-            <Flex justify="space-between" w="100%">
-              <Models isHidden />
-              <Button
-                onClick={hasColor ? colorOnOpen : handleRestore}
-                isLoading={isLoading}
-                colorScheme="purple"
-                _hover={ACTIVE_HOVER}
-                justifyContent="center"
-              >
-                Restore Color {hasColor && <Text ml={2}>⚠️</Text>}
-              </Button>
-              <Models />
-            </Flex>
+            <Button
+              onClick={hasColor ? colorOnOpen : handleRestore}
+              isLoading={isLoading}
+              colorScheme="purple"
+              _hover={ACTIVE_HOVER}
+              justifyContent="center"
+            >
+              Restore Color {hasColor && <Text ml={2}>⚠️</Text>}
+            </Button>
             <APIDisclaimerText customText="By clicking above, you agree to our " />
           </ModalFooter>
           <Progress size="sm" isIndeterminate={isLoading} roundedBottom="md" />

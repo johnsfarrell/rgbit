@@ -83,8 +83,8 @@ def predict_color(img_rgb, model, output_lab=True):
     image_lab = rgb2lab(img_rgb)
     l = image_lab[:, :, [0, 0, 0]]
     predicted_ab = model.predict(l[np.newaxis, ...])[0]
-    image_lab[:, :, [1, 2]] = predicted_ab
-    return image_lab if output_lab else lab2rgb(image_lab * 1)
+    image_lab[:, :, [1, 2]] = predicted_ab * 1.5
+    return image_lab if output_lab else lab2rgb(image_lab)
 
 def upscale_color(original_img, color_lab):
     """
