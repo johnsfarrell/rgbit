@@ -73,10 +73,12 @@ module.exports.colorizeImage = async (req, res) => {
 
   const original = fs.readFileSync(file.path);
 
-  const colored = await colorize(original).catch(() => {
+  const colored = await colorize(original);
+
+  if (!colored) {
     res.status(500).send({ message: COLORIZE_FAILED });
     return;
-  });
+  }
 
   const id = generateUniqueKey();
 

@@ -10,15 +10,19 @@ const { COLORIZE_FLASK_API } = require("../config/const");
 const colorize = async (imageBuffer) => {
   const formData = new FormData();
   formData.append("file", imageBuffer, "image.jpg");
-  const response = await fetch(COLORIZE_FLASK_API, {
-    method: "POST",
-    body: formData,
-    headers: formData.getHeaders(),
-  });
+  const headers = formData.getHeaders();
 
-  const colorizedBuffer = await response.buffer();
-
-  return colorizedBuffer;
+  try {
+    const response = await fetch(COLORIZE_FLASK_API, {
+      method: "POST",
+      body: formData,
+      headers: headers,
+    });
+    const colorizedBuffer = await response.buffer();
+    return colorizedBuffer;
+  } catch (error) {
+    return null;
+  }
 };
 
 module.exports = colorize;

@@ -62,7 +62,7 @@ const ImageView = () => {
 
   return (
     <TextShell isCentered>
-      <Center h="78vh">
+      <Center h={{ base: "70vh", md: "78vh" }}>
         {image ? (
           <Tooltip label={`Click to toggle color!`} openDelay={500} hasArrow>
             <Image

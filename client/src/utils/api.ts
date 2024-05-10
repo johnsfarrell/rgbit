@@ -45,19 +45,24 @@ export const colorizePost = async (file?: File) => {
 
   const formData = new FormData();
   formData.append("image", file);
+  const headers = { "Content-Type": "multipart/form-data" };
 
-  // TODO: upload image
-  const res = await axios.post(COLORIZE_URI + getKey(), formData, {
-    headers: {
-      "Content-Type": "multipart/form-data",
-    },
-  });
+  try {
+    const res = await axios.post(COLORIZE_URI + getKey(), formData, {
+      headers,
+    });
 
-  if (checkColorizeResponse(res.data)) {
-    return res.data;
+    if (checkColorizeResponse(res.data)) {
+      return res.data;
+    }
+
+    return { status: 500, ...failure };
+  } catch (e: any) {
+    if (e.response && e.response.status) {
+      return { status: e.response.status, ...failure };
+    }
+    return { status: 500, ...failure };
   }
-
-  return { status: 500, ...failure };
 };
 
 /**
