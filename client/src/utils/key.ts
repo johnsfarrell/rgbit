@@ -2,7 +2,7 @@ const FingerprintJS = require("@fingerprintjs/fingerprintjs");
 const CryptoJS = require("crypto-js");
 const forge = require("node-forge");
 
-const publicKey = process.env.REACT_APP_PUBLIC_KEY;
+const clientKey = process.env.REACT_APP_CLIENT_KEY;
 
 /**
  * Generates a unique fingerprint for the given device.
@@ -29,11 +29,11 @@ function irreversibleEncrypt(data: string): string {
  * Two-way encrypts input data using a public key.
  * Using node-forge to create an RSA-OAEP encrypted string.
  * @param {string} data
- * @param {string} publicKey
+ * @param {string} key
  * @returns {string} encrypted data
  */
-function reversibleEncrypt(data: string, publicKey: string): string {
-  const encryptor = forge.pki.publicKeyFromPem(publicKey);
+function reversibleEncrypt(data: string, key: string): string {
+  const encryptor = forge.pki.publicKeyFromPem(key);
   const encrypted = encryptor.encrypt(data, "RSA-OAEP");
   return forge.util.encode64(encrypted);
 }
@@ -49,7 +49,7 @@ export const generateAPIKey = (): Promise<{
 }> => {
   return generateFingerprint().then((fingerprint) => {
     const encrypted1 = irreversibleEncrypt(fingerprint);
-    const encrypted2 = reversibleEncrypt(encrypted1, publicKey!);
+    const encrypted2 = reversibleEncrypt(encrypted1, clientKey!);
     return { key: encrypted1, signature: encrypted2 };
   });
 };

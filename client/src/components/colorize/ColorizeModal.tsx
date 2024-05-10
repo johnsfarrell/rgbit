@@ -17,7 +17,11 @@ import { colorizePost } from "../../utils/api";
 import APIDisclaimerText from "../api/APIDisclaimerText";
 import ColorizeDetected from "./ColorizeDetected";
 import { Props } from "../../utils/constants";
-import { LOW_BALANCE_TOAST, RESTORE_ERROR_TOAST } from "../../utils/toasts";
+import {
+  LOW_BALANCE_TOAST,
+  RESTORE_ERROR_TOAST,
+  VERIFICATION_ERROR_TOAST,
+} from "../../utils/toasts";
 import { ACTIVE_HOVER } from "../../utils/animations";
 import Models from "./Models";
 
@@ -52,7 +56,8 @@ const ColorizeModal = ({ props }: Props) => {
     } catch (e: any) {
       const { status } = e.response;
       if (status === 402) toast(LOW_BALANCE_TOAST);
-      if (status === 400) toast(RESTORE_ERROR_TOAST);
+      if (status === 403) toast(VERIFICATION_ERROR_TOAST);
+      if (status === 500 || status === 400) toast(RESTORE_ERROR_TOAST);
     }
 
     setIsLoading(false);
