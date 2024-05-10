@@ -83,3 +83,23 @@ export async function urlToFile(url: string, filename: string): Promise<File> {
     throw error;
   }
 }
+
+/**
+ * Gets n random elements from an array.
+ * @param {any[]} arr - array of strings
+ * @param {number} n - number of elements to get
+ * @returns {any[]} - array of n random elements from arr
+ */
+export const getRandomElements = (arr: any[], n: number) => {
+  let result = new Array(n),
+    len = arr.length,
+    taken = new Array(len);
+  if (n > len)
+    throw new RangeError("getRandom: more elements taken than available");
+  while (n--) {
+    let x = Math.floor(Math.random() * len);
+    result[n] = arr[x in taken ? taken[x] : x];
+    taken[x] = --len in taken ? taken[len] : len;
+  }
+  return result;
+};

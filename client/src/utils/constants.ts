@@ -22,10 +22,19 @@ export const acceptedFileTypes: FileTypeProps = {
   "image/webp": [".webp"],
 };
 
-export const imgGallery: string[] = [
-  "img/gallery/einstein.webp",
-  "img/gallery/lunch.jpeg",
-  "img/gallery/landscape.png",
+export const imgGalleryPath = "img/gallery/";
+
+export const imgGalleryFiles: string[] = [
+  "sailor.png",
+  "jfk.jpg",
+  "landscape.png",
+  "garry.jpg",
+  "mona.png",
+  "gothic.jpg",
+  "ap.jpeg",
+  "louvre.jpg",
+  "painting.jpg",
+  "nightvision.jpg",
 ];
 
 export const maxFileSize = 3000000;

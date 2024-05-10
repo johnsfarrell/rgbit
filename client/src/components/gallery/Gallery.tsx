@@ -1,6 +1,8 @@
 import { HStack } from "@chakra-ui/react";
 import GalleryImage from "./GalleryImage";
-import { imgGallery } from "../../utils/constants";
+import { imgGalleryFiles } from "../../utils/constants";
+import { useEffect, useState } from "react";
+import { getRandomElements } from "../../utils/image";
 
 interface GalleryProps {
   props: {
@@ -12,10 +14,18 @@ interface GalleryProps {
 
 const Gallery = ({ props }: GalleryProps) => {
   const { hide, setFile, onOpen } = props;
+
+  const [images, setImages] = useState<string[]>([]);
+
+  useEffect(() => {
+    setImages(getRandomElements(imgGalleryFiles, 3));
+  }, []);
+
   return (
     <HStack w="100%" justify="space-evenly" height="100px" align="flex-start">
       {!hide &&
-        imgGallery.map((img: string) => (
+        images &&
+        images.map((img: string) => (
           <GalleryImage key={img} src={img} setFile={setFile} onOpen={onOpen} />
         ))}
     </HStack>
