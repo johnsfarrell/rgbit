@@ -32,8 +32,7 @@ export const COLOR_FADE_IN = `${keyframes`
 export const HUE_ROTATE = `${keyframes`
     from { filter: hue-rotate(0deg); }
     to { filter: hue-rotate(-360deg); }
-    2s infinite linear
-  `}`;
+  `} 5s linear infinite`;
 
 /**
  * Hover animation, mostly for buttons.
