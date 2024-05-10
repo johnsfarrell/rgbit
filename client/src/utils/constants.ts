@@ -26,7 +26,7 @@ export const imgGalleryPath = "img/gallery/";
 
 export const imgGalleryFiles: string[] = [
   "sailor.png",
-  "jfk.jpg",
+  "jfk.png",
   "landscape.png",
   "garry.jpg",
   "mona.png",

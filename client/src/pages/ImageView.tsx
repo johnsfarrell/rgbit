@@ -5,14 +5,14 @@ import {
   Center,
   HStack,
   Image,
-  Skeleton,
+  Spinner,
   Tooltip,
 } from "@chakra-ui/react";
 import { fetchImage } from "../utils/api";
 import {
   ACTIVE_HOVER,
-  COLOR_FADE_IN,
   GALLERY_ACTIONS_OPEN,
+  IMAGE_VIEW_OPEN,
 } from "../utils/animations";
 import { TextShell } from "../components/text";
 import { DownloadIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
@@ -62,31 +62,30 @@ const ImageView = () => {
 
   return (
     <TextShell isCentered>
-      <Skeleton isLoaded={!!image}>
-        <Center h="78vh">
-          {image && (
-            <Tooltip label={`Click to toggle color!`} openDelay={500} hasArrow>
-              <Image
-                maxH="100%"
-                shadow="xl"
-                rounded="md"
-                src={image.colored}
-                // src={showOriginal ? image.original : image.colored}
-                filter={showOriginal ? "grayscale(100%)" : "none"}
-                alt="colorized image"
-                onClick={toggleOriginal}
-                cursor="pointer"
-                transition="all 1s ease"
-                _hover={{
-                  transform: "scale(1.01)",
-                  shadow: "2xl",
-                }}
-                animation={COLOR_FADE_IN}
-              />
-            </Tooltip>
-          )}
-        </Center>
-      </Skeleton>
+      <Center h="78vh">
+        {image ? (
+          <Tooltip label={`Click to toggle color!`} openDelay={500} hasArrow>
+            <Image
+              maxH="100%"
+              shadow="xl"
+              rounded="md"
+              src={image.colored}
+              filter={showOriginal ? "grayscale(100%)" : "none"}
+              alt="colorized image"
+              onClick={toggleOriginal}
+              cursor="pointer"
+              transition="all 1s ease"
+              _hover={{
+                transform: "scale(1.01)",
+                shadow: "2xl",
+              }}
+              animation={IMAGE_VIEW_OPEN}
+            />
+          </Tooltip>
+        ) : (
+          <Spinner size="xl" />
+        )}
+      </Center>
       <Box
         pos="absolute"
         left="50%"
