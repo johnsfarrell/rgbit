@@ -21,4 +21,5 @@ echo "Starting both client and server..."
 (cd ml/code && export FLASK_APP=api && flask run -h localhost -p 4001) &
 
 wait
+
 echo "Both client and server have started."
