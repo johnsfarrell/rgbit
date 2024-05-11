@@ -13,8 +13,6 @@ const cookieParser = require("cookie-parser");
 const dotenv = require("dotenv");
 dotenv.config();
 
-const tf = require("@tensorflow/tfjs-node");
-
 mongoose.connect(process.env.MONGODB_ACCESS).then((data) => {
   console.log(
     data.connection.readyState ? "MongoDB Connected" : "MongoDB Not Connected"
