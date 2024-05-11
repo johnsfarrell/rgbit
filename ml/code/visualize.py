@@ -3,6 +3,7 @@ import matplotlib.pyplot as plt
 from skimage.io import imread
 from util import load_model, resize_image, fix_dims, predict_color, upscale_color
 import hyperparameters as hp
+import os
 
 MODEL = load_model()
 
@@ -37,5 +38,5 @@ def visualize_image(image_path):
 """
 Usage: python visualize.py
 """
-IMAGE_PATH = "test_images/test_image_1.jpg"
+IMAGE_PATH = os.getenv("IMAGE_PATH", "test_images/test_image_1.jpg")
 visualize_image(IMAGE_PATH)
