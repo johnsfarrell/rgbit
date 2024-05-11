@@ -46,7 +46,7 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build
-          path: client/build
+          path: build
       - name: List downloaded files
         run: ls -R build
       - name: Deploy to GitHub Pages
