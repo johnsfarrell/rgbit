@@ -48,6 +48,8 @@ $ ./run
 
 The `run` script should let you know if you missed one of the steps above, and will promp you to install the necessary dependencies if you haven't already.
 
+You can also use `ml/code/visualize.py` to colorize images without the client and server. Please make sure you have `ml/models/model.h5` downloaded. Specify an image (path) to color at the bottom of `ml/code/visualize.py`.
+
 ## Usage
 
 Navigate to `http://localhost:3000` to use the application.
