@@ -22,6 +22,17 @@ if ! ls ml/models/*.h5 1> /dev/null 2>&1; then
     exit 1
 fi
 
+# Check for .env files in the client and server directories
+if [ ! -f client/.env ]; then
+  echo "Missing .env file in client directory. (hint: client/.env.example)"
+  exit 1
+fi
+
+if [ ! -f server/.env ]; then
+  echo "Missing .env file in server directory. (hint: server/.env.example)"
+  exit 1
+fi
+
 read -p "Reinstall node modules? (y/N): " response
 if [[ "$response" == "y" || "$response" == "Y" ]]; then
     echo "Reinstalling node modules."
