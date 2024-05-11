@@ -5,6 +5,57 @@
 import { AboutLink, AboutProfile } from "../components/about";
 import AboutPoster from "../components/about/AboutPoster";
 
+export const TERMS_AND_CONDITIONS = [
+  {
+    heading: "Terms and Conditions",
+    text: `Welcome to Our Website! By accessing or using our website, you agree to be bound by these terms and conditions.`,
+    list: [],
+  },
+  {
+    heading: "Acceptance of Terms",
+    text: `By submitting images, uploading images, and restoring color to images, you acknowledge and agree to these terms and conditions in full. If you disagree with these terms and conditions or any part of these terms and conditions, you must not use this website.`,
+    list: [],
+  },
+  {
+    heading: "User Submitted Images",
+    text: `Users are permitted to upload digital images to our platform. The images you upload may be viewed by other users of this site and used in accordance with the following terms:`,
+    list: [
+      `Users retain ownership of the images they upload but grant [Your Website] a worldwide, irrevocable, non-exclusive, royalty-free license to use, reproduce, adapt, publish, translate and distribute their images in any existing or future media.`,
+      `You warrant and represent that the images do not infringe on any third party's rights (including intellectual property rights) and that they comply with all applicable laws and regulations.`,
+      `You are responsible for any claims brought against [Your Website] arising out of or related to the images you submit.`,
+    ],
+  },
+  {
+    heading: "Acceptance of Terms",
+    text: `The images you upload will be stored on our servers as part of our service offering. While we endeavor to ensure the security of all data, we cannot guarantee the complete security of data sent over the internet.`,
+    list: [],
+  },
+  {
+    heading: "Sharing of Images",
+    text: `The images you upload may be shared with other users of this site. By using this website, you agree to the sharing of your images with other users.`,
+    list: [],
+  },
+  {
+    heading: "Amendments",
+    text: `We reserve the right to amend these terms and conditions at any time. Amendments will be effective immediately upon posting on this website. Your continued use of this website will constitute your acceptance of the amended terms and conditions.`,
+    list: [],
+  },
+  {
+    heading: "Limitation of Liability",
+    text: `We will not be liable to you (whether under the law of contract, the law of torts or otherwise) in relation to the contents of, or use of, or otherwise in connection with, this website:`,
+    list: [
+      `for any direct loss;`,
+      `for any indirect, special or consequential loss; or`,
+      `for any business losses, loss of revenue, income, profits or anticipated savings, loss of contracts or business relationships, loss of reputation or goodwill, or loss or corruption of information or data.`,
+    ],
+  },
+  {
+    heading: "Contact Us",
+    text: `If you have any questions about these terms and conditions, please contact us.`,
+    list: [],
+  },
+];
+
 interface ProfileProps {
   name: string;
   src: string;
@@ -134,7 +185,7 @@ images. We hope to provide a simple and intuitive interface for users to
 upload images and view the results of our colorization deep learning
 model.`;
 
-export const TEAM_BLURB = `The rgbaddies team is a group of undergraduate students at Brown
+export const TEAM_BLURB = `Our contributors are undergraduate students at Brown
 University with a passion for computer vision and machine learning.`;
 
 export const RESEARCH_BLURB = `Our research focused on optimizing a VGG19-based convolutional neural
@@ -145,7 +196,13 @@ More specifics about our research can be found on our research poster below!`;
 export const COLOR_DECTED_BLURB = `Our model is meant for restoring color to grayscale images.
 We detected your uploaded image already has color. Are you sure you would like to continue?`;
 
-export const RESEARCH_TOAST_HEADLINE = "Our Research Poster!";
+export const RESEARCH_TOAST_HEADLINE = "Our Research!";
+
+export const API_KEY_HEADER = "Your API Key";
+
+export const API_DOCUMENTATION_HEADER = "Documentation";
+
+export const API_FAQ_HEADER = "Frequently Asked Questions";
 
 export const API_KEY_GENERATION_QUESTION = "How are API keys generated?";
 
@@ -158,16 +215,34 @@ export const API_KEY_GENERATION_STEPS = [
   "Now that the server has verified the API key, it is stored to our database, and the user is given access to the API.",
 ];
 
+export const PHOTO_PROCESSING_QUESTION = "How are user photos processed?";
+
+export const PHOTO_PROCESSING_STEPS = [
+  "The user uploads an image to our website, and the image and user API key are sent to the server for processing.",
+  "The server checks the user's balance to ensure they have enough credits to process the image. If the user does not exist, or there are not enough credits, the server returns an 40x response.",
+  "The server downsizes the image to 224x224 pixels and converts it to grayscale. We create a 1x224x224 tensor from the image.",
+  "The 1x224x224 tensor is fed to our model, which outputs a 2x224x224 tensor. This tensor represents the ab channels of the image.",
+  "The 1x224x224 L channel (input) is concatenated with the 2x224x224 ab channels to create a 3x224x224 tensor.",
+  "The 3x224x224 tensor (in LAB color space format) is then upscaled to the original image size.",
+  "The original image L channel is concatenated with the upscaled ab channels to create a 3xWxH tensor, where W and H are the width and height of the original image.",
+  "The 3xWxH tensor is converted to RGB format and saved to our database, cloud hosted on MongoDB.",
+  "The server returns a redirect to the user, who can view the colorized image. The user's balance is decremented by one.",
+];
+
 export const FAQS: { question: string; answer: string[] }[] = [
   {
     question: API_KEY_GENERATION_QUESTION,
     answer: API_KEY_GENERATION_STEPS,
   },
+  {
+    question: PHOTO_PROCESSING_QUESTION,
+    answer: PHOTO_PROCESSING_STEPS,
+  },
 ];
 
 export const ABOUT_HEADER = "About RGBaddies";
 
-export const TEAM_HEADER = "Team";
+export const TEAM_HEADER = "Contributors";
 
 export const RESEARCH_HEADER = "Research";
 
