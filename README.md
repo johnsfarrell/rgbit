@@ -2,7 +2,7 @@
 
 ![rgbit-banner](https://github.com/johnsfarrell/rgbit/assets/69059806/296c18cd-892d-4507-817a-dbd45f3ee2e0)
 
-<a target="_blank" href="https://colab.research.google.com/drive/19NxWsLflGo_u9sioDphrf0NqSCngD3kc?usp=sharing">
+[![pages-build-deployment](https://github.com/johnsfarrell/rgbit/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages)](https://github.com/johnsfarrell/rgbit/actions/workflows/pages/pages-build-deployment) <a target="_blank" href="https://colab.research.google.com/drive/19NxWsLflGo_u9sioDphrf0NqSCngD3kc?usp=sharing">
   <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
 </a>
 
