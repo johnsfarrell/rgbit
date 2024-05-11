@@ -22,7 +22,7 @@ export const acceptedFileTypes: FileTypeProps = {
   "image/webp": [".webp"],
 };
 
-export const imgGalleryPath = "img/gallery/";
+export const imgGalleryPath = `${process.env.PUBLIC_URL}/img/gallery/`;
 
 export const imgGalleryFiles: string[] = [
   "sailor.png",
