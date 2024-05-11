@@ -46,6 +46,7 @@ module.exports.createUser = async (req, res) => {
   }
 
   if (!verifySignature(key, encryptedKey)) {
+    console.log("Key verification failed");
     res.status(403).send({ message: UNAUTHORIZED });
     return;
   }

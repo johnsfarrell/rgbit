@@ -271,3 +271,11 @@ export const ABOUTS: {
     Component: AboutPoster,
   },
 ];
+
+export const NO_API_KEY = "No API key found.";
+
+export const FAILED_FETCH_BALANCE = "Failed to fetch balance.";
+
+export const FAILED_VERIFY_SIGNATURE = "Failed to verify signature.";
+
+export const FAILED_FETCH_IMAGE = "Failed to fetch image.";

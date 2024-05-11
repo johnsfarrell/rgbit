@@ -15,8 +15,8 @@ const ColorizeBalance = ({ props }: Props) => {
         const { refresh } = await getBalance();
         const time = new Date(refresh).getTime() - new Date().getTime();
         setCoundown(time);
-      } catch (e) {
-        console.error(e);
+      } catch (e: any) {
+        console.error(e.message);
       }
     }
 

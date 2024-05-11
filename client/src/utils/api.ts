@@ -1,6 +1,7 @@
 import axios from "axios";
 import { BALANCE_URI, COLORIZE_URI, FETCH_URI } from "./constants";
 import { getKey } from "./cookie";
+import { FAILED_FETCH_BALANCE, FAILED_FETCH_IMAGE, NO_API_KEY } from "./desc";
 
 /**
  * Checks the type of the colorize post API response data.
@@ -87,15 +88,16 @@ const checkTypeBalance = (
 export const getBalance = async (): Promise<{
   balance: number;
   refresh: Date;
-  error?: Error;
 }> => {
-  const res = await axios.get(BALANCE_URI + getKey());
+  const key = getKey();
+  if (!key) throw new Error(NO_API_KEY);
 
+  const res = await axios.get(BALANCE_URI + key);
   if (res.status === 200 && checkTypeBalance(res.data)) {
     return res.data;
   }
 
-  return { balance: 0, refresh: new Date(), error: res.data };
+  throw new Error(FAILED_FETCH_BALANCE);
 };
 
 /**
@@ -144,7 +146,7 @@ export const createUser = async (
 /**
  * Fetches an image from the server.
  * @param id The id of the image to fetch.
- * @returns {Promise<{ status: 200 | 404, colored: string, orignal: string }>} Returns the status and image data.
+ * @returns {Promise<{ colored: string, orignal: string }>} Returns the status and image data.
  */
 export const fetchImage = async (id: string) => {
   const res = await axios.get(`${FETCH_URI}${id}`);
@@ -158,8 +160,8 @@ export const fetchImage = async (id: string) => {
   const original = bufferToURL(res.data.original.data);
 
   if (res.status === 200) {
-    return { status: 200, colored, original };
+    return { colored, original };
   }
 
-  return { status: 404, colored: "", original: "" };
+  throw new Error(FAILED_FETCH_IMAGE);
 };

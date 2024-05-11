@@ -37,10 +37,10 @@ const ImageView = () => {
 
   useEffect(() => {
     async function loadImage() {
-      const id = window.location.hash.slice(7); // remove #image=
       try {
-        const { status, colored, original } = await fetchImage(id);
-        if (status === 200) setImage({ original, colored });
+        const id = window.location.hash.slice(7); // remove #image=
+        const { colored, original } = await fetchImage(id);
+        setImage({ original, colored });
       } catch (e) {
         window.location.hash = "#";
       }

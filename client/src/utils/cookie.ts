@@ -1,6 +1,7 @@
 import Cookies from "js-cookie";
 import { generateAPIKey } from "./key";
 import { createUser } from "./api";
+import { FAILED_VERIFY_SIGNATURE } from "./desc";
 
 /**
  * Sets the cookie with the user's API key (UID).
@@ -43,7 +44,6 @@ export const cookieAPI = async () => {
       return;
     }
   } catch (e: any) {
-    console.log(e);
-    console.error("Failed to verify device signature.");
+    console.error(FAILED_VERIFY_SIGNATURE);
   }
 };
