@@ -1,6 +1,12 @@
-# RGBIT
+# [RGBIT.io](https://johnsfarrell.github.io/rgbit)
 
-[RGBIT](https://johnsfarrell.github.io/rgbit) is a completely open-sourced platform for restoring color to black and white images.
+![rgbit-banner](https://github.com/johnsfarrell/rgbit/assets/69059806/296c18cd-892d-4507-817a-dbd45f3ee2e0)
+
+<a target="_blank" href="https://colab.research.google.com/drive/19NxWsLflGo_u9sioDphrf0NqSCngD3kc?usp=sharing">
+  <img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
+</a>
+
+RGBIT is a completely open-source and free platform for restoring color to black and white images. 
 
 <hr>
 
