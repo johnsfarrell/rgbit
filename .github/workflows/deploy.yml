@@ -31,6 +31,8 @@ jobs:
         with:
           name: build
           path: client/build
+      - name: List output files
+        run: ls -R client/build
 
   deploy:
     needs: build
@@ -44,7 +46,9 @@ jobs:
         uses: actions/download-artifact@v3
         with:
           name: build
-          path: build
+          path: client/build
+      - name: List downloaded files
+        run: ls -R build
       - name: Deploy to GitHub Pages
         uses: actions/deploy-pages@v3
         id: deployment
