@@ -18,6 +18,9 @@ RGBIT is a completely open-source and free platform for restoring color to black
 - [API Documentation](https://johnsfarrell.github.io/rgbit#api)
 - [Research Paper](https://johnsfarrell.github.io/rgbit/research.pdf), [Poster](https://johnsfarrell.github.io/rgbit/poster.pdf)
 - [Local Setup](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#local-setup)
+    - [Clientless and Serverless Colorization](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#clientless-and-serverless-colorization)
+    - [Training](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#training)
+    - [Usage](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#usage)
 - [Stack](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#built-on-mern)
 
 ## Local Setup
