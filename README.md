@@ -19,7 +19,9 @@ RGBIT is a completely open-source and free platform for restoring color to black
 - [Codebase](https://github.com/johnsfarrell/rgbit)
 - [Research Paper](https://johnsfarrell.github.io/rgbit/research.pdf), [Poster](https://johnsfarrell.github.io/rgbit/poster.pdf)
 
-## Installation
+## Local Setup
+
+> **Note:** Local client and server setup requires a cloud [MongoDB URI](https://www.mongodb.com/resources/products/platform/mongodb-atlas-tutorial) and [generating RSI keys](https://www.ssh.com/ssh/keygen/). The database is for storing results, and the RSI keys are for API key authentication. Feel free to skip around the local setup to find what you're looking for. [Here]([https://github.com/johnsfarrell/rgbit/](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#clientless-and-serverless-colorization) covers using just the `ml/` directory and `ml/code/visualize.py` to colorize images from the terminal. 
 
 Clone the repository:
 
@@ -50,7 +52,14 @@ $ ./run
 
 The `run` script should let you know if you missed one of the steps above, and will promp you to install the necessary dependencies if you haven't already.
 
+#### Clientless and Serverless Colorization
+
 You can also use `ml/code/visualize.py` to colorize images without the client and server. Please make sure you have `ml/models/model.h5` downloaded. Specify an image (path) to color at the bottom of `ml/code/visualize.py`.
+
+```bash
+$ cd ml/models && ./download.sh
+$ cd ../code && export IMAGE_PATH=test_images/test_image_1.py && python3 visualize.py
+```
 
 ## Usage
 
