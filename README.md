@@ -11,14 +11,23 @@ RGBIT is a completely open-source and free platform for restoring color to black
 
 <hr>
 
-## Resources
+## Resources and Contents
 
 - [Website](https://johnsfarrell.github.io/rgbit)
-- [API Documentation](https://johnsfarrell.github.io/rgbit#api)
-- [Codebase](https://github.com/johnsfarrell/rgbit)
+  - [API Documentation](https://johnsfarrell.github.io/rgbit#api)
+  - [About](https://johnsfarrell.github.io/rgbit#about)
 - [Research Paper](https://johnsfarrell.github.io/rgbit/research.pdf), [Poster](https://johnsfarrell.github.io/rgbit/poster.pdf)
+  - [Summary](todo)
+  - [Example Results](todo)
+- [Local Setup](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#local-setup)
+  - [Clientless and Serverless Colorization](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#clientless-and-serverless-colorization)
+  - [Training](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#training)
+  - [Usage](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#usage)
+- [Developer Stack](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#built-on-mern)
 
-## Installation
+## Local Setup
+
+> **Note:** Local client and server setup requires a cloud [MongoDB URI](https://www.mongodb.com/resources/products/platform/mongodb-atlas-tutorial) and [generating RSI keys](https://www.ssh.com/ssh/keygen/). The database is for storing results, and the RSI keys are for API key authentication. Feel free to skip around the local setup to find what you're looking for. [Here](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#clientless-and-serverless-colorization) covers using just the `ml/` directory and `ml/code/visualize.py` to colorize images from the terminal. 
 
 Clone the repository:
 
@@ -31,6 +40,8 @@ If you want to play with the pre-trained model, navigate to `ml/models` and run 
 ```bash
 $ cd ml/models && ./download.sh
 ```
+
+If you are interested in modifying the model architecture and training a model yourself, see [here](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#training).
 
 Setup `.env` files in `client` and `server` directories:
 
@@ -49,9 +60,30 @@ $ ./go
 
 The `go` script should let you know if you missed one of the steps above, and will promp you to install the necessary dependencies if you haven't already.
 
+#### Clientless and Serverless Colorization
+
 You can also use `ml/code/visualize.py` to colorize images without the client and server. Please make sure you have `ml/models/model.h5` downloaded. Specify an image (path) to color at the bottom of `ml/code/visualize.py`.
 
-## Usage
+```bash
+$ cd ml/models && ./download.sh
+$ cd ../code && export IMAGE_PATH=test_images/test_image_1.py && python3 visualize.py
+```
+
+#### Training
+
+To train your own model, start by downloading the training data:
+
+```bash
+$ cd ml/data && ./download.sh
+```
+
+Feel free to modify the model architecture (`model.py`), hyperparameters (`hyperparameters.py`), and dataset preprocessing and augmentation (`preprocess.py`). When you're ready, train the model by running:
+
+```bash
+$ cd ml/code && python3 main.py
+```
+
+### Usage
 
 Navigate to `http://localhost:3000` to use the application.
 
@@ -59,27 +91,11 @@ The API is available at `http://localhost:4004`.
 
 The colorize endpoint is available at `http://localhost:4004/colorize`.
 
-## Training
-
-If you would like to train your own model, use the `ml` directory. You can download the dataset using the `download.sh` script in the `ml/data` directory:
-
-```bash
-$ cd ml/data && ./download.sh
-```
-
-Once you have the dataset, you can train the model using the `main.py` script in the `ml/code` directory:
-
-```bash
-$ cd ml/code && python main.py
-```
-
-You can configure the model, change hyperparameters, and modify preprocessing and augmentation in the `ml/code/model.py`, `ml/code/hyperparameters.py`, and `ml/code/preprocess.py` files, respectively.
-
 ### Built on MERN+
 
 ![MongoDB](https://img.shields.io/badge/MongoDB-%234ea94b.svg?style=for-the-badge&logo=mongodb&logoColor=white) ![Express.js](https://img.shields.io/badge/express.js-%23404d59.svg?style=for-the-badge&logo=express&logoColor=%2361DAFB) ![React](https://img.shields.io/badge/react-%2320232a.svg?style=for-the-badge&logo=react&logoColor=%2361DAFB) ![NodeJS](https://img.shields.io/badge/node.js-6DA55F?style=for-the-badge&logo=node.js&logoColor=white) ![Flask](https://img.shields.io/badge/flask-%23000.svg?style=for-the-badge&logo=flask&logoColor=white) ![Chakra](https://img.shields.io/badge/chakra-%234ED1C5.svg?style=for-the-badge&logo=chakraui&logoColor=white)
 
-### Trained on [365 Places](http://places.csail.mit.edu/)
+### Trained on [Places365](http://places.csail.mit.edu/)
 
 ![Keras](https://img.shields.io/badge/Keras-%23D00000.svg?style=for-the-badge&logo=Keras&logoColor=white) ![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=for-the-badge&logo=TensorFlow&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=for-the-badge&logo=scikit-learn&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=for-the-badge&logo=Matplotlib&logoColor=black) ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=for-the-badge&logo=numpy&logoColor=white)
 
