@@ -15,13 +15,16 @@ RGBIT is a completely open-source and free platform for restoring color to black
 ## Resources and Contents
 
 - [Website](https://johnsfarrell.github.io/rgbit)
-- [API Documentation](https://johnsfarrell.github.io/rgbit#api)
+  - [API Documentation](https://johnsfarrell.github.io/rgbit#api)
+  - [About](https://johnsfarrell.github.io/rgbit#about)
 - [Research Paper](https://johnsfarrell.github.io/rgbit/research.pdf), [Poster](https://johnsfarrell.github.io/rgbit/poster.pdf)
+  - [Summary](todo)
+  - [Example Results](todo)
 - [Local Setup](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#local-setup)
-    - [Clientless and Serverless Colorization](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#clientless-and-serverless-colorization)
-    - [Training](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#training)
-    - [Usage](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#usage)
-- [Stack](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#built-on-mern)
+  - [Clientless and Serverless Colorization](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#clientless-and-serverless-colorization)
+  - [Training](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#training)
+  - [Usage](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#usage)
+- [Developer Stack](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#built-on-mern)
 
 ## Local Setup
 
