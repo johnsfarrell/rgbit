@@ -5,3 +5,4 @@ __pycache__
 /code/logs/*
 !/data/download.sh
 *.h5
+venv/

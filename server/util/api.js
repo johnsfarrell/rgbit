@@ -1,6 +1,5 @@
 const FormData = require("form-data");
 const fetch = require("node-fetch");
-const { COLORIZE_FLASK_API } = require("../config/const");
 
 /**
  * Colorizes a black and white image
@@ -13,7 +12,7 @@ const colorize = async (imageBuffer) => {
   const headers = formData.getHeaders();
 
   try {
-    const response = await fetch(COLORIZE_FLASK_API, {
+    const response = await fetch(process.env.COLORIZE_FLASK_URL, {
       method: "POST",
       body: formData,
       headers: headers,

@@ -1,13 +1,13 @@
 #!/bin/bash
 
-for port in 3000 4000 4004; do
+for port in 3000 4000 5000; do
   if lsof -i:$port -sTCP:LISTEN -t >/dev/null ; then
     echo "Port $port is already in use."
-    read -p "Force terminate processes on {3000, 4000, 4004}? (y/N): " response
+    read -p "Force terminate processes on {3000, 4000, 5000}? (y/N): " response
     case $response in
       [Yy]* )
-        echo "Force terminating process on ports {3000, 4000, 4004}."
-        kill -9 $(lsof -t -i:3000) $(lsof -t -i:4000) $(lsof -t -i:4004)
+        echo "Force terminating process on ports {3000, 4000, 5000}."
+        kill -9 $(lsof -t -i:3000) $(lsof -t -i:4000) $(lsof -t -i:5000)
         ;;
       * )
         echo "Exiting..."
@@ -16,6 +16,11 @@ for port in 3000 4000 4004; do
     esac
   fi
 done
+
+if ! ls ml/venv/bin/activate 1> /dev/null 2>&1; then
+    echo "Virtual environment not found. (hint: cd ml && ./setup.sh)"
+    exit 1
+fi
 
 if ! ls ml/models/*.h5 1> /dev/null 2>&1; then
     echo "Models not found. (hint: cd ml/models && ./download.sh)"
@@ -45,4 +50,4 @@ fi
 
 (cd server && npm run start) &
 
-cd ml/code && export FLASK_APP=api && flask run -h localhost -p 4004
+source ml/venv/bin/activate && cd ml/code && export FLASK_APP=api && flask run -h localhost -p 5000

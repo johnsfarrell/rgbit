@@ -1,5 +1,5 @@
 numpy
-PIL
-tensorflow
-sklearn
-keras
+scikit-image
+scikit-learn
+tensorflow==2.16.1
+flask
