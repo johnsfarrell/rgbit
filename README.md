@@ -63,7 +63,7 @@ $ cd ml/models && ./download.sh
 $ cd ../code && export IMAGE_PATH=test_images/test_image_1.py && python3 visualize.py
 ```
 
-### Training
+#### Training
 
 To train your own model, start by downloading the training data:
 
