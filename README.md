@@ -35,6 +35,8 @@ If you want to play with the pre-trained model, navigate to `ml/models` and run 
 $ cd ml/models && ./download.sh
 ```
 
+If you are interested in modifying the model architecture and training a model yourself, see [here](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#training).
+
 Setup `.env` files in `client` and `server` directories:
 
 ```bash
@@ -59,6 +61,20 @@ You can also use `ml/code/visualize.py` to colorize images without the client an
 ```bash
 $ cd ml/models && ./download.sh
 $ cd ../code && export IMAGE_PATH=test_images/test_image_1.py && python3 visualize.py
+```
+
+### Training
+
+To train your own model, start by downloading the training data:
+
+```bash
+$ cd ml/data && ./download.sh
+```
+
+Feel free to modify the model architecture (`model.py`), hyperparameters (`hyperparameters.py`), and dataset preprocessing and augmentation (`preprocess.py`). When you're ready, train the model by running:
+
+```bash
+$ cd ml/code && python3 main.py
 ```
 
 ## Usage
