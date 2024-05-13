@@ -1,12 +1,3 @@
-"""
-Originally for
-Homework 5 - CNNs
-CS1430 - Computer Vision
-Brown University
-
-RGBaddies Reworked.
-"""
-
 import os
 import argparse
 from datetime import datetime
