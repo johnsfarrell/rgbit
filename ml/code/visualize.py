@@ -46,7 +46,7 @@ def main():
     parser.add_argument("-i", "--image", default="test_images/test_image_1.jpg", help="Path to a single image file.")
     parser.add_argument("-d", "--directory", help="Directory containing images to process.")
     parser.add_argument("-s", "--save", action="store_true", help="Save the images after processing. (Default: False)")
-    parser.add_argument("-nv", "--no-vis", action="store_true", help="No visual displayed. (Default: False)")
+    parser.add_argument("-nv", "--no-visual", action="store_true", help="No visual displayed. (Default: False)")
     
     if not os.path.exists("output"):
         os.makedirs("output")
