@@ -16,7 +16,7 @@ RGBIT is a completely open-source and free platform for restoring color to black
 - [Website](https://johnsfarrell.github.io/rgbit)
   - [API Documentation](https://johnsfarrell.github.io/rgbit#api)
   - [About](https://johnsfarrell.github.io/rgbit#about)
-- [Research Paper](https://johnsfarrell.github.io/rgbit/research.pdf), [Poster](https://johnsfarrell.github.io/rgbit/poster.pdf)
+- [Research Paper](https://github.com/johnsfarrell/rgbit/blob/main/client/public/research/report.pdf), [Poster](https://github.com/johnsfarrell/rgbit/blob/main/client/public/research/poster.pdf)
   - [Model Summary](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#model-summary)
   - [Example Results](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#example-results)
 - [Local Setup](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#local-setup)
@@ -36,12 +36,12 @@ We implemented a convolutional neural network (CNN) to colorize grayscale images
 
 The results of perceptual loss showed our model and architecture is viable for creating naturally looking colorful photos, but doesn't correctly account for unique coloring and saturation. Colors returned are plausible and look natural to the human eye. The model can be used to color any grayscale image, but has best use-cases for naturally existing photos, such as old black and white photography or night vision goggles. Below are some example results from our model test dataset. The first image is the L channel, the second image is the truth coloring, and the third image is the predicted coloring.
 
-|   |   |   |
-|---|---|---|
-| ![Places365_val_00015300](https://github.com/johnsfarrell/rgbit/assets/69059806/97252aa3-ff60-4b34-bcfd-8b298859e633) | ![Places365_val_00016263](https://github.com/johnsfarrell/rgbit/assets/69059806/ab2b338f-d3b7-478b-922e-4833d3c724b5) | ![Places365_val_00013593](https://github.com/johnsfarrell/rgbit/assets/69059806/9ecb55b1-04c4-46d2-86d0-eea965663165) | 
+|                                                                                                                       |                                                                                                                       |                                                                                                                       |
+| --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------------------------------- |
+| ![Places365_val_00015300](https://github.com/johnsfarrell/rgbit/assets/69059806/97252aa3-ff60-4b34-bcfd-8b298859e633) | ![Places365_val_00016263](https://github.com/johnsfarrell/rgbit/assets/69059806/ab2b338f-d3b7-478b-922e-4833d3c724b5) | ![Places365_val_00013593](https://github.com/johnsfarrell/rgbit/assets/69059806/9ecb55b1-04c4-46d2-86d0-eea965663165) |
 | ![Places365_val_00017696](https://github.com/johnsfarrell/rgbit/assets/69059806/262ee216-d5d5-4f2a-812f-017f91e31825) | ![Places365_val_00011056](https://github.com/johnsfarrell/rgbit/assets/69059806/8aa37f98-823e-40b7-8dd0-dc665c7f3726) | ![Places365_val_00006786](https://github.com/johnsfarrell/rgbit/assets/69059806/0070ce38-db18-4e48-bb0c-71f742e6fb72) |
 | ![Places365_val_00001475](https://github.com/johnsfarrell/rgbit/assets/69059806/6987027c-d9e5-4cc3-8b76-9d5bfba24478) | ![Places365_val_00001356](https://github.com/johnsfarrell/rgbit/assets/69059806/da061c63-a17d-40b3-a605-2e313c7cd390) | ![Places365_val_00033979](https://github.com/johnsfarrell/rgbit/assets/69059806/c0b8436d-9e5f-4fde-9c7c-81acffaa60df) |
-| ![Places365_val_00008392](https://github.com/johnsfarrell/rgbit/assets/69059806/22aea350-87c3-4825-a02a-b768b1c94a8a) | ![Places365_val_00007964](https://github.com/johnsfarrell/rgbit/assets/69059806/8b9a6471-f655-4624-b385-b8e8391d841f)| ![Places365_val_00007777](https://github.com/johnsfarrell/rgbit/assets/69059806/07d94c3b-ddc4-4b45-a7e4-517166a90242)
+| ![Places365_val_00008392](https://github.com/johnsfarrell/rgbit/assets/69059806/22aea350-87c3-4825-a02a-b768b1c94a8a) | ![Places365_val_00007964](https://github.com/johnsfarrell/rgbit/assets/69059806/8b9a6471-f655-4624-b385-b8e8391d841f) | ![Places365_val_00007777](https://github.com/johnsfarrell/rgbit/assets/69059806/07d94c3b-ddc4-4b45-a7e4-517166a90242) |
 
 Model results on real legacy black and white photographs:
 

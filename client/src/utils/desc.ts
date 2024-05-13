@@ -115,7 +115,8 @@ export const RESOURCES: ResourceProps[] = [
 
 export const POSTERS = [
   {
-    src: RESEARCH_PATH + "poster.jpeg",
+    src: RESEARCH_PATH + "poster.jpg",
+    href: RESEARCH_PATH + "poster.pdf",
     alt: "Research Poster",
   },
 ];

@@ -1,11 +1,11 @@
 import { Button, Flex, Image, Link, Text } from "@chakra-ui/react";
 import { OPEN_CLOSE } from "../../utils/animations";
 import { RESEARCH_TOAST_HEADLINE } from "../../utils/desc";
-import { ICON_PATH } from "../../utils/constants";
+import { ICON_PATH, REPORT_PATH } from "../../utils/constants";
 
 const AboutResearchToast = () => {
   return (
-    <Link href="/img/icons/pdf.png">
+    <Link href={REPORT_PATH}>
       <Button
         top="-20vh"
         animation={OPEN_CLOSE}

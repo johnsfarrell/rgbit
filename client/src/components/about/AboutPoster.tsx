@@ -3,11 +3,12 @@ import { Image, Link } from "@chakra-ui/react";
 interface AboutPosterProps {
   src: string;
   alt: string;
+  href?: string;
 }
 
-const AboutPoster = ({ src, alt }: AboutPosterProps) => {
+const AboutPoster = ({ src, alt, href }: AboutPosterProps) => {
   return (
-    <Link href={src}>
+    <Link href={href || src}>
       <Image
         p={4}
         rounded={"md"}

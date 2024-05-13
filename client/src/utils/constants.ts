@@ -51,6 +51,10 @@ export const FETCH_URI = `${process.env.REACT_APP_API_URL}/image/get/`;
 
 export const BALANCE_URI = `${process.env.REACT_APP_API_URL}/user/balance/`;
 
+export const REPORT_PATH = `${RESEARCH_PATH}report.pdf`;
+
+export const POSTER_PATH = `${RESEARCH_PATH}poster.pdf`;
+
 export interface Injection {
   file: File | undefined;
   setFile: React.Dispatch<React.SetStateAction<File | undefined>>;
