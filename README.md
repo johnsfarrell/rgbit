@@ -1,6 +1,6 @@
 # [RGBIT.io](https://johnsfarrell.github.io/rgbit)
 
-![rgbit-recolor-banner](https://github.com/johnsfarrell/rgbit/assets/69059806/aa7655a4-1264-46e7-b191-c601795d02f1)
+![banner](https://github.com/johnsfarrell/rgbit/assets/69059806/1ed31966-3480-41c1-a694-a8c595b3693c)
 
 [![pages-build-deployment](https://github.com/johnsfarrell/rgbit/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages)](https://github.com/johnsfarrell/rgbit/actions/workflows/pages/pages-build-deployment)
 <a target="_blank" href="https://colab.research.google.com/github/johnsfarrell/rgbit/blob/main/ml/code/rgbit.ipynb">
