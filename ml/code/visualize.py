@@ -3,33 +3,23 @@ from matplotlib import gridspec
 from skimage.io import imread
 from util import load_model, predict
 import argparse
+import os
 
-def visualize(original, predicted):
+def visualize(image_path, model, save=False, hide=False):
     """
     Tests the model on image at path.
 
     Visualizes the original image (ground truth), grayscale image, and the predicted image.
+
+    Args:
+        image_path (str): The path to the image.
+        model (Model): The model.
+        save (bool): Whether to save the images. (Default: False)
     """
-    _, axs = plt.subplots(1, 3, figsize=(15, 5))
+    image_name = os.path.basename(image_path)
+    original = imread(image_path)
+    predicted = predict(original, model)
 
-    axs[0].imshow(original[:, :, 0], cmap='gray')
-    axs[0].set_title('Image L')
-
-    axs[1].imshow(original)
-    axs[1].set_title('Original Image')
-
-    axs[2].imshow(predicted)
-    axs[2].set_title('Predicted RGB Image')
-
-    plt.tight_layout()
-    plt.show()
-
-def save(original, predicted):
-    """
-    Tests the model on image at path.
-
-    Visualizes the original image (ground truth), grayscale image, and the predicted image.
-    """
     plt.figure(figsize=(15, 5), frameon=False)
     gs = gridspec.GridSpec(1, 3, wspace=0, hspace=0)
     
@@ -46,27 +36,43 @@ def save(original, predicted):
     ax3.axis('off')
 
     plt.subplots_adjust(left=0, right=1, top=1, bottom=0, wspace=0, hspace=0)
-    plt.savefig('result.png', bbox_inches='tight', pad_inches=0)
+    
+    if save: plt.savefig(f"output/{image_name}", bbox_inches='tight', pad_inches=0)
+
+    if not hide: plt.show()
 
 def main():
-    parser = argparse.ArgumentParser(description="Visualize and optionally save an image.")
-    parser.add_argument("-i", "--image", default="test_images/test_image_1.jpg", help="Path to the image file.")
-    parser.add_argument("-v", "--visualize", action="store_true", help="Enable visualization of the image. (Default: True)")
-    parser.add_argument("-s", "--save", action="store_true", help="Save the image after processing. (Default: False)")
+    parser = argparse.ArgumentParser(description="Process images for visualization and saving.")
+    parser.add_argument("-i", "--image", default="test_images/test_image_1.jpg", help="Path to a single image file.")
+    parser.add_argument("-d", "--directory", help="Directory containing images to process.")
+    parser.add_argument("-s", "--save", action="store_true", help="Save the images after processing. (Default: False)")
+    parser.add_argument("-nv", "--no-vis", action="store_true", help="No visual displayed. (Default: False)")
     
+    if not os.path.exists("output"):
+        os.makedirs("output")
+
     args = parser.parse_args()
-    image_path, v, s = args.image, args.visualize, args.save
-    
-    if not (v or s):
-        print("Must specify either --visualize or --save.")
-        return
-    
+    image_path = args.image
+    directory_path = args.directory
+    save = args.save
+    hide = args.no_vis
+
     model = load_model()
-    
-    img = imread(image_path)
-    upscaled_rgb = predict(img, model)
-    if v: visualize(img, upscaled_rgb)
-    if s: save(img, upscaled_rgb)
+
+    if directory_path:
+        if not os.path.exists(directory_path):
+            print(f"Directory {directory_path} not found.")
+            return
+        for filename in os.listdir(directory_path):
+            if filename.lower().endswith(('.png', '.jpg', '.jpeg', '.webp')):
+                image_path = os.path.join(directory_path, filename)
+                visualize(image_path, model, save, hide)
+        return
+
+    if not os.path.isfile(image_path):
+        print(f"Image file {image_path} not found.")
+        return
+    visualize(image_path, model, save, hide)
 
 if __name__ == "__main__":
     main()

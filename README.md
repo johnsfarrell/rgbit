@@ -87,7 +87,7 @@ You can also use `ml/code/visualize.py` to colorize images without the client an
 
 ```bash
 $ cd ml/models && ./download.sh
-$ cd ../code && python3 visualize.py -v # -h for help
+$ cd ../code && python3 visualize.py # -h for help
 ```
 
 #### Training
