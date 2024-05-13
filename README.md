@@ -83,11 +83,11 @@ The `go` script should let you know if you missed one of the steps above, and wi
 
 #### Clientless and Serverless Colorization
 
-You can also use `ml/code/visualize.py` to colorize images without the client and server. Please make sure you have `ml/models/model.h5` downloaded. Specify an image (path) to color at the bottom of `ml/code/visualize.py`.
+You can also use `ml/code/visualize.py` to colorize images without the client and server. Please make sure you have `ml/models/model.h5` downloaded.
 
 ```bash
 $ cd ml/models && ./download.sh
-$ cd ../code && export IMAGE_PATH=test_images/test_image_1.py && python3 visualize.py
+$ cd ../code && python3 visualize.py -v # -h for help
 ```
 
 #### Training

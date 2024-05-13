@@ -7,6 +7,22 @@ from model import Model
 import hyperparameters as hp
 import tensorflow as tf
 
+def predict(img, MODEL):
+    """
+    Predict the color of the image.
+
+    Args:
+        img (np.array): The image to colorize.
+
+    Returns:
+        np.array: The colorized image.
+    """
+    img = fix_dims(img)
+    downscaled_img = resize_image(img, (hp.img_size, hp.img_size))
+    colored_lab = predict_color(downscaled_img, MODEL)
+    upscaled_rgb = upscale_color(img, colored_lab)
+    return upscaled_rgb
+
 def load_model(model="../models/model.h5"):
     """
     Load the model.
