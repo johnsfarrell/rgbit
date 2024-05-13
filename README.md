@@ -22,7 +22,7 @@ RGBIT is a completely open-source and free platform for restoring color to black
 - [Local Setup](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#local-setup)
   - [Clientless and Serverless Colorization](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#clientless-and-serverless-colorization)
   - [Training](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#training)
-  - [Usage](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#usage)
+  - [Usage and Commands](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#usage)
 - [Developer Stack](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#built-on-mern)
 
 ## Model Summary
@@ -81,7 +81,7 @@ $ ./go
 
 The `go` script should let you know if you missed one of the steps above, and will promp you to install the necessary dependencies if you haven't already.
 
-#### Clientless and Serverless Colorization
+### Clientless and Serverless Colorization
 
 You can also use `ml/code/visualize.py` to colorize images without the client and server. Please make sure you have `ml/models/model.h5` downloaded.
 
@@ -111,6 +111,37 @@ Navigate to `http://localhost:3000` to use the application.
 The API is available at `http://localhost:4004`.
 
 The colorize endpoint is available at `http://localhost:4004/colorize`.
+
+#### Client Commands
+
+| Command          | Action                                              |
+| ---------------- | --------------------------------------------------- |
+| `npm install`    | Installs the client dependencies                    |
+| `npm run start`  | Starts the client                                   |
+| `npm run build`  | Builds the client                                   |
+| `npm run deploy` | Deploys the client to GitHub Pages (for production) |
+
+#### Server Commands
+
+| Command         | Action                           |
+| --------------- | -------------------------------- |
+| `npm install`   | Installs the server dependencies |
+| `npm run start` | Starts the server                |
+
+#### ML Commands
+
+| Command                           | Action                                 |
+| --------------------------------- | -------------------------------------- |
+| `./data/download.sh`              | Downloads the training data            |
+| `./models/download.sh`            | Downloads the pretrained `model.h5`    |
+| `./setup.sh`                      | View setup commands                    |
+| `source venv/bin/activate`        | Activates the virtual environment      |
+| `pip install -r requirements.txt` | Installs the ML dependencies           |
+| `export FLASK_APP=app.py`         | Sets the Flask app to the model server |
+| `flask run -h localhost -p 4004`  | Starts the Flask model server          |
+| `python3 main.py`                 | Trains the model                       |
+| `python3 code/visualize.py -h`    | Commands for visualizing test image(s) |
+
 
 ### Built on MERN+
 
