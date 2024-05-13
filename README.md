@@ -42,6 +42,9 @@ The results of perceptual loss showed our model and architecture is viable for c
 | ![Image 6](https://github.com/johnsfarrell/rgbit/assets/69059806/7d3d15f5-d6db-411b-afe2-5ee2283b2f70) | ![Image 8](https://github.com/johnsfarrell/rgbit/assets/69059806/2f39efb1-e6c3-475a-8b15-bf7302373add) |
 |  |  |
 
+Model results on real legacy black and white photographs:
+
+![legacy-banner](https://github.com/johnsfarrell/rgbit/assets/69059806/73f39028-c0b0-461a-9bc1-ecd34dd5e432)
 
 
 ## Local Setup
