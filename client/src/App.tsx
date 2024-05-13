@@ -1,7 +1,7 @@
 import { ChakraProvider } from "@chakra-ui/react";
 import { useEffect, useMemo, useState } from "react";
 import { cookieAPI } from "./utils/cookie";
-import { API, About, Home, ImageView, Lost, Terms } from "./pages";
+import { API, Home, ImageView, Lost, Terms } from "./pages";
 import { AboutResearchToast } from "./components/about";
 import { Menu, MenuTitle } from "./components/menu";
 import { Footer } from "./components/footer";
@@ -36,7 +36,6 @@ export const App = () => {
       {
         "": Home,
         "#": Home,
-        "#about": About,
         "#tos": Terms,
         "#api": API,
         "#image": ImageView,

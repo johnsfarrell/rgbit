@@ -4,9 +4,9 @@ interface ItemProps {
 }
 
 export const MENU_ITEMS: ItemProps[] = [
-  { text: "home", link: "" },
-  { text: "api", link: "api" },
-  { text: "about", link: "about" },
+  { text: "home", link: "#" },
+  { text: "api", link: "#api" },
+  { text: "more ↗", link: "https://github.com/johnsfarrell/rgbit" },
 ];
 
 interface FileTypeProps {

@@ -21,8 +21,8 @@ const Menu = ({ hashtag }: MenuProps) => {
           <MenuButton
             key={text}
             text={text}
-            link={"#" + link}
-            isHighlighted={link === hashtag.replace("#", "")}
+            link={link}
+            isHighlighted={link.replace("#", "") === hashtag.replace("#", "")}
           />
         );
       })}

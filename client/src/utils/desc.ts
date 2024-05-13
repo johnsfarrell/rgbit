@@ -2,10 +2,6 @@
  * Descriptions for webcontent.
  */
 
-import { AboutLink, AboutProfile } from "../components/about";
-import AboutPoster from "../components/about/AboutPoster";
-import { ICON_PATH, PROFILES_PATH, RESEARCH_PATH } from "./constants";
-
 export const TERMS_AND_CONDITIONS = [
   {
     heading: "Terms and Conditions",
@@ -54,70 +50,6 @@ export const TERMS_AND_CONDITIONS = [
     heading: "Contact Us",
     text: `If you have any questions about these terms and conditions, please contact us.`,
     list: [],
-  },
-];
-
-interface ProfileProps {
-  name: string;
-  src: string;
-  bio: string;
-  linkedinUrl: string;
-}
-
-export const PROFILES: ProfileProps[] = [
-  {
-    name: "John Farrell",
-    src: PROFILES_PATH + "john.jpeg",
-    bio: "Math & CS @ Brown, 2026",
-    linkedinUrl: "https://www.linkedin.com/in/johnsfarrell/",
-  },
-  {
-    name: "Tyler Gurth",
-    src: PROFILES_PATH + "tyler.jpeg",
-    bio: "CS & Art History @ Brown, 2025",
-    linkedinUrl: "https://www.linkedin.com/in/tyler-gurth-87249b225/",
-  },
-  {
-    name: "Jania Vandevoorde",
-    src: PROFILES_PATH + "jania.jpeg",
-    bio: "CS & Stats @ Brown, 2025",
-    linkedinUrl: "https://www.linkedin.com/in/jania-vandevoorde/",
-  },
-  {
-    name: "Hunter Adrian",
-    src: PROFILES_PATH + "hunter.jpeg",
-    bio: "CS @ Brown, 2025",
-    linkedinUrl: "https://www.linkedin.com/in/hunter-adrian1/",
-  },
-];
-
-interface ResourceProps {
-  title: string;
-  description: string;
-  src: string;
-  href: string;
-}
-
-export const RESOURCES: ResourceProps[] = [
-  {
-    title: "Research Paper",
-    description: "CNNs to restore color in gray scale images.",
-    src: ICON_PATH + "pdf.png",
-    href: "file/report.pdf",
-  },
-  {
-    title: "GitHub Codebase",
-    description: "Open-sourced repos (API, CNN, UI/UX).",
-    src: ICON_PATH + "github.png",
-    href: "https://github.com/",
-  },
-];
-
-export const POSTERS = [
-  {
-    src: RESEARCH_PATH + "poster.jpg",
-    href: RESEARCH_PATH + "poster.pdf",
-    alt: "Research Poster",
   },
 ];
 
@@ -239,38 +171,6 @@ export const FAQS: { question: string; answer: string[] }[] = [
   {
     question: PHOTO_PROCESSING_QUESTION,
     answer: PHOTO_PROCESSING_STEPS,
-  },
-];
-
-export const ABOUT_HEADER = "About RGBaddies";
-
-export const TEAM_HEADER = "Contributors";
-
-export const RESEARCH_HEADER = "Research";
-
-export const ABOUTS: {
-  header: string;
-  blurb: string;
-  content: any[];
-  Component: (props: any) => JSX.Element | null;
-}[] = [
-  {
-    header: ABOUT_HEADER,
-    blurb: ABOUT_BLURB,
-    content: RESOURCES,
-    Component: AboutLink,
-  },
-  {
-    header: TEAM_HEADER,
-    blurb: TEAM_BLURB,
-    content: PROFILES,
-    Component: AboutProfile,
-  },
-  {
-    header: RESEARCH_HEADER,
-    blurb: RESEARCH_BLURB,
-    content: POSTERS,
-    Component: AboutPoster,
   },
 ];
 
