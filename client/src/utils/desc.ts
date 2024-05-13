@@ -4,6 +4,7 @@
 
 import { AboutLink, AboutProfile } from "../components/about";
 import AboutPoster from "../components/about/AboutPoster";
+import { ICON_PATH, PROFILES_PATH, RESEARCH_PATH } from "./constants";
 
 export const TERMS_AND_CONDITIONS = [
   {
@@ -66,25 +67,25 @@ interface ProfileProps {
 export const PROFILES: ProfileProps[] = [
   {
     name: "John Farrell",
-    src: "img/profiles/john.jpeg",
+    src: PROFILES_PATH + "john.jpeg",
     bio: "Math & CS @ Brown, 2026",
     linkedinUrl: "https://www.linkedin.com/in/johnsfarrell/",
   },
   {
     name: "Tyler Gurth",
-    src: "img/profiles/tyler.jpeg",
+    src: PROFILES_PATH + "tyler.jpeg",
     bio: "CS & Art History @ Brown, 2025",
     linkedinUrl: "https://www.linkedin.com/in/tyler-gurth-87249b225/",
   },
   {
     name: "Jania Vandevoorde",
-    src: "img/profiles/Jania.jpeg",
+    src: PROFILES_PATH + "jania.jpeg",
     bio: "CS & Stats @ Brown, 2025",
     linkedinUrl: "https://www.linkedin.com/in/jania-vandevoorde/",
   },
   {
     name: "Hunter Adrian",
-    src: "img/profiles/hunter.jpeg",
+    src: PROFILES_PATH + "hunter.jpeg",
     bio: "CS @ Brown, 2025",
     linkedinUrl: "https://www.linkedin.com/in/hunter-adrian1/",
   },
@@ -101,20 +102,20 @@ export const RESOURCES: ResourceProps[] = [
   {
     title: "Research Paper",
     description: "CNNs to restore color in gray scale images.",
-    src: "img/icons/pdf.png",
+    src: ICON_PATH + "pdf.png",
     href: "file/report.pdf",
   },
   {
     title: "GitHub Codebase",
     description: "Open-sourced repos (API, CNN, UI/UX).",
-    src: "img/icons/github.png",
+    src: ICON_PATH + "github.png",
     href: "https://github.com/",
   },
 ];
 
 export const POSTERS = [
   {
-    src: "research/poster.jpeg",
+    src: RESEARCH_PATH + "poster.jpeg",
     alt: "Research Poster",
   },
 ];

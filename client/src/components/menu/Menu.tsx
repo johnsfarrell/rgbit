@@ -1,6 +1,6 @@
 import { Flex } from "@chakra-ui/react";
 import MenuButton from "./MenuButton";
-import { menuItems } from "../../utils/constants";
+import { MENU_ITEMS } from "../../utils/constants";
 
 interface MenuProps {
   hashtag: string;
@@ -16,7 +16,7 @@ const Menu = ({ hashtag }: MenuProps) => {
       }}
       right={{ base: "50%", sm: 0 }}
     >
-      {menuItems.map(({ text, link }) => {
+      {MENU_ITEMS.map(({ text, link }) => {
         return (
           <MenuButton
             key={text}

@@ -3,7 +3,7 @@ interface ItemProps {
   link: string;
 }
 
-export const menuItems: ItemProps[] = [
+export const MENU_ITEMS: ItemProps[] = [
   { text: "home", link: "" },
   { text: "api", link: "api" },
   { text: "about", link: "about" },
@@ -13,7 +13,7 @@ interface FileTypeProps {
   [key: string]: string[];
 }
 
-export const acceptedFileTypes: FileTypeProps = {
+export const ACCEPTED_FILE_TYPES: FileTypeProps = {
   "image/png": [".png"],
   "image/jpg": [".jpg"],
   "image/jpeg": [".jpeg"],
@@ -22,9 +22,15 @@ export const acceptedFileTypes: FileTypeProps = {
   "image/webp": [".webp"],
 };
 
-export const imgGalleryPath = `${process.env.PUBLIC_URL}/img/gallery/`;
+export const RESEARCH_PATH = `${process.env.PUBLIC_URL}/research/`;
 
-export const imgGalleryFiles: string[] = [
+export const PROFILES_PATH = `${process.env.PUBLIC_URL}/img/profiles/`;
+
+export const ICON_PATH = `${process.env.PUBLIC_URL}/img/icons/`;
+
+export const GALLERY_PATH = `${process.env.PUBLIC_URL}/img/gallery/`;
+
+export const GALLERY_IMAGES: string[] = [
   "sailor.png",
   "jfk.png",
   "landscape.png",
@@ -35,9 +41,9 @@ export const imgGalleryFiles: string[] = [
   "louvre.jpg",
   "painting.jpg",
   "nightvision.jpg",
-];
+].map((img) => `${GALLERY_PATH}${img}`);
 
-export const maxFileSize = 3000000;
+export const MAX_FILE_SIZE = 3000000;
 
 export const COLORIZE_URI = `${process.env.REACT_APP_API_URL}/image/colorize/`;
 

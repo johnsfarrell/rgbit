@@ -1,6 +1,6 @@
 import { HStack } from "@chakra-ui/react";
 import GalleryImage from "./GalleryImage";
-import { imgGalleryFiles } from "../../utils/constants";
+import { GALLERY_IMAGES } from "../../utils/constants";
 import { useEffect, useState } from "react";
 import { getRandomElements } from "../../utils/image";
 
@@ -18,7 +18,7 @@ const Gallery = ({ props }: GalleryProps) => {
   const [images, setImages] = useState<string[]>([]);
 
   useEffect(() => {
-    setImages(getRandomElements(imgGalleryFiles, 3));
+    setImages(getRandomElements(GALLERY_IMAGES, 3));
   }, []);
 
   return (

@@ -2,7 +2,6 @@ import { Image, Tooltip } from "@chakra-ui/react";
 import { GALLERY_TRY_IMAGE } from "../../utils/desc";
 import { urlToFile } from "../../utils/image";
 import { GALLERY_OPEN } from "../../utils/animations";
-import { imgGalleryPath } from "../../utils/constants";
 
 interface GalleryImageProps {
   src: string;
@@ -11,10 +10,8 @@ interface GalleryImageProps {
 }
 
 const GalleryImage = ({ src, setFile, onOpen }: GalleryImageProps) => {
-  const imgSrc = imgGalleryPath + src;
-
   const handleImageClick = async () => {
-    const img = await urlToFile(imgSrc, imgSrc);
+    const img = await urlToFile(src, src);
     setFile(img);
     onOpen();
   };
@@ -22,9 +19,9 @@ const GalleryImage = ({ src, setFile, onOpen }: GalleryImageProps) => {
   return (
     <Tooltip label={GALLERY_TRY_IMAGE} hasArrow>
       <Image
-        src={imgSrc}
-        key={imgSrc}
-        alt={imgSrc}
+        src={src}
+        key={src}
+        alt={src}
         rounded="md"
         objectFit="cover"
         w={{ base: "27.5%", sm: "150px" }}

@@ -2,7 +2,11 @@ import { useToast } from "@chakra-ui/react";
 import Dropzone, { FileRejection } from "react-dropzone";
 import { imageHasColor } from "../../utils/image";
 import UploadBox from "./UploadBox";
-import { Props, acceptedFileTypes, maxFileSize } from "../../utils/constants";
+import {
+  Props,
+  ACCEPTED_FILE_TYPES,
+  MAX_FILE_SIZE,
+} from "../../utils/constants";
 import { FAILED_IMAGE_TOAST, FILE_REJECTED_TOAST } from "../../utils/toasts";
 
 const UploadDropbox = ({ props }: Props) => {
@@ -31,8 +35,8 @@ const UploadDropbox = ({ props }: Props) => {
     <Dropzone
       onDropAccepted={dropAccepted}
       onDropRejected={dropRejected}
-      maxSize={maxFileSize}
-      accept={acceptedFileTypes}
+      maxSize={MAX_FILE_SIZE}
+      accept={ACCEPTED_FILE_TYPES}
       multiple={false}
     >
       {({ getRootProps, getInputProps, isDragActive }) => (

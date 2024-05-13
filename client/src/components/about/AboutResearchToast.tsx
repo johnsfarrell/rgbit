@@ -1,6 +1,7 @@
 import { Button, Flex, Image, Link, Text } from "@chakra-ui/react";
 import { OPEN_CLOSE } from "../../utils/animations";
 import { RESEARCH_TOAST_HEADLINE } from "../../utils/desc";
+import { ICON_PATH } from "../../utils/constants";
 
 const AboutResearchToast = () => {
   return (
@@ -16,7 +17,7 @@ const AboutResearchToast = () => {
         <Flex gap={3}>
           <Text>🎉</Text>
           <Text textTransform="capitalize">{RESEARCH_TOAST_HEADLINE}</Text>
-          <Image h="19px" alt="research pdf" src="img/icons/pdf.png" />
+          <Image h="19px" alt="research pdf" src={ICON_PATH + "pdf.png"} />
         </Flex>
       </Button>
     </Link>
