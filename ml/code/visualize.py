@@ -55,7 +55,7 @@ def main():
     image_path = args.image
     directory_path = args.directory
     save = args.save
-    hide = args.no_vis
+    hide = args.no_visual
 
     model = load_model()
 
