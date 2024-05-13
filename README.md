@@ -17,13 +17,35 @@ RGBIT is a completely open-source and free platform for restoring color to black
   - [API Documentation](https://johnsfarrell.github.io/rgbit#api)
   - [About](https://johnsfarrell.github.io/rgbit#about)
 - [Research Paper](https://johnsfarrell.github.io/rgbit/research.pdf), [Poster](https://johnsfarrell.github.io/rgbit/poster.pdf)
-  - [Summary](todo)
-  - [Example Results](todo)
+  - [Model Summary](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#model-summary)
+  - [Example Results](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#example-results)
 - [Local Setup](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#local-setup)
   - [Clientless and Serverless Colorization](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#clientless-and-serverless-colorization)
   - [Training](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#training)
   - [Usage](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#usage)
 - [Developer Stack](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#built-on-mern)
+
+## Model Summary
+
+We implemented a convolutional neural network (CNN) to colorize grayscale images using a U-Net architecture with the VGG-19 model. U-Net is a popular deep learning architecture known for its effectiveness in image segmentation tasks. VGG-19 is a large model with almost 150 million parameters that is pre-trained. It is traditionally used for feature detection and was adapted for colorizing in our project. Our model is trained using the MIT Places365 dataset, which contains 365,000 images of scenes (which we split into 328,500 train and 36,500 test images, a 90/10 split). Moreover, the model makes use of a custom Perceptual Loss function for a higher level chromatic evaluation of the CNN. Our results show that the model produces vibrant and realistically colored images. This project reinforces the potential of deep learning in creative image processing. Below is was our VGG-19 U-Net architecture.
+
+![Architecture](https://github.com/johnsfarrell/rgbit/assets/69059806/4cd5e928-5f3f-447b-82cf-5aff1e79541d)
+
+## Example Results
+
+The results of perceptual loss showed our model and architecture is viable for creating naturally looking colorful photos, but doesn't correctly account for unique coloring and saturation. Colors returned are plausible and look natural to the human eye. The model can be used to color any grayscale image, but has best use-cases for naturally existing photos, such as old black and white photography or night vision goggles. Below are some example results from our model. The first image is the L channel, the second image is the truth coloring, and the third image is the predicted coloring.
+
+|  |  |
+|---|---|
+| ![Image 1](https://github.com/johnsfarrell/rgbit/assets/69059806/be1b9a85-d711-419c-bb0c-aef9467b27a8) | ![Image 2](https://github.com/johnsfarrell/rgbit/assets/69059806/bde14421-3c57-4500-b9f3-f45e1eff00a7) |
+| ![Image 3](https://github.com/johnsfarrell/rgbit/assets/69059806/80d40b76-cb8c-4e88-bb88-da651c537dc3) | ![Image 4](https://github.com/johnsfarrell/rgbit/assets/69059806/461df0fb-edd6-48d3-ba10-f1688606610c) |
+| ![Image 6](https://github.com/johnsfarrell/rgbit/assets/69059806/7d3d15f5-d6db-411b-afe2-5ee2283b2f70) | ![Image 8](https://github.com/johnsfarrell/rgbit/assets/69059806/2f39efb1-e6c3-475a-8b15-bf7302373add) |
+|  |  |
+
+Model results on real legacy black and white photographs:
+
+![legacy-banner](https://github.com/johnsfarrell/rgbit/assets/69059806/73f39028-c0b0-461a-9bc1-ecd34dd5e432)
+
 
 ## Local Setup
 
