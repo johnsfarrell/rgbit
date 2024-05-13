@@ -35,17 +35,16 @@ We implemented a convolutional neural network (CNN) to colorize grayscale images
 
 The results of perceptual loss showed our model and architecture is viable for creating naturally looking colorful photos, but doesn't correctly account for unique coloring and saturation. Colors returned are plausible and look natural to the human eye. The model can be used to color any grayscale image, but has best use-cases for naturally existing photos, such as old black and white photography or night vision goggles. Below are some example results from our model. The first image is the L channel, the second image is the truth coloring, and the third image is the predicted coloring.
 
-|  |  |
-|---|---|
+|                                                                                                        |                                                                                                        |
+| ------------------------------------------------------------------------------------------------------ | ------------------------------------------------------------------------------------------------------ |
 | ![Image 1](https://github.com/johnsfarrell/rgbit/assets/69059806/be1b9a85-d711-419c-bb0c-aef9467b27a8) | ![Image 2](https://github.com/johnsfarrell/rgbit/assets/69059806/bde14421-3c57-4500-b9f3-f45e1eff00a7) |
 | ![Image 3](https://github.com/johnsfarrell/rgbit/assets/69059806/80d40b76-cb8c-4e88-bb88-da651c537dc3) | ![Image 4](https://github.com/johnsfarrell/rgbit/assets/69059806/461df0fb-edd6-48d3-ba10-f1688606610c) |
 | ![Image 6](https://github.com/johnsfarrell/rgbit/assets/69059806/7d3d15f5-d6db-411b-afe2-5ee2283b2f70) | ![Image 8](https://github.com/johnsfarrell/rgbit/assets/69059806/2f39efb1-e6c3-475a-8b15-bf7302373add) |
-|  |  |
+|                                                                                                        |                                                                                                        |
 
 Model results on real legacy black and white photographs:
 
 ![legacy-banner](https://github.com/johnsfarrell/rgbit/assets/69059806/73f39028-c0b0-461a-9bc1-ecd34dd5e432)
-
 
 ## Local Setup
 
@@ -109,9 +108,9 @@ $ cd ml/code && python3 main.py
 
 Navigate to `http://localhost:3000` to use the application.
 
-The API is available at `http://localhost:5000`.
+The API is available at `http://localhost:4004`.
 
-The colorize endpoint is available at `http://localhost:5000/colorize`.
+The colorize endpoint is available at `http://localhost:4004/colorize`.
 
 ### Built on MERN+
 

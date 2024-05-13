@@ -125,3 +125,4 @@ def rgb_to_byte_arr(img_rgb):
     img_pil.save(byte_arr, format='PNG')
     byte_arr.seek(0)
     return byte_arr
+    
