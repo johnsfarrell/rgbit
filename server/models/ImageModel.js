@@ -5,6 +5,7 @@ const imageSchema = mongoose.Schema({
   key: { type: String, required: true },
   original: { type: Buffer, required: true },
   colored: { type: Buffer, required: true },
+  createdAt: { type: Date, default: Date.now, index: { expires: 60 * 30 } },
 });
 
 module.exports = mongoose.model("image", imageSchema);
