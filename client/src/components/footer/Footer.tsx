@@ -15,7 +15,7 @@ const Footer = () => {
       color="gray.500"
     >
       <HStack gap={8}>
-        <FooterLink hideSmall={true} href="/">
+        <FooterLink hideSmall={true} href="#">
           rgbaddies
         </FooterLink>
         <FooterLink href="#about">about</FooterLink>

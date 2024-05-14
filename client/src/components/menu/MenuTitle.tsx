@@ -3,7 +3,7 @@ import { ACTIVE_HOVER, HUE_ROTATE } from "../../utils/animations";
 
 const MenuTitle = () => {
   const handleClick = () => {
-    window.location.href = "/";
+    window.location.href = "#";
   };
 
   return (
