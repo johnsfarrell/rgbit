@@ -148,7 +148,7 @@ The colorize endpoint is available at `http://localhost:4004/colorize`.
 
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=plastic&logo=amazon-aws&logoColor=white) ![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=plastic&logo=github&logoColor=white)
 
-### Acknowledgements
+## Acknowledgements
 
 Contributions from Tyler Gurth, John Farrell, Jania Vandevoorde, and Hunter Adrian.
 
