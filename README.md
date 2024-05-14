@@ -15,8 +15,7 @@ RGBIT is a completely open-source and free platform for restoring color to black
 
 - [Website](https://johnsfarrell.github.io/rgbit)
   - [API Documentation](https://johnsfarrell.github.io/rgbit#api)
-  - [About](https://johnsfarrell.github.io/rgbit#about)
-- [Research Paper](https://github.com/johnsfarrell/rgbit/blob/main/client/public/research/report.pdf), [Poster](https://github.com/johnsfarrell/rgbit/blob/main/client/public/research/poster.pdf)
+- [Research Paper](https://johnsfarrell.github.io/rgbit/research/report.pdf), [Poster](https://johnsfarrell.github.io/rgbit/research/poster.pdf)
   - [Model Summary](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#model-summary)
   - [Example Results](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#example-results)
 - [Local Setup](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#local-setup)
@@ -57,11 +56,7 @@ Clone the repository:
 $ git clone https://github.com/johnsfarrell/rgbit
 ```
 
-If you want to play with the pre-trained model, navigate to `ml/models` and run `download.sh`:
-
-```bash
-$ cd ml/models && ./download.sh
-```
+If you want to play with the pre-trained model, make sure to have `ml/models/model.h5` downloaded.:
 
 If you are interested in modifying the model architecture and training a model yourself, see [here](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#training).
 
@@ -87,7 +82,6 @@ The `go` script should let you know if you missed one of the steps above, and wi
 You can also use `ml/code/visualize.py` to colorize images without the client and server. Please make sure you have `ml/models/model.h5` downloaded.
 
 ```bash
-$ cd ml/models && ./download.sh
 $ cd ../code && python3 visualize.py # -h for help
 ```
 
@@ -134,7 +128,6 @@ The colorize endpoint is available at `http://localhost:4004/colorize`.
 | Command                           | Action                                 |
 | --------------------------------- | -------------------------------------- |
 | `./data/download.sh`              | Downloads the training data            |
-| `./models/download.sh`            | Downloads the pretrained `model.h5`    |
 | `./setup.sh`                      | View setup commands                    |
 | `source venv/bin/activate`        | Activates the virtual environment      |
 | `pip install -r requirements.txt` | Installs the ML dependencies           |

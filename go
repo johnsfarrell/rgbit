@@ -23,7 +23,7 @@ if ! ls ml/venv/bin/activate 1> /dev/null 2>&1; then
 fi
 
 if ! ls ml/models/*.h5 1> /dev/null 2>&1; then
-    echo "Models not found. (hint: cd ml/models && ./download.sh)"
+    echo "Models not found. Check the GitHub README to find the model.h5 files."
     exit 1
 fi
 

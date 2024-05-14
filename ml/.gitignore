@@ -4,6 +4,5 @@ __pycache__
 /data/*
 /code/logs/*
 !/data/download.sh
-*.h5
 venv/
 output/

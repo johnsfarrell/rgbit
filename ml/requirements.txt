@@ -4,3 +4,4 @@ scikit-learn
 tensorflow==2.16.1
 flask
 matplotlib
+keras

@@ -28,11 +28,9 @@ app.use(function (req, res, next) {
 app.use(
   cors({
     credentials: true,
-    origin: ["http://localhost:3000"],
+    origin: [process.env.CLIENT_URL],
   })
 );
-
-app.use(express.static("static"));
 
 app.use(logger);
 
