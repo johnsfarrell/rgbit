@@ -5,21 +5,21 @@
 export const TERMS_AND_CONDITIONS = [
   {
     heading: "Terms and Conditions",
-    text: `Welcome to Our Website! By accessing or using our website, you agree to be bound by these terms and conditions.`,
+    text: `Welcome to RGBaddies Website! By accessing or using our website or using our API service, you agree to be bound by these terms and conditions.`,
     list: [],
   },
   {
     heading: "Acceptance of Terms",
-    text: `By submitting images, uploading images, and restoring color to images, you acknowledge and agree to these terms and conditions in full. If you disagree with these terms and conditions or any part of these terms and conditions, you must not use this website.`,
+    text: `By submitting images, uploading images, and restoring color to images, you acknowledge and agree to these terms and conditions in full. If you disagree with these terms and conditions or any part of these terms and conditions, you must not use this website and API service.`,
     list: [],
   },
   {
     heading: "User Submitted Images",
     text: `Users are permitted to upload digital images to our platform. The images you upload may be viewed by other users of this site and used in accordance with the following terms:`,
     list: [
-      `Users retain ownership of the images they upload but grant [Your Website] a worldwide, irrevocable, non-exclusive, royalty-free license to use, reproduce, adapt, publish, translate and distribute their images in any existing or future media.`,
+      `Users retain ownership of the images they upload but grant us, RGBaddies, a worldwide, irrevocable, non-exclusive, royalty-free license to use, reproduce, adapt, publish, translate and distribute their images in any existing or future media.`,
       `You warrant and represent that the images do not infringe on any third party's rights (including intellectual property rights) and that they comply with all applicable laws and regulations.`,
-      `You are responsible for any claims brought against [Your Website] arising out of or related to the images you submit.`,
+      `You are responsible for any claims brought against us, RGBaddies, arising out of or related to the images you submit.`,
     ],
   },
   {
@@ -48,7 +48,7 @@ export const TERMS_AND_CONDITIONS = [
   },
   {
     heading: "Contact Us",
-    text: `If you have any questions about these terms and conditions, please contact us.`,
+    text: `If you have any questions about these terms and conditions, please contact us. john_farrell@brown.edu`,
     list: [],
   },
 ];
