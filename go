@@ -50,4 +50,4 @@ fi
 
 (cd server && npm run start) &
 
-source ml/venv/bin/activate && cd ml/code && export FLASK_APP=api && flask run -h localhost -p 4004
+source ml/venv/bin/activate && cd ml/code && python3 api.py

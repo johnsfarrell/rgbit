@@ -131,8 +131,7 @@ The colorize endpoint is available at `http://localhost:4004/colorize`.
 | `./setup.sh`                      | View setup commands                    |
 | `source venv/bin/activate`        | Activates the virtual environment      |
 | `pip install -r requirements.txt` | Installs the ML dependencies           |
-| `export FLASK_APP=app.py`         | Sets the Flask app to the model server |
-| `flask run -h localhost -p 4004`  | Starts the Flask model server          |
+| `python3 code/api.py`             | Starts the Flask model server          |
 | `python3 main.py`                 | Trains the model                       |
 | `python3 code/visualize.py -h`    | Commands for visualizing test image(s) |
 

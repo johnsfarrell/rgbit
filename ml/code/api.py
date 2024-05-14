@@ -15,10 +15,6 @@ def api():
     The image is resized, checked for the correct number of channels,
     colorized, and sent back as a response.
 
-    Development server:
-        1. `export FLASK_APP=api`
-        2. `flask run`
-
     Returns:
         Response: The colorized image.
 
@@ -38,4 +34,4 @@ def api():
     return send_file(rgb_to_byte_arr(upscaled_rgb), mimetype='image/png')
 
 if __name__ == '__main__':
-    app.run(debug=True)
+    app.run(host='127.0.0.1', port=4004, debug=False)
