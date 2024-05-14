@@ -7,6 +7,8 @@ interface MenuProps {
 }
 
 const Menu = ({ hashtag }: MenuProps) => {
+  const isDesktop = window.innerWidth > 600;
+
   return (
     <Flex
       position="absolute"
@@ -15,17 +17,20 @@ const Menu = ({ hashtag }: MenuProps) => {
         sm: "none",
       }}
       right={{ base: "50%", sm: 0 }}
+      w="max-content"
     >
-      {MENU_ITEMS.map(({ text, link }) => {
-        return (
-          <MenuButton
-            key={text}
-            text={text}
-            link={link}
-            isHighlighted={link.replace("#", "") === hashtag.replace("#", "")}
-          />
-        );
-      })}
+      {MENU_ITEMS.filter(({ text }) => isDesktop || text !== "api").map(
+        ({ text, link }) => {
+          return (
+            <MenuButton
+              key={text}
+              text={text}
+              link={link}
+              isHighlighted={link.replace("#", "") === hashtag.replace("#", "")}
+            />
+          );
+        }
+      )}
     </Flex>
   );
 };
