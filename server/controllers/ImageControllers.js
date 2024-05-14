@@ -13,7 +13,6 @@ const { getRefreshTime } = require("../util/time");
 const { generateUniqueKey } = require("../util/key");
 
 const fs = require("fs");
-const { REDIRECT_URL } = require("../config/const");
 const colorize = require("../util/api");
 
 /**
@@ -106,6 +105,6 @@ module.exports.colorizeImage = async (req, res) => {
     refresh: user.refresh,
     message: SUCCESS,
     colored,
-    redirect: `${REDIRECT_URL}/#image=${id}`,
+    redirect: `${process.env.CLIENT_URL}/#image=${id}`,
   });
 };
