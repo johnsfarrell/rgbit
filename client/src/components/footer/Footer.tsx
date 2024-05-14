@@ -15,12 +15,14 @@ const Footer = () => {
       color="gray.500"
     >
       <HStack gap={8}>
-        <FooterLink hideSmall={true} href="#">
+        <FooterLink hideSmall={true} href={process.env.PUBLIC_URL}>
           rgbaddies
         </FooterLink>
         <FooterLink href="#about">about</FooterLink>
         <FooterLink href="#tos">terms</FooterLink>
-        <FooterLink href="https://github.com">github</FooterLink>
+        <FooterLink href="https://github.com/johnsfarrell/rgbit">
+          github
+        </FooterLink>
       </HStack>
       <FooterLink hideSmall={true}>🎨 {year}</FooterLink>
     </Flex>
