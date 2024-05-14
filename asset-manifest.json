@@ -1,10 +1,10 @@
 {
   "files": {
-    "main.js": "/rgbit/static/js/main.a9a59c02.js",
+    "main.js": "/rgbit/static/js/main.ee4a29a8.js",
     "index.html": "/rgbit/index.html",
-    "main.a9a59c02.js.map": "/rgbit/static/js/main.a9a59c02.js.map"
+    "main.ee4a29a8.js.map": "/rgbit/static/js/main.ee4a29a8.js.map"
   },
   "entrypoints": [
-    "static/js/main.a9a59c02.js"
+    "static/js/main.ee4a29a8.js"
   ]
 }
