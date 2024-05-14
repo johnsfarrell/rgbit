@@ -144,7 +144,7 @@ The colorize endpoint is available at `http://localhost:4004/colorize`.
 
 ![Keras](https://img.shields.io/badge/Keras-%23D00000.svg?style=plastic&logo=Keras&logoColor=white) ![TensorFlow](https://img.shields.io/badge/TensorFlow-%23FF6F00.svg?style=plastic&logo=TensorFlow&logoColor=white) ![scikit-learn](https://img.shields.io/badge/scikit--learn-%23F7931E.svg?style=plastic&logo=scikit-learn&logoColor=white) ![Matplotlib](https://img.shields.io/badge/Matplotlib-%23ffffff.svg?style=plastic&logo=Matplotlib&logoColor=black) ![NumPy](https://img.shields.io/badge/numpy-%23013243.svg?style=plastic&logo=numpy&logoColor=white)
 
-### Deployed with [AWS EC2](https://aws.amazon.com/ec2/), [Route 53](https://aws.amazon.com/route53/), and [Pages](https://github.com/johnsfarrell/rgbit/actions/workflows/pages/pages-build-deploymen)
+### Deployed with [AWS EC2](https://aws.amazon.com/ec2/), [Route 53](https://aws.amazon.com/route53/), and [Pages](https://github.com/johnsfarrell/rgbit/actions/workflows/pages/pages-build-deployment)
 
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=plastic&logo=amazon-aws&logoColor=white) ![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=plastic&logo=github&logoColor=white)
 
