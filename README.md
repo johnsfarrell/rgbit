@@ -3,11 +3,10 @@
 ![banner](https://github.com/johnsfarrell/rgbit/assets/69059806/1ed31966-3480-41c1-a694-a8c595b3693c)
 
 [![research paper](https://img.shields.io/badge/PDF%E2%86%97-Research_Paper-red)](https://johnsfarrell.github.io/rgbit/research/report.pdf) 
+[![Colab](https://colab.research.google.com/assets/colab-badge.svg)](https://colab.research.google.com/github/johnsfarrell/rgbit/blob/main/ml/code/rgbit.ipynb)
+[![Postman](https://img.shields.io/badge/%E2%80%8E-Open%20In%20Postman-orange.svg?logo=postman&logoColor=white)](https://www.postman.com/docking-module-cosmonaut-42592220/workspace/public/collection/26483122-3401ab13-32a9-4c81-b03d-02ca710e64a7?action=share&creator=26483122)
 [![pages-build-deployment](https://github.com/johnsfarrell/rgbit/actions/workflows/pages/pages-build-deployment/badge.svg?branch=gh-pages)](https://github.com/johnsfarrell/rgbit/actions/workflows/pages/pages-build-deployment)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](/LICENSE)
-<a target="_blank" href="https://colab.research.google.com/github/johnsfarrell/rgbit/blob/main/ml/code/rgbit.ipynb">
-<img src="https://colab.research.google.com/assets/colab-badge.svg" alt="Open In Colab"/>
-</a>
 
 RGBIT is a completely open-source and free platform for restoring color to black and white images.
 
@@ -148,6 +147,10 @@ The colorize endpoint is available at `http://localhost:4004/colorize`.
 ### Deployed with [AWS EC2](https://aws.amazon.com/ec2/), [Route 53](https://aws.amazon.com/route53/), and [Pages](https://github.com/johnsfarrell/rgbit/actions/workflows/pages/pages-build-deployment)
 
 ![AWS](https://img.shields.io/badge/AWS-%23FF9900.svg?style=flat-square&logo=amazon-aws&logoColor=white) ![Github Pages](https://img.shields.io/badge/github%20pages-121013?style=flat-square&logo=github&logoColor=white)
+
+#### More on API Deployment
+
+The server is deployed on [AWS EC2](https://aws.amazon.com/ec2/). As an extra layer of security, the Flask ML server is hosted _locally_ on the EC2 instance, and can only be accessed through the Express server. As EC2 hosts a virtual machine (Linux for this project), we launched multiple servers and configure the ports through an EC2 security group. This makes it easy to redirect the Express server with Caddy to [api.rgbit](https://api.rgbit.io/api), while making the Flask server inaccessible to the internet. The server runtime is maintained by `systemctl`. 
 
 ## Acknowledgements
 
