@@ -49,7 +49,7 @@ Model results on real legacy black and white photographs:
 
 ## Local Setup
 
-> **Note:** Local client and server setup requires a cloud [MongoDB URI](https://www.mongodb.com/resources/products/platform/mongodb-atlas-tutorial) and [generating RSI keys](https://www.ssh.com/ssh/keygen/). The database is for storing results, and the RSI keys are for API key authentication. Feel free to skip around the local setup to find what you're looking for. [Here](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#clientless-and-serverless-colorization) covers using just the `ml/` directory and `ml/code/visualize.py` to colorize images from the terminal.
+> **Note:** Local client and server setup requires a cloud [MongoDB URI](https://www.mongodb.com/resources/products/platform/mongodb-atlas-tutorial) and [generating RSA keys](https://www.ssh.com/ssh/keygen/). The database is for storing results, and the RSA keys are for API key authentication. Feel free to skip around the local setup to find what you're looking for. [Here](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#clientless-and-serverless-colorization) covers using just the `ml/` directory and `ml/code/visualize.py` to colorize images from the terminal.
 
 Clone the repository:
 
@@ -68,7 +68,7 @@ $ cp client/.env.example client/.env
 $ cp server/.env.example server/.env
 ```
 
-The `client` and `server` directories depend on MongoDB and RSA keys. Obtain a [MongoDB URI](https://www.mongodb.com/resources/products/platform/mongodb-atlas-tutorial) and [generate RSI keys](https://cryptotools.net/rsagen). Update the `.env` files with the appropriate values.
+The `client` and `server` directories depend on MongoDB and RSA keys. Obtain a [MongoDB URI](https://www.mongodb.com/resources/products/platform/mongodb-atlas-tutorial) and [generate RSA keys](https://cryptotools.net/rsagen). Update the `.env` files with the appropriate values.
 
 Once you have the `model.h5` file in `ml/models`, you can run the server and both `.env` files are set up, use the `go` script to run the application:
 
