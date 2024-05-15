@@ -5,7 +5,7 @@
 export const TERMS_AND_CONDITIONS = [
   {
     heading: "Terms and Conditions",
-    text: `Welcome to RGBaddies Website! By accessing or using our website or using our API service, you agree to be bound by these terms and conditions.`,
+    text: `Welcome to RGBIT Website! By accessing or using our website or using our API service, you agree to be bound by these terms and conditions.`,
     list: [],
   },
   {
@@ -17,9 +17,9 @@ export const TERMS_AND_CONDITIONS = [
     heading: "User Submitted Images",
     text: `Users are permitted to upload digital images to our platform. The images you upload may be viewed by other users of this site and used in accordance with the following terms:`,
     list: [
-      `Users retain ownership of the images they upload but grant us, RGBaddies, a worldwide, irrevocable, non-exclusive, royalty-free license to use, reproduce, adapt, publish, translate and distribute their images in any existing or future media.`,
+      `Users retain ownership of the images they upload but grant us, RGBIT, a worldwide, irrevocable, non-exclusive, royalty-free license to use, reproduce, adapt, publish, translate and distribute their images in any existing or future media.`,
       `You warrant and represent that the images do not infringe on any third party's rights (including intellectual property rights) and that they comply with all applicable laws and regulations.`,
-      `You are responsible for any claims brought against us, RGBaddies, arising out of or related to the images you submit.`,
+      `You are responsible for any claims brought against us, RGBIT, arising out of or related to the images you submit.`,
     ],
   },
   {
@@ -62,7 +62,7 @@ export const GALLERY_TRY_IMAGE = "Try this image!";
 
 export const SERVER_ERROR = "Server error, please try again.";
 
-export const BALANCE_API = `GET https://api.rgbaddies.app/api/user/balance?key=API_KEY
+export const BALANCE_API = `GET https://api.rgbit.io/api/user/balance/:api_key
 Content-Type: application/json
 Body: None
 
@@ -78,17 +78,32 @@ Invalid Response: {
 ‎  message: string,
 }`;
 
-export const COLORIZE_API = `POST https://api.rgbaddies.app/api/image/colorize?key=API_KEY
+export const COLORIZE_API = `POST https://api.rgbit.io/api/image/colorize/:api_key
 Content-Type: multipart/form-data
-Body: { file: File }
+Body: { image: File }
 
 Valid Response: {
  ‎ status: 200,
  ‎ remainingBalance: number,
  ‎ refresh: number,
  ‎ message: string,
- ‎ colored: File,
+ ‎ download: string,
  ‎ redirect: string,
+}
+
+Invalid Response: {
+ ‎ status: number,
+ ‎ message: string,
+}`;
+
+export const IMAGE_API = `POST https://api.rgbit.io/api/image/get/:image_id
+Content-Type: multipart/form-data
+Body: None
+
+Valid Response: {
+ ‎ status: 200,
+ ‎ message: string,
+ ‎ colored: Buffer,
 }
 
 Invalid Response: {
@@ -99,20 +114,24 @@ Invalid Response: {
 export const PAGE_NOT_FOUND = "the page you are looking for does not exist.";
 
 export const API_KEY_BLURB = `Below is your API access key. Please keep it secure and do not share
-it. Rate limitations apply similarly to the web interface (5 color
-restoration requests per hour). API keys are generated using a unique
+it. Rate limitations apply similarly to the web interface. API keys are generated using a unique
 device fingerprint. Device fingerprints are encrypted both for user
 privacy and to verifying authenticity.`;
 
 export const API_COLORIZE_BLURB = `To restore color to an image, send a POST request to the following
 endpoint. The image should be sent as a file in the body of the request.
-The response will contain the colorized image as a file.`;
+The response will contain a redirect to view the image on our site and a download buffer link.
+The refresh is the time remaining until your balance is restored.`;
 
 export const API_BALANCE_BLURB = `To check your remaining balance, send a GET request to the following
 endpoint. The response will contain the remaining balance. The
-countdown is the time remaining until your balance is restored.`;
+refresh is the time remaining until your balance is restored.`;
 
-export const ABOUT_BLURB = `rgbaddies started as a computer vision project at Brown University to
+export const API_IMAGE_BLURB = `To retrieve a colorized image, send a POST request to the following
+endpoint. The response will contain the colorized image as a buffer. Keep in mind that the we only
+temporarily store images, so be sure to save the image after retrieving it.`;
+
+export const ABOUT_BLURB = `RGBIT started as a computer vision project at Brown University to
 restore color to gray scale images. The project is a completely free
 platform for both developers and artists to experiment with colorizing
 images. We hope to provide a simple and intuitive interface for users to
@@ -181,3 +200,21 @@ export const FAILED_FETCH_BALANCE = "Failed to fetch balance.";
 export const FAILED_VERIFY_SIGNATURE = "Failed to verify signature.";
 
 export const FAILED_FETCH_IMAGE = "Failed to fetch image.";
+
+export const API_DOCUMENTATION_CONTENT = [
+  {
+    heading: "Colorize",
+    text: API_COLORIZE_BLURB,
+    code: COLORIZE_API,
+  },
+  {
+    heading: "Balance",
+    text: API_BALANCE_BLURB,
+    code: BALANCE_API,
+  },
+  {
+    heading: "Image",
+    text: API_IMAGE_BLURB,
+    code: IMAGE_API,
+  },
+];

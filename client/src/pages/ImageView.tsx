@@ -27,11 +27,7 @@ import { DownloadIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
  * @returns {JSX.Element} View Image page
  */
 const ImageView = () => {
-  interface Image {
-    original: string;
-    colored: string;
-  }
-  const [image, setImage] = useState<Image | null>(null);
+  const [image, setImage] = useState<string | null>(null);
 
   const [showOriginal, setShowOriginal] = useState(false);
 
@@ -39,8 +35,8 @@ const ImageView = () => {
     async function loadImage() {
       try {
         const id = window.location.hash.slice(7); // remove #image=
-        const { colored, original } = await fetchImage(id);
-        setImage({ original, colored });
+        const { colored } = await fetchImage(id);
+        setImage(colored);
       } catch (e) {
         window.location.hash = "#";
       }
@@ -52,10 +48,10 @@ const ImageView = () => {
   const handleDownload = () => {
     if (!image) return;
     const link = document.createElement("a");
-    link.href = image?.colored;
+    link.href = image;
     link.download = "colorized.png";
     link.click();
-    window.location.href = image?.colored;
+    window.location.href = image;
   };
 
   const toggleOriginal = () => setShowOriginal((prev) => !prev);
@@ -69,7 +65,7 @@ const ImageView = () => {
               maxH="100%"
               shadow="xl"
               rounded="md"
-              src={image.colored}
+              src={image}
               filter={showOriginal ? "grayscale(100%)" : "none"}
               alt="colorized image"
               onClick={toggleOriginal}

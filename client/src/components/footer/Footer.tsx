@@ -16,7 +16,7 @@ const Footer = () => {
     >
       <HStack gap={8}>
         <FooterLink hideSmall={true} href={process.env.PUBLIC_URL}>
-          rgbaddies
+          RGBIT
         </FooterLink>
         <FooterLink href="#about">about</FooterLink>
         <FooterLink href="#tos">terms</FooterLink>

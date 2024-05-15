@@ -33,7 +33,13 @@ module.exports.getImage = async (req, res) => {
     return;
   }
 
-  res.json(image);
+  const { colored } = image;
+
+  return res.send({
+    status: 200,
+    message: SUCCESS,
+    colored: colored,
+  });
 };
 
 /**
@@ -59,7 +65,7 @@ module.exports.colorizeImage = async (req, res) => {
     return;
   }
 
-  if (user.balance <= 0 && user.refresh > Date.now()) {
+  if (user.balance <= 0) {
     res.status(402).send({ message: INSUFFICIENT_BALANCE });
     return;
   }
@@ -104,7 +110,8 @@ module.exports.colorizeImage = async (req, res) => {
     remainingBalance: user.balance,
     refresh: user.refresh,
     message: SUCCESS,
-    colored,
+    imageId: id,
+    download: `${process.env.SERVER_URL}/api/image/get/${id}`,
     redirect: `${process.env.CLIENT_URL}/#image=${id}`,
   });
 };

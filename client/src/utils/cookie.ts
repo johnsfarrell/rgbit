@@ -8,14 +8,14 @@ import { FAILED_VERIFY_SIGNATURE } from "./desc";
  * @param uid The user's API key (UID)
  */
 export function setKey(uid: string): void {
-  Cookies.set("colorful-api", uid);
+  Cookies.set("rgbit-api", uid);
 }
 
 /**
  * Removes the cookie (API key).
  */
 export function removeKey(): void {
-  Cookies.remove("colorful-api");
+  Cookies.remove("rgbit-api");
 }
 
 /**
@@ -23,7 +23,7 @@ export function removeKey(): void {
  * @returns {string | undefined} The cookie value.
  */
 export function getKey(): string | undefined {
-  return Cookies.get("colorful-api");
+  return Cookies.get("rgbit-api");
 }
 
 /**

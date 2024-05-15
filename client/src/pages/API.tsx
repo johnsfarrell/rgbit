@@ -1,14 +1,11 @@
 import { Flex, Heading, Text, VStack } from "@chakra-ui/react";
 import { TextShell } from "../components/text";
 import {
-  API_BALANCE_BLURB,
-  API_COLORIZE_BLURB,
+  API_DOCUMENTATION_CONTENT,
   API_DOCUMENTATION_HEADER,
   API_FAQ_HEADER,
   API_KEY_BLURB,
   API_KEY_HEADER,
-  BALANCE_API,
-  COLORIZE_API,
 } from "../utils/desc";
 import {
   APICodeblock,
@@ -40,10 +37,15 @@ const API = () => {
         <APIQuestions />
 
         <Heading as="h2">{API_DOCUMENTATION_HEADER}</Heading>
-        <Text>{API_COLORIZE_BLURB}</Text>
-        <APICodeblock code={COLORIZE_API} />
-        <Text>{API_BALANCE_BLURB}</Text>
-        <APICodeblock code={BALANCE_API} />
+        {API_DOCUMENTATION_CONTENT.map(({ heading, text, code }) => (
+          <VStack key={heading} alignItems="start" spacing={3}>
+            <Heading as="h3" fontSize="lg">
+              {heading}
+            </Heading>
+            <Text>{text}</Text>
+            <APICodeblock code={code} />
+          </VStack>
+        ))}
 
         <APIDisclaimerText />
       </VStack>

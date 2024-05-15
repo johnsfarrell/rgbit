@@ -20,8 +20,9 @@ const MenuTitle = () => {
       transition="all 0.2s"
       _hover={{ cursor: "pointer", ...ACTIVE_HOVER }}
       onClick={handleClick}
+      textTransform="lowercase"
     >
-      rgbaddies!
+      RGBit!
     </Box>
   );
 };

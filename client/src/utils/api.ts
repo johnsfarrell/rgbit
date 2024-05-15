@@ -146,7 +146,7 @@ export const createUser = async (
 /**
  * Fetches an image from the server.
  * @param id The id of the image to fetch.
- * @returns {Promise<{ colored: string, orignal: string }>} Returns the status and image data.
+ * @returns {Promise<{ colored: string }>} Returns the status and image data.
  */
 export const fetchImage = async (id: string) => {
   const res = await axios.get(`${FETCH_URI}${id}`);
@@ -157,10 +157,9 @@ export const fetchImage = async (id: string) => {
   }
 
   const colored = bufferToURL(res.data.colored.data);
-  const original = bufferToURL(res.data.original.data);
 
   if (res.status === 200) {
-    return { colored, original };
+    return { colored };
   }
 
   throw new Error(FAILED_FETCH_IMAGE);
