@@ -68,7 +68,7 @@ $ cp client/.env.example client/.env
 $ cp server/.env.example server/.env
 ```
 
-The `client` and `server` directories depend on MongoDB and RSA keys. Obtain a [MongoDB URI](https://www.mongodb.com/resources/products/platform/mongodb-atlas-tutorial) and [generate RSI keys](https://www.ssh.com/ssh/keygen/). Update the `.env` files with the appropriate values.
+The `client` and `server` directories depend on MongoDB and RSA keys. Obtain a [MongoDB URI](https://www.mongodb.com/resources/products/platform/mongodb-atlas-tutorial) and [generate RSI keys](https://cryptotools.net/rsagen). Update the `.env` files with the appropriate values.
 
 Once you have the `model.h5` file in `ml/models`, you can run the server and both `.env` files are set up, use the `go` script to run the application:
 
