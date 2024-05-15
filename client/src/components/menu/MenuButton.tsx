@@ -8,6 +8,7 @@ interface MenuButtonProps {
 }
 
 const MenuButton = ({ text, link, isHighlighted }: MenuButtonProps) => {
+  const isExternal = link.startsWith("http");
   return (
     <Link
       fontWeight="900"
@@ -18,7 +19,7 @@ const MenuButton = ({ text, link, isHighlighted }: MenuButtonProps) => {
       transition="all 0.2s"
       _hover={ACTIVE_HOVER}
     >
-      {text}
+      {text} {isExternal && <>&#8599;&#xFE0E;</>}
     </Link>
   );
 };

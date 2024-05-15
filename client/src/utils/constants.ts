@@ -7,7 +7,7 @@ export const MENU_ITEMS: ItemProps[] = [
   { text: "home", link: "#" },
   { text: "api", link: "#api" },
   {
-    text: "more ↗",
+    text: "more",
     link: "https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#rgbitio",
   },
 ];
