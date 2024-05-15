@@ -11,11 +11,9 @@ const UploadBox = ({ isDragActive }: UploadBoxProps) => (
     letterSpacing={isDragActive ? "-0.5px" : "0px"}
     transform={isDragActive ? "scale(1.05)" : "scale(1)"}
     border="2.5px dashed #d9d9d9"
-    borderRight={{ base: "none", md: "2.5px dashed #d9d9d9" }}
-    borderLeft={{ base: "none", md: "2.5px dashed #d9d9d9" }}
-    padding={{ base: 0, md: 150 }}
-    w={{ base: "100vw", md: 600 }}
-    h={{ base: "45vh", md: "45vh" }}
+    padding={150}
+    aspectRatio={2}
+    h="45vh"
     display="flex"
     justifyContent="center"
     alignItems="center"

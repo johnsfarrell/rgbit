@@ -22,7 +22,12 @@ const Gallery = ({ props }: GalleryProps) => {
   }, []);
 
   return (
-    <HStack w="100%" justify="space-evenly" height="100px" align="flex-start">
+    <HStack
+      w="min(100%, 100vw)"
+      justify="space-evenly"
+      height={hide ? "50px" : "100px"}
+      align="flex-start"
+    >
       {!hide &&
         images &&
         images.map((img: string) => (

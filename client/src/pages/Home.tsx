@@ -4,6 +4,7 @@ import { Injection } from "../utils/constants";
 import { Gallery } from "../components/gallery";
 import { ColorizeBalance, ColorizeModal } from "../components/colorize";
 import { UploadDropbox } from "../components/upload";
+import Div100vh from "react-div-100vh";
 
 /**
  * Home page
@@ -31,14 +32,16 @@ const Home = () => {
   };
 
   return (
-    <Center h="100vh" w="100vw">
-      <Center h="100%" flexDir="column" maxW={600} gap={5}>
-        <Gallery props={{ hide: true, ...injections }} />
-        <UploadDropbox props={injections} />
-        <Gallery props={injections} />
-      </Center>
-      <ColorizeModal props={injections} />
-      <ColorizeBalance props={injections} />
+    <Center w="100vw" overflow="hidden">
+      <Div100vh>
+        <Center h="100%" flexDir="column" maxW={600} gap={5}>
+          <Gallery props={{ hide: true, ...injections }} />
+          <UploadDropbox props={injections} />
+          <Gallery props={injections} />
+        </Center>
+        <ColorizeModal props={injections} />
+        <ColorizeBalance props={injections} />
+      </Div100vh>
     </Center>
   );
 };
