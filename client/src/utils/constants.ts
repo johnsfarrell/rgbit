@@ -23,6 +23,7 @@ export const ACCEPTED_FILE_TYPES: FileTypeProps = {
   "image/gif": [".gif"],
   "image/heic": [".heic"],
   "image/webp": [".webp"],
+  "image/bmp": [".bmp"],
 };
 
 export const RESEARCH_PATH = `${process.env.PUBLIC_URL}/research/`;
@@ -34,19 +35,21 @@ export const ICON_PATH = `${process.env.PUBLIC_URL}/img/icons/`;
 export const GALLERY_PATH = `${process.env.PUBLIC_URL}/img/gallery/`;
 
 export const GALLERY_IMAGES: string[] = [
-  "sailor.png",
-  "jfk.png",
-  "landscape.png",
-  "garry.jpg",
-  "mona.png",
-  "gothic.jpg",
+  "sailor.jpeg",
+  "jfk.jpeg",
+  "landscape.jpeg",
+  "garry.jpeg",
+  "mona.jpeg",
+  "gothic.jpeg",
   "ap.jpeg",
-  "louvre.jpg",
-  "painting.jpg",
-  "nightvision.jpg",
+  "louvre.jpeg",
+  "painting.jpeg",
+  "nightvision.jpeg",
 ].map((img) => `${GALLERY_PATH}${img}`);
 
 export const MAX_FILE_SIZE = 3000000;
+
+export const FILE_RESIZE = 300000;
 
 export const COLORIZE_URI = `${process.env.REACT_APP_API_URL}/image/colorize/`;
 

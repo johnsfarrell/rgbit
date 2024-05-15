@@ -1,3 +1,5 @@
+import heic2any from "heic2any";
+
 /**
  * Determines whether a file (image) has color or not.
  * @param {File} file to check if it has color, an
@@ -79,7 +81,6 @@ export async function urlToFile(url: string, filename: string): Promise<File> {
     const blob = await response.blob();
     return new File([blob], filename, { type: blob.type });
   } catch (error) {
-    console.error("Error fetching and converting file:", error);
     throw error;
   }
 }
@@ -103,3 +104,136 @@ export const getRandomElements = (arr: any[], n: number) => {
   }
   return result;
 };
+
+/**
+ * Checks if a file is an image.
+ * @param file - A file to check if it is an image
+ * @returns A promise that resolves to a boolean indicating if the file is an image
+ */
+async function isImage(file: File): Promise<boolean> {
+  const mimeType = file.type;
+  return mimeType.startsWith("image/");
+}
+
+/**
+ * Converts any file to a JPEG file.
+ * @param file - Any file to convert to JPEG
+ * @returns A promise that resolves to a File object with the same content as the input file, but in JPEG format
+ */
+export async function convertToJPEG(file: File): Promise<File> {
+  if (!(await isImage(file))) {
+    throw new Error("The provided file is not an image.");
+  }
+
+  if (file.type === "image/heic") {
+    const heicConversionResult = await heic2any({
+      blob: file,
+      toType: "image/jpeg",
+    });
+
+    const heicBlob = Array.isArray(heicConversionResult)
+      ? heicConversionResult[0]
+      : heicConversionResult;
+
+    file = new File([heicBlob], file.name.replace(/\.[^/.]+$/, ".jpeg"), {
+      type: "image/jpeg",
+      lastModified: Date.now(),
+    });
+  }
+
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      const img = new Image();
+      img.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        if (ctx) ctx.drawImage(img, 0, 0);
+
+        canvas.toBlob((blob) => {
+          if (blob) {
+            const jpegFile = new File(
+              [blob],
+              file.name.replace(/\.[^/.]+$/, ".jpeg"),
+              {
+                type: "image/jpeg",
+                lastModified: Date.now(),
+              }
+            );
+            resolve(jpegFile);
+          } else {
+            reject(new Error("Conversion to JPEG failed."));
+          }
+        }, "image/jpeg");
+      };
+      img.onerror = function () {
+        reject(new Error("Failed to load image."));
+      };
+      if (event.target) img.src = event.target.result as string;
+    };
+    reader.onerror = function () {
+      reject(new Error("Failed to read file."));
+    };
+    reader.readAsDataURL(file);
+  });
+}
+
+/**
+ * Limits the size of an image file.
+ * @param file - An image file to limit the size of
+ * @param maxSize - The maximum size in bytes
+ * @returns A promise that resolves to a File object with the same content as the input file, but with a size less than or equal to maxSize
+ */
+export async function limitImageSize(
+  file: File,
+  maxSize: number
+): Promise<File> {
+  console.log("file.size", file.size);
+  console.log("maxSize", maxSize);
+  if (file.size <= maxSize) return file;
+
+  const image = new Image();
+  image.src = URL.createObjectURL(file);
+
+  return new Promise((resolve, reject) => {
+    image.onload = () => {
+      const canvas = document.createElement("canvas");
+      const ctx = canvas.getContext("2d");
+      if (!ctx) {
+        reject(new Error("Failed to get 2d context."));
+        return;
+      }
+
+      const width = image.width;
+      const height = image.height;
+
+      if (width <= 0 || height <= 0) {
+        reject(new Error("Invalid image dimensions."));
+        return;
+      }
+
+      const ratio = Math.sqrt(maxSize / (width * height));
+      canvas.width = width * ratio;
+      canvas.height = height * ratio;
+
+      ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
+
+      canvas.toBlob((blob) => {
+        if (blob) {
+          const resizedFile = new File([blob], file.name, {
+            type: file.type,
+            lastModified: Date.now(),
+          });
+          resolve(resizedFile);
+        } else {
+          reject(new Error("Failed to resize image."));
+        }
+      }, file.type);
+    };
+    image.onerror = () => {
+      reject(new Error("Failed to load image."));
+    };
+  });
+}

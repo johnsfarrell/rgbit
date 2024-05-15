@@ -7,6 +7,8 @@ import {
   ModalFooter,
   ModalOverlay,
   Progress,
+  Skeleton,
+  Spinner,
   Text,
   useDisclosure,
   useToast,
@@ -65,10 +67,12 @@ const ColorizeModal = ({ props }: Props) => {
   };
 
   return (
-    <>
-      <Modal isOpen={isOpen} onClose={handleOnClose} size="fit-content">
-        <ModalOverlay />
-        <ModalContent w="fit-content">
+    <Modal isOpen={isOpen} onClose={handleOnClose} size="fit-content">
+      <ModalOverlay display="flex" alignItems="center" justifyContent="center">
+        <Spinner color="white" size="lg" hidden={!!file} />
+      </ModalOverlay>
+      <ModalContent w="fit-content">
+        <Skeleton hidden={!file} isLoaded={!!file}>
           <ModalBody p="1.5em 1.5em 0.5em 1.5em">
             <Image
               src={file && URL.createObjectURL(file)}
@@ -94,10 +98,10 @@ const ColorizeModal = ({ props }: Props) => {
             <APIDisclaimerText customText="By clicking above, you agree to our " />
           </ModalFooter>
           <Progress size="sm" isIndeterminate={isLoading} roundedBottom="md" />
-        </ModalContent>
-      </Modal>
+        </Skeleton>
+      </ModalContent>
       <ColorizeDetected props={colorProps} />
-    </>
+    </Modal>
   );
 };
 

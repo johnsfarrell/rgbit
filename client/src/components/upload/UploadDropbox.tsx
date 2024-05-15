@@ -1,30 +1,39 @@
 import { useToast } from "@chakra-ui/react";
 import Dropzone, { FileRejection } from "react-dropzone";
-import { imageHasColor } from "../../utils/image";
+import {
+  convertToJPEG,
+  imageHasColor,
+  limitImageSize,
+} from "../../utils/image";
 import UploadBox from "./UploadBox";
 import {
   Props,
   ACCEPTED_FILE_TYPES,
   MAX_FILE_SIZE,
+  FILE_RESIZE,
 } from "../../utils/constants";
 import { FAILED_IMAGE_TOAST, FILE_REJECTED_TOAST } from "../../utils/toasts";
 
 const UploadDropbox = ({ props }: Props) => {
-  const { setFile, onOpen, setHasColor } = props;
+  const { setFile, onOpen, setHasColor, onClose } = props;
+
   const toast = useToast();
 
   const dropAccepted = async (files: File[]) => {
     if (files.length === 0) return;
 
+    onOpen();
     try {
-      setHasColor(await imageHasColor(files[0]));
+      setFile(undefined);
+      let image = await convertToJPEG(files[0]);
+      image = await limitImageSize(image, FILE_RESIZE);
+      setHasColor(await imageHasColor(image));
+      setFile(image);
     } catch (e: any) {
       toast(FAILED_IMAGE_TOAST);
+      onClose();
       return;
     }
-
-    setFile(files[0]);
-    onOpen();
   };
 
   const dropRejected = (fileRejections: FileRejection[]) => {
