@@ -1,3 +1,5 @@
+const { MAX_SIZE } = require("./const");
+
 const USER_ALREADY_EXISTS = "User already exists.";
 const USER_NOT_FOUND = "User does not exist.";
 const USER_CREATED = "User created.";
@@ -12,6 +14,7 @@ const MISSING_IMAGE = "No image provided";
 const COLORIZE_FAILED = "Failed to colorize image";
 const IMAGE_CREATION_FAILED = "Failed to save image";
 const IMAGE_NOT_FOUND = "Image not found";
+const FILE_SIZE_EXCEEDED = `File size exceeded. Limit to ${MAX_SIZE} bytes.`;
 
 module.exports = {
   USER_ALREADY_EXISTS,
@@ -28,4 +31,5 @@ module.exports = {
   IMAGE_CREATION_FAILED,
   IMAGE_NOT_FOUND,
   MISSING_KEY,
+  FILE_SIZE_EXCEEDED,
 };
