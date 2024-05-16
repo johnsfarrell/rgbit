@@ -2,10 +2,6 @@ import { Box } from "@chakra-ui/react";
 import { ACTIVE_HOVER, HUE_ROTATE } from "../../utils/animations";
 
 const MenuTitle = () => {
-  const handleClick = () => {
-    window.location.href = process.env.PUBLIC_URL || "#";
-  };
-
   return (
     <Box
       as="h1"
@@ -19,10 +15,9 @@ const MenuTitle = () => {
       p="10px 20px"
       transition="all 0.2s"
       _hover={{ cursor: "pointer", ...ACTIVE_HOVER }}
-      onClick={handleClick}
       textTransform="lowercase"
     >
-      RGBit!
+      <a href={process.env.PUBLIC_URL || "#"}>RGBit!</a>
     </Box>
   );
 };
