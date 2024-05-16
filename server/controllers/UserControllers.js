@@ -18,6 +18,7 @@ const {
 } = require("../config/const");
 const { verifySignature } = require("../util/key");
 const cache = require("../util/cache");
+const checkOrigin = require("../middlewares/checkOrigin");
 
 /**
  * Endpoint for handling user creation.
@@ -32,48 +33,51 @@ const cache = require("../util/cache");
  * @param {Response} res Response containing the created user
  * @returns {void}
  */
-module.exports.createUser = async (req, res) => {
-  const { key, encryptedKey } = req.body;
+module.exports.createUser = [
+  checkOrigin,
+  async (req, res) => {
+    const { key, encryptedKey } = req.body;
 
-  if (!key || !encryptedKey) {
-    res.status(400).send({ message: MISSING_KEY });
-    return;
-  }
+    if (!key || !encryptedKey) {
+      res.status(400).send({ message: MISSING_KEY });
+      return;
+    }
 
-  const user = await UserModel.findOne({ key });
+    const user = await UserModel.findOne({ key });
 
-  if (user) {
-    res.status(204).send({ message: USER_ALREADY_EXISTS });
-    return;
-  }
-
-  if (!verifySignature(key, encryptedKey)) {
-    console.log("Key verification failed");
-    res.status(403).send({ message: UNAUTHORIZED });
-    return;
-  }
-
-  let result;
-  try {
-    result = await UserModel({
-      key,
-      balance: INITIAL_BALANCE,
-      refresh: INITIAL_DATE,
-    }).save();
-  } catch (e) {
-    if (e.code === 11000) {
+    if (user) {
       res.status(204).send({ message: USER_ALREADY_EXISTS });
       return;
     }
-  }
 
-  if (!result) {
-    res.status(500).send({ message: USER_CREATION_FAILED });
-    return;
-  }
+    if (!verifySignature(key, encryptedKey)) {
+      console.log("Key verification failed");
+      res.status(403).send({ message: UNAUTHORIZED });
+      return;
+    }
 
-  res.status(200).send({ message: USER_CREATED });
-};
+    let result;
+    try {
+      result = await UserModel({
+        key,
+        balance: INITIAL_BALANCE,
+        refresh: INITIAL_DATE,
+      }).save();
+    } catch (e) {
+      if (e.code === 11000) {
+        res.status(204).send({ message: USER_ALREADY_EXISTS });
+        return;
+      }
+    }
+
+    if (!result) {
+      res.status(500).send({ message: USER_CREATION_FAILED });
+      return;
+    }
+
+    res.status(200).send({ message: USER_CREATED });
+  },
+];
 
 /**
  * Endpoint for deleting a user.
@@ -85,24 +89,27 @@ module.exports.createUser = async (req, res) => {
  * @param {Request} req Request containing the user's key
  * @param {Response} res Response containing the result of the delete operation
  */
-module.exports.deleteUser = async (req, res) => {
-  const { key, encryptedKey } = req.params.key;
-  const user = await UserModel.findOne({ key });
+module.exports.deleteUser = [
+  checkOrigin,
+  async (req, res) => {
+    const { key, encryptedKey } = req.params.key;
+    const user = await UserModel.findOne({ key });
 
-  if (!user) {
-    res.status(404).send({ message: USER_NOT_FOUND });
-    return;
-  }
+    if (!user) {
+      res.status(404).send({ message: USER_NOT_FOUND });
+      return;
+    }
 
-  if (!verifySignature(key, encryptedKey)) {
-    res.status(403).send({ message: UNAUTHORIZED });
-    return;
-  }
+    if (!verifySignature(key, encryptedKey)) {
+      res.status(403).send({ message: UNAUTHORIZED });
+      return;
+    }
 
-  const result = await UserModel.deleteOne({ key });
+    const result = await UserModel.deleteOne({ key });
 
-  res.status(200).send({ message: USER_DELETED });
-};
+    res.status(200).send({ message: USER_DELETED });
+  },
+];
 
 /**
  * Endpoint for getting the balance of a user.

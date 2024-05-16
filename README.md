@@ -155,10 +155,10 @@ The server is deployed on [AWS EC2](https://aws.amazon.com/ec2/). As an extra la
 ## Changelog & Todos 📝
 
 - [ ] EC2 instance optimiztaion or downgrade
-- [ ] `https://rgbit.io` only authorized API calls for managing API keys
 - [ ] Robust image upload support ([imagemagick?](https://imagemagick.org/))
 - [ ] More example gallery images
 - [ ] Official favicon
+- [x] `https://rgbit.io` only authorized API calls for managing API keys
 - [x] Limit API requests by IP address
 - [x] Limit file upload size to API
 - [x] API endpoint for getting total users

@@ -6,7 +6,9 @@ const app = express();
 const userRoutes = require("./routes/UserRoutes");
 const imageRoutes = require("./routes/ImageRoutes");
 const baseRoutes = require("./routes/BaseRoutes");
-const { logger, limiter } = require("./middlewares/logger");
+
+const limiter = require("./middlewares/limiter");
+const logger = require("./middlewares/logger");
 
 const cookieParser = require("cookie-parser");
 

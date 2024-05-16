@@ -16,6 +16,7 @@ const IMAGE_CREATION_FAILED = "Failed to save image";
 const IMAGE_NOT_FOUND = "Image not found";
 const FILE_SIZE_EXCEEDED = `File size exceeded. Limit to ${MAX_SIZE} bytes.`;
 const REQUEST_LIMIT = "Too many requests from this IP, please try again later.";
+const FORBIDDEN_ORIGIN = `Forbidden: Requests are only allowed from restricted origin.`;
 
 module.exports = {
   USER_ALREADY_EXISTS,
@@ -34,4 +35,5 @@ module.exports = {
   MISSING_KEY,
   FILE_SIZE_EXCEEDED,
   REQUEST_LIMIT,
+  FORBIDDEN_ORIGIN,
 };
