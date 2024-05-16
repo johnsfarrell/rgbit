@@ -14,8 +14,10 @@ const {
   INITIAL_DATE,
   INITIAL_BALANCE,
   REFRESH_BALANCE,
+  TOTAL_USERS_CACHE_KEY,
 } = require("../config/const");
 const { verifySignature } = require("../util/key");
+const cache = require("../util/cache");
 
 /**
  * Endpoint for handling user creation.
@@ -135,4 +137,22 @@ module.exports.userBalance = async (req, res) => {
   const { balance, refresh } = user;
 
   res.json({ balance, refresh, message: SUCCESS });
+};
+
+/**
+ * Endpoint for retreiving the total number of users.
+ * @param {Request} req Request containing the user's key
+ * @param {Response} res Response containing the total number of users
+ */
+module.exports.totalUsers = async (req, res) => {
+  let total = cache.get(TOTAL_USERS_CACHE_KEY);
+  const cached = !!total;
+
+  if (!total) {
+    const users = await UserModel.find();
+    total = users.length;
+    cache.set(TOTAL_USERS_CACHE_KEY, total);
+  }
+
+  res.json({ total, SUCCESS, cached });
 };

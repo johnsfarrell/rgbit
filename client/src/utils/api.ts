@@ -164,3 +164,12 @@ export const fetchImage = async (id: string) => {
 
   throw new Error(FAILED_FETCH_IMAGE);
 };
+
+/**
+ * Fetches the total number of users.
+ * @returns {Promise<number>} Returns the total number of users.
+ */
+export const getTotalUsers = async () => {
+  const res = await axios.get(`${process.env.REACT_APP_API_URL}/user/total`);
+  return res.data.total;
+};

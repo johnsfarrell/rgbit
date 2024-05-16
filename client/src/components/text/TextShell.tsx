@@ -13,8 +13,8 @@ const TextShell = ({ children, isCentered }: TextShellProps) => {
 
   return (
     <Box
-      p={{ base: 5, md: 20 }}
-      pt={{ base: "50px", md: 20 }}
+      p={20}
+      pb={10}
       minH="calc(100vh - 4em)" // 4em is the height of the footer
       css={isCentered && center}
     >

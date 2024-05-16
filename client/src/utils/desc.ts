@@ -53,6 +53,9 @@ export const TERMS_AND_CONDITIONS = [
   },
 ];
 
+export const TOTAL_USERS_DESCRIPTION = (count: number | undefined) =>
+  `${count || "Total"} API keys distributed.`;
+
 export const BALANCE_DESCRIPTION = "Color restoration on cooldown!";
 
 export const COLOR_DETECTED_IN_IMAGE =

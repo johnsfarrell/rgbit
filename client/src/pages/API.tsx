@@ -1,4 +1,4 @@
-import { Flex, Heading, Text, VStack } from "@chakra-ui/react";
+import { Flex, Heading, Spacer, Text, VStack } from "@chakra-ui/react";
 import { TextShell } from "../components/text";
 import {
   API_DOCUMENTATION_CONTENT,
@@ -12,6 +12,7 @@ import {
   APIDisclaimerText,
   APIKey,
   APIQuestions,
+  APIUsers,
 } from "../components/api";
 
 /**
@@ -47,7 +48,11 @@ const API = () => {
           </VStack>
         ))}
 
-        <APIDisclaimerText />
+        <Flex w="100%">
+          <APIDisclaimerText />
+          <Spacer />
+          <APIUsers />
+        </Flex>
       </VStack>
     </TextShell>
   );
