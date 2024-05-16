@@ -6,11 +6,12 @@ const app = express();
 const userRoutes = require("./routes/UserRoutes");
 const imageRoutes = require("./routes/ImageRoutes");
 const baseRoutes = require("./routes/BaseRoutes");
-const logger = require("./middlewares/logger");
+const { logger, limiter } = require("./middlewares/logger");
 
 const cookieParser = require("cookie-parser");
 
 const dotenv = require("dotenv");
+
 dotenv.config();
 
 mongoose.connect(process.env.MONGODB_ACCESS).then((data) => {
@@ -31,6 +32,8 @@ app.use(
     origin: [process.env.CLIENT_URL],
   })
 );
+
+app.use(limiter);
 
 app.use(logger);
 

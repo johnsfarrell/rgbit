@@ -17,7 +17,7 @@ const APIUsers = () => {
     <Tooltip label={TOTAL_USERS_DESCRIPTION(total)} hasArrow>
       <Skeleton isLoaded={!!total}>
         <Flex alignItems="center" color="gray.400" gap={1.5}>
-          {total} <ViewIcon />
+          {total || "XX"} <ViewIcon />
         </Flex>
       </Skeleton>
     </Tooltip>

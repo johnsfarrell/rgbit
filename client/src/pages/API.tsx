@@ -6,6 +6,7 @@ import {
   API_FAQ_HEADER,
   API_KEY_BLURB,
   API_KEY_HEADER,
+  API_LIMITATION_DESCRIPTION,
 } from "../utils/desc";
 import {
   APICodeblock,
@@ -47,6 +48,7 @@ const API = () => {
             <APICodeblock code={code} />
           </VStack>
         ))}
+        <Text>{API_LIMITATION_DESCRIPTION}</Text>
 
         <Flex w="100%">
           <APIDisclaimerText />

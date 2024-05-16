@@ -15,6 +15,7 @@ const COLORIZE_FAILED = "Failed to colorize image";
 const IMAGE_CREATION_FAILED = "Failed to save image";
 const IMAGE_NOT_FOUND = "Image not found";
 const FILE_SIZE_EXCEEDED = `File size exceeded. Limit to ${MAX_SIZE} bytes.`;
+const REQUEST_LIMIT = "Too many requests from this IP, please try again later.";
 
 module.exports = {
   USER_ALREADY_EXISTS,
@@ -32,4 +33,5 @@ module.exports = {
   IMAGE_NOT_FOUND,
   MISSING_KEY,
   FILE_SIZE_EXCEEDED,
+  REQUEST_LIMIT,
 };

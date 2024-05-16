@@ -4,6 +4,8 @@ const INITIAL_DATE = new Date();
 const INITIAL_BALANCE = 5;
 const TOTAL_USERS_CACHE_KEY = "totalUsers";
 const MAX_SIZE = 500000; // 500kb
+const REQUEST_TIME_LIMIT = 15 * 60 * 1000; // 15 minutes
+const REQUEST_RATE_LIMIT = 50;
 
 module.exports = {
   REFRESH_BALANCE,
@@ -12,4 +14,6 @@ module.exports = {
   INITIAL_BALANCE,
   TOTAL_USERS_CACHE_KEY,
   MAX_SIZE,
+  REQUEST_TIME_LIMIT,
+  REQUEST_RATE_LIMIT,
 };

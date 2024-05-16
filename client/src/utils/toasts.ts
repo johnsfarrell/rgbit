@@ -38,3 +38,8 @@ export const VERIFICATION_ERROR_TOAST = {
   title: "Failed to verify your API request.",
   ...errorParams,
 } as UseToastOptions;
+
+export const API_LIMIT_TOAST = {
+  title: "API limit reached. Please try again later.",
+  ...errorParams,
+} as UseToastOptions;

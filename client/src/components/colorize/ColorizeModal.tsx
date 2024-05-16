@@ -19,6 +19,7 @@ import APIDisclaimerText from "../api/APIDisclaimerText";
 import ColorizeDetected from "./ColorizeDetected";
 import { Props } from "../../utils/constants";
 import {
+  API_LIMIT_TOAST,
   LOW_BALANCE_TOAST,
   RESTORE_ERROR_TOAST,
   VERIFICATION_ERROR_TOAST,
@@ -54,6 +55,7 @@ const ColorizeModal = ({ props }: Props) => {
     if (status === 200) window.location.href = redirect;
     if (status === 402) toast(LOW_BALANCE_TOAST);
     if (status === 403) toast(VERIFICATION_ERROR_TOAST);
+    if (status === 429) toast(API_LIMIT_TOAST);
     if (status === 500 || status === 400) toast(RESTORE_ERROR_TOAST);
 
     setIsLoading(false);

@@ -158,6 +158,9 @@ export const API_KEY_HEADER = "Your API Key";
 
 export const API_DOCUMENTATION_HEADER = "Documentation";
 
+export const API_LIMITATION_DESCRIPTION =
+  "The API is limited by the same rate limitations as the web interface, for colorization balance and IP addresses.";
+
 export const API_FAQ_HEADER = "Frequently Asked Questions";
 
 export const API_KEY_GENERATION_QUESTION = "How are API keys generated?";
