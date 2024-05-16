@@ -152,6 +152,19 @@ The colorize endpoint is available at `http://localhost:4004/colorize`.
 
 The server is deployed on [AWS EC2](https://aws.amazon.com/ec2/). As an extra layer of security, the Flask ML server is hosted _locally_ on the EC2 instance, and can only be accessed through the Express server. As EC2 hosts a virtual machine (Linux for this project), we launched multiple servers and configure the ports through an EC2 security group. This makes it easy to redirect the Express server with Caddy to [api.rgbit](https://api.rgbit.io/api), while making the Flask server inaccessible to the internet. The server runtime is maintained by `systemctl`. 
 
+## Changelog & Todos 📝
+
+- [ ] EC2 instance optimiztaion or downgrade
+- [ ] Limit API requests not only by API key, but by IP address
+- [ ] Limit file upload size to API
+- [ ] `https://rgbit.io` only authorized API calls for managing API keys
+- [ ] API endpoint for getting total users
+- [ ] Robust image upload support ([imagemagick?](https://imagemagick.org/))
+- [ ] More example gallery images
+- [x] HEIC image support
+- [x] Downscale oversized files
+
+
 ## Acknowledgements
 
 Contributions from Tyler Gurth, John Farrell, Jania Vandevoorde, and Hunter Adrian.
