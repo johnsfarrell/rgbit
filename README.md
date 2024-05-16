@@ -161,6 +161,7 @@ The server is deployed on [AWS EC2](https://aws.amazon.com/ec2/). As an extra la
 - [ ] API endpoint for getting total users
 - [ ] Robust image upload support ([imagemagick?](https://imagemagick.org/))
 - [ ] More example gallery images
+- [ ] Official favicon
 - [x] HEIC image support
 - [x] Downscale oversized files
 
