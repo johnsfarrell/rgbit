@@ -28,7 +28,7 @@ RGBIT is a completely open-source and free platform for restoring color to black
 
 ## Model Summary
 
-We implemented a convolutional neural network (CNN) to colorize grayscale images using a U-Net architecture with the VGG-19 model. U-Net is a popular deep learning architecture known for its effectiveness in image segmentation tasks. VGG-19 is a large model with almost 150 million parameters that is pre-trained. It is traditionally used for feature detection and was adapted for colorizing in our project. Our model is trained using the MIT Places365 dataset, which contains 365,000 images of scenes (which we split into 328,500 train and 36,500 test images, a 90/10 split). Moreover, the model makes use of a custom Perceptual Loss function for a higher level chromatic evaluation of the CNN. Our results show that the model produces vibrant and realistically colored images. This project reinforces the potential of deep learning in creative image processing. Below is was our VGG-19 U-Net architecture.
+We implemented a convolutional neural network (CNN) to colorize grayscale images using a U-Net architecture with the VGG-19 model. U-Net is a popular deep learning architecture known for its effectiveness in image segmentation tasks. VGG-19 is a large model with almost 150 million parameters that is pre-trained. It is traditionally used for feature detection and was adapted for colorizing in our project. Our model is trained using the MIT Places365 dataset, which contains 365,000 images of scenes (which we split into 328,500 train and 36,500 test images, a 90/10 split). Moreover, the model makes use of a custom Perceptual Loss function for a higher level chromatic evaluation of the CNN. Our results show that the model produces vibrant and realistically colored images. This project reinforces the potential of deep learning in creative image processing. Below is our VGG-19 U-Net architecture.
 
 ![Architecture](https://github.com/johnsfarrell/rgbit/assets/69059806/4cd5e928-5f3f-447b-82cf-5aff1e79541d)
 
@@ -151,6 +151,20 @@ The colorize endpoint is available at `http://localhost:4004/colorize`.
 #### More on API Deployment
 
 The server is deployed on [AWS EC2](https://aws.amazon.com/ec2/). As an extra layer of security, the Flask ML server is hosted _locally_ on the EC2 instance, and can only be accessed through the Express server. As EC2 hosts a virtual machine (Linux for this project), we launched multiple servers and configure the ports through an EC2 security group. This makes it easy to redirect the Express server with Caddy to [api.rgbit](https://api.rgbit.io/api), while making the Flask server inaccessible to the internet. The server runtime is maintained by `systemctl`. 
+
+## Changelog & Todos 📝
+
+- [ ] EC2 instance optimiztaion or downgrade
+- [ ] Limit API requests not only by API key, but by IP address
+- [ ] Limit file upload size to API
+- [ ] `https://rgbit.io` only authorized API calls for managing API keys
+- [ ] API endpoint for getting total users
+- [ ] Robust image upload support ([imagemagick?](https://imagemagick.org/))
+- [ ] More example gallery images
+- [ ] Official favicon
+- [x] HEIC image support
+- [x] Downscale oversized files
+
 
 ## Acknowledgements
 
