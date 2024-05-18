@@ -173,7 +173,7 @@ The server is deployed on [AWS EC2](https://aws.amazon.com/ec2/). As an extra la
 
 ## Changelog & Todos 📝
 
-- [ ] More example gallery images
+- [x] More example gallery images
 - [x] Official favicon
 - [x] API endpoint for getting total images colorized
 - [x] EC2 instance optimiztaion or downgrade

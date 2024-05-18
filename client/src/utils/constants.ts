@@ -22,6 +22,7 @@ export const ACCEPTED_FILE_TYPES: FileTypeProps = {
   "image/jpeg": [".jpeg"],
   "image/gif": [".gif"],
   "image/heic": [".heic"],
+  "image/avif": [".avif"],
   "image/heif": [".heif"],
   "image/webp": [".webp"],
   "image/bmp": [".bmp"],
@@ -38,14 +39,15 @@ export const GALLERY_PATH = `${process.env.PUBLIC_URL}/img/gallery/`;
 export const GALLERY_IMAGES: string[] = [
   "sailor.jpeg",
   "jfk.jpeg",
-  "landscape.jpeg",
-  "garry.jpeg",
-  "mona.jpeg",
-  "gothic.jpeg",
-  "ap.jpeg",
-  "louvre.jpeg",
   "painting.jpeg",
   "nightvision.jpeg",
+  "monroe.jpeg",
+  "movie.jpg",
+  "movie-2.jpg",
+  "einstein.avif",
+  "ali.webp",
+  "valley.jpg",
+  "mermaid.webp",
 ].map((img) => `${GALLERY_PATH}${img}`);
 
 export const MAX_FILE_SIZE = 5000000; // 5MB
