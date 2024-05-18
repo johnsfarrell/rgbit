@@ -1,6 +1,6 @@
 import { useToast } from "@chakra-ui/react";
 import Dropzone, { FileRejection } from "react-dropzone";
-import { convertToJPEG, limitJPEGSize } from "../../utils/image";
+import { convertToJPEG, grayscaleJPEG, limitJPEGSize } from "../../utils/image";
 import UploadBox from "./UploadBox";
 import {
   Props,
@@ -23,6 +23,7 @@ const UploadDropbox = ({ props }: Props) => {
       let image = files[0];
       image = await convertToJPEG(image);
       image = await limitJPEGSize(image, FILE_RESIZE);
+      image = await grayscaleJPEG(image);
       setFile(image);
     } catch (error) {
       toast(FAILED_IMAGE_TOAST);

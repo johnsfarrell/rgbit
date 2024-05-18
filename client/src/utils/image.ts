@@ -261,3 +261,61 @@ export async function limitJPEGSize(
     };
   });
 }
+
+/**
+ * Grayscales a JPEG image file.
+ * @param file - A JPEG file to grayscale
+ * @returns A promise that resolves to a File object with the same content as the input file, but in grayscale
+ */
+export async function grayscaleJPEG(file: File): Promise<File> {
+  if (!isJPEG(file)) throw new Error("The provided file is not a JPEG image.");
+
+  return new Promise((resolve, reject) => {
+    const reader = new FileReader();
+    reader.onload = function (event) {
+      const img = new Image();
+      img.onload = function () {
+        const canvas = document.createElement("canvas");
+        canvas.width = img.width;
+        canvas.height = img.height;
+        const ctx = canvas.getContext("2d");
+        if (ctx) {
+          ctx.drawImage(img, 0, 0);
+          const imageData = ctx.getImageData(0, 0, canvas.width, canvas.height);
+          const data = imageData.data;
+
+          for (let i = 0; i < data.length; i += 4) {
+            const avg = (data[i] + data[i + 1] + data[i + 2]) / 3;
+            data[i] = avg; // red
+            data[i + 1] = avg; // green
+            data[i + 2] = avg; // blue
+          }
+
+          ctx.putImageData(imageData, 0, 0);
+
+          canvas.toBlob((blob) => {
+            if (blob) {
+              const grayscaleFile = new File([blob], file.name, {
+                type: file.type,
+                lastModified: Date.now(),
+              });
+              resolve(grayscaleFile);
+            } else {
+              reject(new Error("Conversion to grayscale failed."));
+            }
+          }, file.type);
+        } else {
+          reject(new Error("Failed to get 2d context."));
+        }
+      };
+      img.onerror = function () {
+        reject(new Error("Failed to load image."));
+      };
+      if (event.target) img.src = event.target.result as string;
+    };
+    reader.onerror = function () {
+      reject(new Error("Failed to read file."));
+    };
+    reader.readAsDataURL(file);
+  });
+}

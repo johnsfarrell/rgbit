@@ -61,7 +61,6 @@ const ColorizeModal = ({ props }: Props) => {
               alt={file && file.name}
               maxH="60vh"
               minW={250}
-              filter="grayscale(100%)"
               rounded="md"
             />
           </ModalBody>
