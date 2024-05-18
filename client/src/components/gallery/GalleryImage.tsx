@@ -5,15 +5,16 @@ import { GALLERY_OPEN } from "../../utils/animations";
 
 interface GalleryImageProps {
   src: string;
-  setFile: React.Dispatch<React.SetStateAction<File | undefined>>;
+  setFile: (image: File | undefined) => Promise<boolean>;
   onOpen: () => void;
 }
 
 const GalleryImage = ({ src, setFile, onOpen }: GalleryImageProps) => {
   const handleImageClick = async () => {
+    setFile(undefined);
     const img = await urlToFile(src, src);
-    setFile(img);
     onOpen();
+    await setFile(img);
   };
 
   return (

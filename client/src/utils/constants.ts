@@ -44,7 +44,7 @@ export const GALLERY_IMAGES: string[] = [
   "monroe.jpeg",
   "movie.jpg",
   "movie-2.jpg",
-  "einstein.avif",
+  "einstein.jpeg",
   "ali.webp",
   "valley.jpg",
   "mermaid.webp",
@@ -66,7 +66,7 @@ export const POSTER_PATH = `${RESEARCH_PATH}poster.pdf`;
 
 export interface Injection {
   file: File | undefined;
-  setFile: React.Dispatch<React.SetStateAction<File | undefined>>;
+  setFile: (file: File | undefined) => Promise<boolean>;
   onOpen: () => void;
   onClose: () => void;
   isOpen: boolean;

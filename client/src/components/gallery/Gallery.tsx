@@ -7,7 +7,7 @@ import { getRandomElements } from "../../utils/image";
 interface GalleryProps {
   props: {
     hide?: boolean;
-    setFile: React.Dispatch<React.SetStateAction<File | undefined>>;
+    setFile: (file: File | undefined) => Promise<boolean>;
     onOpen: () => void;
   };
 }

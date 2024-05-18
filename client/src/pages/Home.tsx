@@ -1,10 +1,11 @@
 import { Center, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
-import { Injection } from "../utils/constants";
+import { FILE_RESIZE, Injection } from "../utils/constants";
 import { Gallery } from "../components/gallery";
 import { ColorizeBalance, ColorizeModal } from "../components/colorize";
 import { UploadDropbox } from "../components/upload";
 import Div100vh from "react-div-100vh";
+import { convertToJPEG, grayscaleJPEG, limitJPEGSize } from "../utils/image";
 
 /**
  * Home page
@@ -18,11 +19,30 @@ import Div100vh from "react-div-100vh";
 const Home = () => {
   const [file, setFile] = useState<File | undefined>();
 
+  /** returns true if file set successfully, false otherwise */
+  async function handleSetFile(file: File | undefined): Promise<boolean> {
+    if (!file) {
+      setFile(undefined);
+      return true;
+    }
+
+    try {
+      let image = file;
+      image = await convertToJPEG(image);
+      image = await limitJPEGSize(image, FILE_RESIZE);
+      image = await grayscaleJPEG(image);
+      setFile(image);
+      return true;
+    } catch (e) {
+      return false;
+    }
+  }
+
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const injections: Injection = {
     file,
-    setFile,
+    setFile: handleSetFile,
     isOpen,
     onOpen,
     onClose,

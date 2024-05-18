@@ -214,8 +214,6 @@ export async function limitJPEGSize(
 ): Promise<File> {
   if (!isJPEG(file)) throw new Error("The provided file is not a JPEG image.");
 
-  console.log("file.size", file.size);
-  console.log("maxSize", maxSize);
   if (file.size <= maxSize) return file;
 
   const image = new Image();
