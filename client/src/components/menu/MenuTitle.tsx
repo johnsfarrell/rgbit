@@ -18,7 +18,7 @@ const MenuTitle = () => {
         _hover={{ cursor: "pointer", ...ACTIVE_HOVER }}
         textTransform="lowercase"
       >
-        RGBit!
+        RGBIT
       </Box>
     </a>
   );
