@@ -50,7 +50,7 @@ export const GALLERY_IMAGES: string[] = [
 
 export const MAX_FILE_SIZE = 5000000; // 5MB
 
-export const FILE_RESIZE = 300000; // 300KB
+export const FILE_RESIZE = 600000; // 600KB
 
 export const COLORIZE_URI = `${process.env.REACT_APP_API_URL}/image/colorize/`;
 
