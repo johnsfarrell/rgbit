@@ -177,3 +177,16 @@ export const getTotalUsers = async () => {
     return 0;
   }
 };
+
+/**
+ * Fetches the total number of photos colorized.
+ * @returns {Promise<number>} Returns the total number of photos.
+ */
+export const getTotalImages = async () => {
+  try {
+    const res = await axios.get(`${process.env.REACT_APP_API_URL}/image/total`);
+    return res.data.total;
+  } catch (e) {
+    return 0;
+  }
+};

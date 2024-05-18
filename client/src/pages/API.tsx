@@ -13,7 +13,7 @@ import {
   APIDisclaimerText,
   APIKey,
   APIQuestions,
-  APIUsers,
+  APICounts,
 } from "../components/api";
 
 /**
@@ -53,7 +53,7 @@ const API = () => {
         <Flex w="100%">
           <APIDisclaimerText />
           <Spacer />
-          <APIUsers />
+          <APICounts />
         </Flex>
       </VStack>
     </TextShell>

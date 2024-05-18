@@ -14,6 +14,9 @@ const { generateUniqueKey } = require("../util/key");
 
 const fs = require("fs");
 const colorize = require("../util/api");
+const ImageLogModel = require("../models/ImageLogModel");
+const cache = require("../util/cache");
+const { TOTAL_IMAGES_CACHE_KEY } = require("../config/const");
 
 /**
  * Get image from database by id.
@@ -91,8 +94,12 @@ module.exports.colorizeImage = async (req, res) => {
     await ImageModel({
       id,
       key,
-      original,
       colored,
+    }).save();
+
+    await ImageLogModel({
+      id,
+      key,
     }).save();
   } catch (error) {
     res.status(500).send({ message: IMAGE_CREATION_FAILED });
@@ -114,4 +121,24 @@ module.exports.colorizeImage = async (req, res) => {
     download: `${process.env.SERVER_URL}/api/image/get/${id}`,
     redirect: `${process.env.CLIENT_URL}/#image=${id}`,
   });
+};
+
+/**
+ * Get total images colorized.
+ *
+ * @param {Request} req Express request object
+ * @param {Response} res Express response object
+ * @returns {void}
+ */
+module.exports.totalImages = async (req, res) => {
+  let total = cache.get(TOTAL_IMAGES_CACHE_KEY);
+  const cached = !!total;
+
+  if (!total) {
+    const users = await ImageLogModel.find();
+    total = users.length;
+    cache.set(TOTAL_IMAGES_CACHE_KEY, total);
+  }
+
+  res.json({ total, SUCCESS, cached });
 };

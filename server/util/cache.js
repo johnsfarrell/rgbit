@@ -1,4 +1,6 @@
+const { CACHE_TIME } = require("../config/const");
+
 const NodeCache = require("node-cache");
-const cache = new NodeCache({ stdTTL: 300 }); // 300 secs = 5 mins
+const cache = new NodeCache({ stdTTL: CACHE_TIME });
 
 module.exports = cache;

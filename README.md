@@ -170,6 +170,7 @@ The server is deployed on [AWS EC2](https://aws.amazon.com/ec2/). As an extra la
 
 - [ ] More example gallery images
 - [ ] Official favicon
+- [x] API endpoint for getting total images colorized
 - [x] EC2 instance optimiztaion or downgrade
 - [x] HEIC/HEIF image upload support
 - [x] `https://rgbit.io` only authorized API calls for managing API keys
