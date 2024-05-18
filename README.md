@@ -57,7 +57,13 @@ Clone the repository:
 $ git clone https://github.com/johnsfarrell/rgbit
 ```
 
-If you want to play with the pre-trained model, make sure to have `ml/models/model.h5` downloaded.:
+In most cases, you'll be using the `ml` directory (for training or colorizing with pre-trained model). Please refer to `./setup.sh` for a list of commands for setting up the Python virtual environment.
+
+```bash
+$ ./ml/setup.sh
+```
+
+If you want to play with the pre-trained model, make sure to have `ml/models/model.h5` downloaded.
 
 If you are interested in modifying the model architecture and training a model yourself, see [here](https://github.com/johnsfarrell/rgbit?tab=readme-ov-file#training).
 
@@ -84,6 +90,14 @@ You can also use `ml/code/visualize.py` to colorize images without the client an
 
 ```bash
 $ cd ../code && python3 visualize.py # -h for help
+```
+
+### Flask Colorization
+
+If you're interested in hosting a local, light-weight server for colorizing images, use `ml/code/api.py`. Please make sure you have `ml/models/model.h5` downloaded.
+
+```bash
+$ cd ml/code/api.py && python3 api.py
 ```
 
 #### Training
@@ -155,9 +169,9 @@ The server is deployed on [AWS EC2](https://aws.amazon.com/ec2/). As an extra la
 ## Changelog & Todos 📝
 
 - [ ] EC2 instance optimiztaion or downgrade
-- [ ] Robust image upload support ([imagemagick?](https://imagemagick.org/))
 - [ ] More example gallery images
 - [ ] Official favicon
+- [x] HEIC/HEIF image upload support
 - [x] `https://rgbit.io` only authorized API calls for managing API keys
 - [x] Limit API requests by IP address
 - [x] Limit file upload size to API

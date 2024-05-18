@@ -22,6 +22,7 @@ export const ACCEPTED_FILE_TYPES: FileTypeProps = {
   "image/jpeg": [".jpeg"],
   "image/gif": [".gif"],
   "image/heic": [".heic"],
+  "image/heif": [".heif"],
   "image/webp": [".webp"],
   "image/bmp": [".bmp"],
 };
@@ -47,9 +48,9 @@ export const GALLERY_IMAGES: string[] = [
   "nightvision.jpeg",
 ].map((img) => `${GALLERY_PATH}${img}`);
 
-export const MAX_FILE_SIZE = 3000000;
+export const MAX_FILE_SIZE = 5000000; // 5MB
 
-export const FILE_RESIZE = 300000;
+export const FILE_RESIZE = 300000; // 300KB
 
 export const COLORIZE_URI = `${process.env.REACT_APP_API_URL}/image/colorize/`;
 
@@ -65,10 +66,8 @@ export interface Injection {
   file: File | undefined;
   setFile: React.Dispatch<React.SetStateAction<File | undefined>>;
   onOpen: () => void;
-  setHasColor: React.Dispatch<React.SetStateAction<boolean | undefined>>;
   onClose: () => void;
   isOpen: boolean;
-  hasColor: boolean | undefined;
 }
 
 export interface Props {

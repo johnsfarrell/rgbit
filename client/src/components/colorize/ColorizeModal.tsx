@@ -9,14 +9,11 @@ import {
   Progress,
   Skeleton,
   Spinner,
-  Text,
-  useDisclosure,
   useToast,
 } from "@chakra-ui/react";
-import { useRef, useState } from "react";
+import { useState } from "react";
 import { colorizePost } from "../../utils/api";
 import APIDisclaimerText from "../api/APIDisclaimerText";
-import ColorizeDetected from "./ColorizeDetected";
 import { Props } from "../../utils/constants";
 import {
   API_LIMIT_TOAST,
@@ -27,28 +24,18 @@ import {
 import { ACTIVE_HOVER } from "../../utils/animations";
 
 const ColorizeModal = ({ props }: Props) => {
-  const { isOpen, onClose, file, hasColor, setHasColor } = props;
+  const { isOpen, onClose, file } = props;
 
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
   const toast = useToast();
 
-  const {
-    isOpen: colorIsOpen,
-    onOpen: colorOnOpen,
-    onClose: colorOnClose,
-  } = useDisclosure();
-
-  const colorRef = useRef(null);
-
   const handleOnClose = () => {
     if (isLoading) return;
-    setHasColor(false);
     onClose();
   };
 
   const handleRestore = async () => {
-    colorOnClose();
     setIsLoading(true);
 
     const { status, redirect } = await colorizePost(file);
@@ -59,13 +46,6 @@ const ColorizeModal = ({ props }: Props) => {
     if (status === 500 || status === 400) toast(RESTORE_ERROR_TOAST);
 
     setIsLoading(false);
-  };
-
-  const colorProps = {
-    colorIsOpen,
-    colorOnClose,
-    colorRef,
-    handleRestore,
   };
 
   return (
@@ -81,28 +61,25 @@ const ColorizeModal = ({ props }: Props) => {
               alt={file && file.name}
               maxH="60vh"
               minW={250}
-              filter={isLoading ? "grayscale(100%)" : ""}
+              filter="grayscale(100%)"
               rounded="md"
-              transition="filter 1s"
             />
           </ModalBody>
 
           <ModalFooter justifyContent="center" flexDir="column" gap={2}>
             <Button
-              onClick={hasColor ? colorOnOpen : handleRestore}
+              onClick={handleRestore}
               isLoading={isLoading}
               colorScheme="purple"
               _hover={ACTIVE_HOVER}
-              justifyContent="center"
             >
-              Restore Color {hasColor && <Text ml={2}>⚠️</Text>}
+              Restore Color
             </Button>
             <APIDisclaimerText customText="By clicking above, you agree to our " />
           </ModalFooter>
           <Progress size="sm" isIndeterminate={isLoading} roundedBottom="md" />
         </Skeleton>
       </ModalContent>
-      <ColorizeDetected props={colorProps} />
     </Modal>
   );
 };

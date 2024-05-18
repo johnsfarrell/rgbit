@@ -158,6 +158,8 @@ export const API_KEY_HEADER = "Your API Key";
 
 export const API_DOCUMENTATION_HEADER = "Documentation";
 
+export const FILE_NOT_IMAGE = "The provided file is not an image.";
+
 export const API_LIMITATION_DESCRIPTION =
   "The API is limited by the same rate limitations as the web interface, for colorization balance and IP addresses.";
 

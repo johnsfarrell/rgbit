@@ -17,7 +17,6 @@ import Div100vh from "react-div-100vh";
  */
 const Home = () => {
   const [file, setFile] = useState<File | undefined>();
-  const [hasColor, setHasColor] = useState<boolean | undefined>(undefined);
 
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -27,8 +26,6 @@ const Home = () => {
     isOpen,
     onOpen,
     onClose,
-    hasColor,
-    setHasColor,
   };
 
   return (

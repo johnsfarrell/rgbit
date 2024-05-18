@@ -1,4 +1,5 @@
 import heic2any from "heic2any";
+import { FILE_NOT_IMAGE } from "./desc";
 
 /**
  * Determines whether a file (image) has color or not.
@@ -108,11 +109,46 @@ export const getRandomElements = (arr: any[], n: number) => {
 /**
  * Checks if a file is an image.
  * @param file - A file to check if it is an image
- * @returns A promise that resolves to a boolean indicating if the file is an image
+ * @returns A boolean indicating if the file is an image
  */
-async function isImage(file: File): Promise<boolean> {
-  const mimeType = file.type;
-  return mimeType.startsWith("image/");
+export function isImage(file: File | undefined | null): boolean {
+  return !!file && file.type.startsWith("image/");
+}
+
+/**
+ * Checks if a file is a JPEG image.
+ * @param file - A file to check if it is a JPEG image
+ * @returns A boolean indicating if the file is a JPEG image
+ */
+export function isJPEG(file: File | undefined | null): boolean {
+  return (
+    !!file &&
+    isImage(file) &&
+    (file.type === "image/jpeg" || file.type === "image/jpg")
+  );
+}
+
+/**
+ * Converts a HEIC file to a JPEG file.
+ * @param file - A HEIC file to convert to JPEG
+ * @returns A promise that resolves to a File object with the same content as the input file, but in JPEG format
+ */
+async function heicToJPEG(file: File): Promise<File> {
+  const heicConversionResult = await heic2any({
+    blob: file,
+    toType: "image/jpeg",
+  });
+
+  const heicBlob = Array.isArray(heicConversionResult)
+    ? heicConversionResult[0]
+    : heicConversionResult;
+
+  file = new File([heicBlob], file.name.replace(/\.[^/.]+$/, ".jpeg"), {
+    type: "image/jpeg",
+    lastModified: Date.now(),
+  });
+
+  return file;
 }
 
 /**
@@ -121,25 +157,11 @@ async function isImage(file: File): Promise<boolean> {
  * @returns A promise that resolves to a File object with the same content as the input file, but in JPEG format
  */
 export async function convertToJPEG(file: File): Promise<File> {
-  if (!(await isImage(file))) {
-    throw new Error("The provided file is not an image.");
-  }
+  if (isJPEG(file)) return file;
 
-  if (file.type === "image/heic") {
-    const heicConversionResult = await heic2any({
-      blob: file,
-      toType: "image/jpeg",
-    });
+  if (!isImage(file)) throw new Error(FILE_NOT_IMAGE);
 
-    const heicBlob = Array.isArray(heicConversionResult)
-      ? heicConversionResult[0]
-      : heicConversionResult;
-
-    file = new File([heicBlob], file.name.replace(/\.[^/.]+$/, ".jpeg"), {
-      type: "image/jpeg",
-      lastModified: Date.now(),
-    });
-  }
+  if (["image/heic", "image/heif"].includes(file.type)) return heicToJPEG(file);
 
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
@@ -186,10 +208,12 @@ export async function convertToJPEG(file: File): Promise<File> {
  * @param maxSize - The maximum size in bytes
  * @returns A promise that resolves to a File object with the same content as the input file, but with a size less than or equal to maxSize
  */
-export async function limitImageSize(
+export async function limitJPEGSize(
   file: File,
   maxSize: number
 ): Promise<File> {
+  if (!isJPEG(file)) throw new Error("The provided file is not a JPEG image.");
+
   console.log("file.size", file.size);
   console.log("maxSize", maxSize);
   if (file.size <= maxSize) return file;
