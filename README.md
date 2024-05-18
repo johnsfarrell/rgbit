@@ -1,6 +1,8 @@
 <h1>
-  <img style="height: 25px;" src="https://github.com/johnsfarrell/rgbit/blob/main/client/public/favicon.ico" />
-  <a href="https://johnsfarrell.github.io/rgbit">RGBIT.io</a>
+  <a href="https://johnsfarrell.github.io/rgbit">
+    <img style="height: 25px;" src="https://github.com/johnsfarrell/rgbit/blob/main/client/public/favicon.ico" href="favicon (logo)" />
+    RGBIT.io
+  </a>
 </h1>
 
 ![banner](https://github.com/johnsfarrell/rgbit/assets/69059806/1ed31966-3480-41c1-a694-a8c595b3693c)
