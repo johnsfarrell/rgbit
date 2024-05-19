@@ -151,7 +151,7 @@ The colorize endpoint is available at `http://localhost:4004/colorize`.
 | `./setup.sh`                      | View setup commands                    |
 | `source venv/bin/activate`        | Activates the virtual environment      |
 | `pip install -r requirements.txt` | Installs the ML dependencies           |
-| `python3 code/api.py`             | Starts the Flask model server          |
+| `python3 code/api.py`             | Starts the Flask server                |
 | `python3 main.py`                 | Trains the model                       |
 | `python3 code/visualize.py -h`    | Commands for visualizing test image(s) |
 
@@ -169,7 +169,7 @@ The colorize endpoint is available at `http://localhost:4004/colorize`.
 
 #### More on API Deployment
 
-The server is deployed on [AWS EC2](https://aws.amazon.com/ec2/). As an extra layer of security, the Flask ML server is hosted _locally_ on the EC2 instance, and can only be accessed through the Express server. As EC2 hosts a virtual machine (Linux for this project), we launched multiple servers and configure the ports through an EC2 security group. This makes it easy to redirect the Express server with Caddy to [api.rgbit](https://api.rgbit.io/api), while making the Flask server inaccessible to the internet. The server runtime is maintained by `systemctl`. If you were interested in hosting your own API as such, check out [my guide](https://johnfarrell.io/writing/aws)!
+The server is deployed on [AWS EC2](https://aws.amazon.com/ec2/). As an extra layer of security, the Flask ML server is hosted _locally_ on the EC2 instance, and can only be accessed through the Express server. The Flask microservice also isolates the ML development from the REST development. As EC2 hosts a virtual machine (Linux for this project), we launched multiple servers and configure the ports through an EC2 security group. This makes it easy to redirect the Express server with Caddy to [api.rgbit](https://api.rgbit.io/api), while making the Flask server inaccessible to the internet. The server runtime is maintained by `systemctl`. If you were interested in hosting your own API as such, check out [my guide](https://johnfarrell.io/writing/aws)!
 
 ## Changelog & Todos 📝
 
