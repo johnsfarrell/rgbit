@@ -1,7 +1,6 @@
-import { Skeleton, Tooltip } from "@chakra-ui/react";
+import { Skeleton } from "@chakra-ui/react";
 import { useEffect, useState } from "react";
 import { getTotalImages, getTotalUsers } from "../../utils/api";
-import { TOTAL_USERS_DESCRIPTION } from "../../utils/desc";
 
 const APICounts = () => {
   const [totalUsers, setTotalUsers] = useState<number | undefined>(undefined);
@@ -17,11 +16,9 @@ const APICounts = () => {
   }, []);
 
   return (
-    <Tooltip label={TOTAL_USERS_DESCRIPTION} hasArrow>
-      <Skeleton isLoaded={!!totalUsers && !!totalImages} color="gray.400">
-        {totalUsers}.{totalImages}
-      </Skeleton>
-    </Tooltip>
+    <Skeleton isLoaded={!!totalUsers && !!totalImages} color="gray.400">
+      {totalUsers} {totalImages}
+    </Skeleton>
   );
 };
 
