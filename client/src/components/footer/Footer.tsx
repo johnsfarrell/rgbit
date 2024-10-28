@@ -18,7 +18,6 @@ const Footer = () => {
         <FooterLink hideSmall={true} href={process.env.PUBLIC_URL}>
           RGBIT
         </FooterLink>
-        <FooterLink href="#about">about</FooterLink>
         <FooterLink href="#tos">terms</FooterLink>
         <FooterLink href="https://github.com/johnsfarrell/rgbit">
           github
