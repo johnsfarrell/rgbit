@@ -1,0 +1,38 @@
+version: '3.8'
+
+services:
+  client:
+    build:
+      context: ./client
+    ports:
+      - "3000:3000"
+    env_file:
+      - ./client/.env
+    environment:
+      - NODE_ENV=production
+    networks:
+      - rgbit-network
+
+  server:
+    build:
+      context: ./server
+    ports:
+      - "4000:4000"
+    env_file:
+      - ./server/.env
+    networks:
+      - rgbit-network
+    depends_on:
+      - ml
+
+  ml:
+    build:
+      context: ./ml
+    ports:
+      - "4004:4004"
+    networks:
+      - rgbit-network
+
+networks:
+  rgbit-network:
+    driver: bridge

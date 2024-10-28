@@ -89,6 +89,18 @@ $ ./go
 
 The `go` script should let you know if you missed one of the steps above, and will promp you to install the necessary dependencies if you haven't already.
 
+### Docker Setup
+
+Alternatively, you can use Docker to run the application. Make sure you have Docker installed on your machine.
+
+Follow the same steps as above to set up the `.env` files in the `client` and `server` directories.
+
+For `server/.env`, use `COLORIZE_FLASK_URL=http://ml:4004/api` instead of `localhost`.
+
+```bash
+$ docker-compose up
+```
+
 ### Clientless and Serverless Colorization
 
 You can also use `ml/code/visualize.py` to colorize images without the client and server. Please make sure you have `ml/models/model.h5` downloaded.
@@ -173,8 +185,8 @@ The server is deployed on [AWS EC2](https://aws.amazon.com/ec2/). As an extra la
 
 ## Changelog & Todos 📝
 
-- [ ] Docker deployments
 - [ ] `tfjs` client-only deployment
+- [x] Docker deployments
 - [x] Official favicon
 - [x] API endpoint for getting total images colorized
 - [x] EC2 instance optimiztaion or downgrade

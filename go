@@ -1,5 +1,7 @@
 #!/bin/bash
 
+echo "Starting the application locally. To compose with Docker, instead run 'docker-compose up'!"
+
 for port in 3000 4000 4004; do
   if lsof -i:$port -sTCP:LISTEN -t >/dev/null ; then
     echo "Port $port is already in use."
