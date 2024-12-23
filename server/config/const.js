@@ -8,6 +8,7 @@ const MAX_SIZE = 750000; // 750kb
 const REQUEST_TIME_LIMIT = 15 * 60 * 1000; // 15 minutes
 const REQUEST_RATE_LIMIT = 50;
 const CACHE_TIME = 300; // 300 secs = 5 mins
+const FILE_EXPIRATION = 24 * 60 * 60; // 24 hours
 
 module.exports = {
   REFRESH_BALANCE,
@@ -19,5 +20,6 @@ module.exports = {
   MAX_SIZE,
   REQUEST_TIME_LIMIT,
   REQUEST_RATE_LIMIT,
-  CACHE_TIME
+  CACHE_TIME,
+  FILE_EXPIRATION
 };
