@@ -37,7 +37,7 @@ const MenuTitle = () => {
                   position: "absolute",
                   left: 0,
                   bottom: 3.8,
-                  width: "5em",
+                  width: "100%",
                   height: "0.1em",
                   bgGradient: "linear(125deg, #a7271e, #a18f1f, #519519)"
                 }

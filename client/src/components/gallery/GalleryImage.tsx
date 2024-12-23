@@ -8,9 +8,10 @@ interface GalleryImageProps {
   setFile: (image: File | undefined) => Promise<boolean>;
   onOpen: () => void;
   file?: File;
+  onLoad: () => void;
 }
 
-const GalleryImage = ({ src, setFile, file }: GalleryImageProps) => {
+const GalleryImage = ({ src, setFile, file, onLoad }: GalleryImageProps) => {
   const handleImageClick = async () => {
     setFile(undefined);
     const img = await urlToFile(src, src);
@@ -36,6 +37,7 @@ const GalleryImage = ({ src, setFile, file }: GalleryImageProps) => {
         animation={GALLERY_OPEN}
         onClick={!file ? handleImageClick : () => {}}
         mx={1}
+        onLoad={onLoad}
       />
     </Tooltip>
   );
