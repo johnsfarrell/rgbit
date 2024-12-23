@@ -187,6 +187,7 @@ The server is deployed on [AWS EC2](https://aws.amazon.com/ec2/). As an extra la
 ## Changelog & Todos 📝
 
 - [ ] `tfjs` client-only deployment
+- [x] Refactor UI workflow 
 - [x] Docker deployments
 - [x] Official favicon
 - [x] API endpoint for getting total images colorized
