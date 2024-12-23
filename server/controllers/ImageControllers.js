@@ -68,8 +68,6 @@ module.exports.colorizeImage = async (req, res) => {
     return;
   }
 
-  console.log(user, Date.now(), user.refresh < Date.now());
-
   if (!user.balance && user.refresh < Date.now()) user.balance = 3;
 
   if (user.balance <= 0) {
