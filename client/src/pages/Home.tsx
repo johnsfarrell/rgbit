@@ -2,7 +2,7 @@ import { Box, Center, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import { FILE_RESIZE, Injection } from "../utils/constants";
 import { Gallery } from "../components/gallery";
-import { ColorizeBalance, ColorizeModal } from "../components/colorize";
+import { ColorizeBalance, ColorizeWizard } from "../components/colorize";
 import { UploadDropbox } from "../components/upload";
 import Div100vh from "react-div-100vh";
 import { convertToJPEG, grayscaleJPEG, limitJPEGSize } from "../utils/image";
@@ -61,7 +61,7 @@ const Home = () => {
           <Gallery props={injections} />
         </Center>
 
-        <ColorizeModal props={injections} />
+        <ColorizeWizard props={injections} />
 
         <ColorizeBalance props={injections} />
       </Div100vh>

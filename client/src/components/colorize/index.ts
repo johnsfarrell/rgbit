@@ -1,4 +1,4 @@
 import ColorizeBalance from "./ColorizeBalance";
-import ColorizeModal from "./ColorizeModal";
+import ColorizeWizard from "./ColorizeWizard";
 
-export { ColorizeBalance, ColorizeModal };
+export { ColorizeBalance, ColorizeWizard };

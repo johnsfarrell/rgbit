@@ -2,7 +2,6 @@ import { Box, Button, Icon, Image, useToast } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import APIDisclaimerText from "../api/APIDisclaimerText";
 import { Props } from "../../utils/constants";
-import { MenuArrow } from "../menu";
 import {
   API_LIMIT_TOAST,
   LOW_BALANCE_TOAST,
@@ -12,7 +11,7 @@ import {
 import { colorizePost, fetchImage } from "../../utils/api";
 import { AtSignIcon, DownloadIcon } from "@chakra-ui/icons";
 
-const ColorizeModal = ({ props }: Props) => {
+const ColorizeWizard = ({ props }: Props) => {
   const { file, setFile } = props;
 
   const [isLoading, setIsLoading] = useState(false);
@@ -21,7 +20,6 @@ const ColorizeModal = ({ props }: Props) => {
   );
   const [isColorized, setIsColorized] = useState(false);
   const toast = useToast();
-  const [hover, setHover] = useState(false);
 
   const [redirect, setRedirect] = useState<string>("");
 
@@ -114,8 +112,6 @@ const ColorizeModal = ({ props }: Props) => {
         onClick={isColorized ? clearFiles : handleRestore}
         isLoading={isLoading}
         colorScheme="blue"
-        onMouseEnter={() => setHover(true)}
-        onMouseLeave={() => setHover(false)}
         pos="absolute"
         left="50%"
         bottom={20}
@@ -125,7 +121,6 @@ const ColorizeModal = ({ props }: Props) => {
         zIndex={file ? 3 : -1}
       >
         Restore Color
-        <MenuArrow hover={hover} />
       </Button>
 
       {fileSrc && !isColorized && (
@@ -137,4 +132,4 @@ const ColorizeModal = ({ props }: Props) => {
   );
 };
 
-export default ColorizeModal;
+export default ColorizeWizard;

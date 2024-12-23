@@ -16,7 +16,7 @@ const fs = require("fs");
 const colorize = require("../util/api");
 const ImageLogModel = require("../models/ImageLogModel");
 const cache = require("../util/cache");
-const { TOTAL_IMAGES_CACHE_KEY } = require("../config/const");
+const { TOTAL_IMAGES_CACHE_KEY, REFRESH_BALANCE } = require("../config/const");
 
 /**
  * Get image from database by id.
@@ -67,6 +67,10 @@ module.exports.colorizeImage = async (req, res) => {
     res.status(403).send({ message: INVALID_KEY });
     return;
   }
+
+  console.log(user, Date.now(), user.refresh < Date.now());
+
+  if (!user.balance && user.refresh < Date.now()) user.balance = 3;
 
   if (user.balance <= 0) {
     res.status(402).send({ message: INSUFFICIENT_BALANCE });
