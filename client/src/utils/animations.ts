@@ -36,8 +36,8 @@ export const ACTIVE_HOVER = {
  */
 export const IMAGE_VIEW_OPEN = `${keyframes`
     from {
-      scale: 0.975;
-      opacity: 0;
+      opacity: 0.5;
+      transform: translate(-50%, -50%) scale(1.05);
     }
   `} 0.5s ease`;
 

@@ -3,7 +3,7 @@ const { FILE_SIZE_EXCEEDED } = require("../config/messages");
 const {
   getImage,
   colorizeImage,
-  totalImages,
+  totalImages
 } = require("../controllers/ImageControllers");
 
 const router = require("express").Router();

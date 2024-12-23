@@ -25,7 +25,7 @@ const MenuButton = ({ text, link, isActive }: MenuButtonProps) => {
       alignItems="center"
       onMouseEnter={() => setIsHover(true)}
       onMouseLeave={() => setIsHover(false)}
-      textDecor={isActive ? "underline" : "none"}
+      // textDecor={isActive ? "underline" : "none"}
     >
       {text} {isExternal && <MenuArrow hover={isHover} />}
     </Link>

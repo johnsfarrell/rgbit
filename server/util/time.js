@@ -22,5 +22,5 @@ function getTimestampHHMMSS() {
 
 module.exports = {
   getRefreshTime,
-  getTimestampHHMMSS,
+  getTimestampHHMMSS
 };

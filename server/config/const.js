@@ -19,5 +19,5 @@ module.exports = {
   MAX_SIZE,
   REQUEST_TIME_LIMIT,
   REQUEST_RATE_LIMIT,
-  CACHE_TIME,
+  CACHE_TIME
 };

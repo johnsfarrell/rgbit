@@ -41,7 +41,7 @@ const API = () => {
 
         <APIHeading text={API_DOCUMENTATION_HEADER} id={"doc"} h="h2" />
         {API_DOCUMENTATION_CONTENT.map(({ heading, text, code }) => (
-          <VStack key={heading} alignItems="start" spacing={3}>
+          <VStack key={heading} alignItems="start" spacing={3} maxW="100%">
             <APIHeading text={heading} id={heading} h="h2" />
             <Text>{text}</Text>
             <APICodeblock code={code} />

@@ -1,4 +1,4 @@
-import { Box, Button, Image, useToast } from "@chakra-ui/react";
+import { Box, Button, Icon, Image, useToast } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import APIDisclaimerText from "../api/APIDisclaimerText";
 import { Props } from "../../utils/constants";
@@ -9,29 +9,36 @@ import {
   RESTORE_ERROR_TOAST,
   VERIFICATION_ERROR_TOAST
 } from "../../utils/toasts";
-import { colorizePost } from "../../utils/api";
+import { colorizePost, fetchImage } from "../../utils/api";
+import { AtSignIcon, DownloadIcon } from "@chakra-ui/icons";
 
 const ColorizeModal = ({ props }: Props) => {
   const { file, setFile } = props;
 
   const [isLoading, setIsLoading] = useState(false);
-  const [currentFile, setCurrentFile] = useState<File | undefined>(file);
+  const [fileSrc, setFileSrc] = useState<string | undefined>(
+    file && URL.createObjectURL(file)
+  );
   const [isColorized, setIsColorized] = useState(false);
   const toast = useToast();
   const [hover, setHover] = useState(false);
 
+  const [redirect, setRedirect] = useState<string>("");
+
   useEffect(() => {
-    setCurrentFile(file);
+    setFileSrc(file && URL.createObjectURL(file));
   }, [file]);
 
   const handleRestore = async () => {
     setIsLoading(true);
 
-    const { status } = await colorizePost(file);
+    const { status, imageId, redirect } = await colorizePost(file);
 
     if (status === 200) {
+      const { colored } = await fetchImage(imageId);
+      setRedirect(redirect);
+      setFileSrc(colored);
       setIsColorized(true);
-      setCurrentFile(file);
     } else if (status === 402) toast(LOW_BALANCE_TOAST);
     else if (status === 403) toast(VERIFICATION_ERROR_TOAST);
     else if (status === 429) toast(API_LIMIT_TOAST);
@@ -42,47 +49,86 @@ const ColorizeModal = ({ props }: Props) => {
 
   const clearFiles = () => {
     setFile(undefined);
-    setCurrentFile(undefined);
+    setFileSrc(undefined);
     setIsColorized(false);
   };
 
+  const handleDownload = () => {
+    const link = document.createElement("a");
+    link.href = fileSrc || "";
+    link.download = "colorized.png";
+    link.click();
+  };
+
+  const handleShare = () => window.open(redirect, "_blank");
+
   return (
     <>
-      <Image
-        src={currentFile && URL.createObjectURL(currentFile)}
-        alt={currentFile ? currentFile.name : ""}
-        maxH="60vh"
-        minW={250}
-        rounded="md"
+      <Box
         position="absolute"
-        transition="filter 1s ease, opacity 0.5s ease, transform 0.3s ease"
         left="50%"
         top="50%"
-        transform="translate(-50%, -50%)"
+        transform={`translate(-50%, -50%) ${isColorized ? "scale(1.1)" : ""}`}
+        transition="filter 1s ease, opacity 0.5s ease, transform 1s ease"
         filter={isColorized ? "none" : "grayscale(100%)"}
-        opacity={currentFile ? 1 : 0}
+        opacity={fileSrc ? 1 : 0}
         zIndex={2}
-      />
+        display="inline-block"
+        rounded="md"
+        shadow="lg"
+      >
+        <Image
+          src={fileSrc}
+          alt={fileSrc}
+          maxH="60vh"
+          minW={250}
+          rounded="md"
+        />
+
+        <Box
+          position="absolute"
+          top="2"
+          right="2"
+          display="flex"
+          flexDir="row"
+          gap={1}
+        >
+          {[
+            { onClick: handleDownload, icon: DownloadIcon },
+            { onClick: handleShare, icon: AtSignIcon }
+          ].map(({ onClick, icon }) => (
+            <Button
+              colorScheme="blackAlpha"
+              size="xs"
+              onClick={onClick}
+              transition="opacity 0.5s 0.5s, background 0.1s"
+              opacity={isColorized ? 1 : 0}
+            >
+              <Icon as={icon} />
+            </Button>
+          ))}
+        </Box>
+      </Box>
 
       <Button
         onClick={isColorized ? clearFiles : handleRestore}
         isLoading={isLoading}
-        colorScheme="purple"
+        colorScheme="blue"
         onMouseEnter={() => setHover(true)}
         onMouseLeave={() => setHover(false)}
         pos="absolute"
         left="50%"
         bottom={20}
-        opacity={file ? 1 : 0}
+        opacity={file && !isColorized ? 1 : 0}
         transition="0.3s all"
         transform="translateX(-50%)"
-        zIndex={2}
+        zIndex={file ? 3 : -1}
       >
-        {isColorized ? "Return Home" : "Restore Color"}
+        Restore Color
         <MenuArrow hover={hover} />
       </Button>
 
-      {currentFile && !isColorized && (
+      {fileSrc && !isColorized && (
         <Box pos="absolute" left="50%" transform="translateX(-50%)" bottom={2}>
           <APIDisclaimerText customText="By clicking above, you agree to the " />
         </Box>

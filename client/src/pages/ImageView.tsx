@@ -1,21 +1,9 @@
 import { useEffect, useState } from "react";
-import {
-  Box,
-  Button,
-  Center,
-  HStack,
-  Image,
-  Spinner,
-  Tooltip,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Icon, Image, Spinner } from "@chakra-ui/react";
 import { fetchImage } from "../utils/api";
-import {
-  ACTIVE_HOVER,
-  GALLERY_ACTIONS_OPEN,
-  IMAGE_VIEW_OPEN,
-} from "../utils/animations";
 import { TextShell } from "../components/text";
-import { DownloadIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
+import { DownloadIcon } from "@chakra-ui/icons";
+import { IMAGE_VIEW_OPEN } from "../utils/animations";
 
 /**
  * View Image page
@@ -29,17 +17,27 @@ import { DownloadIcon, ViewIcon, ViewOffIcon } from "@chakra-ui/icons";
 const ImageView = () => {
   const [image, setImage] = useState<string | null>(null);
 
-  const [showOriginal, setShowOriginal] = useState(false);
+  const [isColorized, setIsColorized] = useState(false);
+
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
     async function loadImage() {
+      setIsLoading(true);
+
       try {
+        await new Promise(resolve => setTimeout(resolve, 200));
         const id = window.location.hash.slice(7); // remove #image=
         const { colored } = await fetchImage(id);
         setImage(colored);
+
+        await new Promise(resolve => setTimeout(resolve, 200));
+        setIsColorized(true);
       } catch (e) {
         window.location.hash = "#";
       }
+
+      setIsLoading(false);
     }
 
     loadImage();
@@ -54,56 +52,61 @@ const ImageView = () => {
     window.location.href = image;
   };
 
-  const toggleOriginal = () => setShowOriginal((prev) => !prev);
-
   return (
     <TextShell isCentered>
-      <Center h={{ base: "70vh", md: "78vh" }}>
-        {image ? (
-          <Tooltip label={`Click to toggle color!`} openDelay={500} hasArrow>
-            <Image
-              maxH="100%"
-              shadow="xl"
-              rounded="md"
-              src={image}
-              filter={showOriginal ? "grayscale(100%)" : "none"}
-              alt="colorized image"
-              onClick={toggleOriginal}
-              cursor="pointer"
-              transition="all 1s ease"
-              _hover={{
-                transform: "scale(1.01)",
-                shadow: "2xl",
-              }}
-              animation={IMAGE_VIEW_OPEN}
-            />
-          </Tooltip>
+      <Flex alignItems="center">
+        {!isLoading ? (
+          <Box
+            position="absolute"
+            left="50%"
+            top="50%"
+            transform="translate(-50%, -50%) scale(1.1)"
+            transition="filter 1s ease, opacity 0.5s ease, transform 1s ease"
+            animation={IMAGE_VIEW_OPEN}
+            filter={isColorized ? "none" : "grayscale(100%)"}
+            opacity={image ? 1 : 0}
+            zIndex={2}
+            display="inline-block"
+            rounded="md"
+            shadow="lg"
+          >
+            {image && (
+              <Image
+                src={image}
+                alt={image}
+                maxH="60vh"
+                minW={250}
+                rounded="md"
+              />
+            )}
+
+            <Box
+              position="absolute"
+              top="2"
+              right="2"
+              display="flex"
+              flexDir="row"
+              gap={1}
+            >
+              {[{ onClick: handleDownload, icon: DownloadIcon }].map(
+                ({ onClick, icon }) => (
+                  <Button
+                    colorScheme="blackAlpha"
+                    size="xs"
+                    onClick={onClick}
+                    transition="opacity 0.5s 0.5s, background 0.1s"
+                    opacity={isColorized ? 1 : 0}
+                  >
+                    <Icon as={icon} />
+                  </Button>
+                )
+              )}
+            </Box>
+          </Box>
         ) : (
-          <Spinner size="xl" />
+          <Spinner />
         )}
-      </Center>
-      <Box
-        pos="absolute"
-        left="50%"
-        transform="translateX(-50%)"
-        bottom={5}
-        opacity={image ? 1 : 0}
-        transition="all 0.2s ease-in-out"
-        animation={GALLERY_ACTIONS_OPEN}
-      >
-        <HStack>
-          <Tooltip label="Toggle image color" hasArrow>
-            <Button onClick={toggleOriginal} _hover={ACTIVE_HOVER}>
-              {showOriginal ? <ViewOffIcon /> : <ViewIcon />}
-            </Button>
-          </Tooltip>
-          <Tooltip label="Download colorized image" hasArrow>
-            <Button onClick={handleDownload} _hover={ACTIVE_HOVER}>
-              <DownloadIcon />
-            </Button>
-          </Tooltip>
-        </HStack>
-      </Box>
+      </Flex>
     </TextShell>
   );
 };

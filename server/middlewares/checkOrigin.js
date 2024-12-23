@@ -13,7 +13,7 @@ const checkOrigin = (req, res, next) => {
 
   if (requestOrigin !== allowedOrigin) {
     return res.status(403).json({
-      message: FORBIDDEN_ORIGIN,
+      message: FORBIDDEN_ORIGIN
     });
   }
   next();

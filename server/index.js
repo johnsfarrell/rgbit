@@ -16,7 +16,7 @@ const dotenv = require("dotenv");
 
 dotenv.config();
 
-mongoose.connect(process.env.MONGODB_ACCESS).then((data) => {
+mongoose.connect(process.env.MONGODB_ACCESS).then(data => {
   console.log(
     data.connection.readyState ? "MongoDB Connected" : "MongoDB Not Connected"
   );
@@ -31,7 +31,7 @@ app.use(function (req, res, next) {
 app.use(
   cors({
     credentials: true,
-    origin: [process.env.CLIENT_URL],
+    origin: [process.env.CLIENT_URL]
   })
 );
 

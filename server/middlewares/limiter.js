@@ -9,8 +9,8 @@ const limiter = rateLimit({
   windowMs: REQUEST_TIME_LIMIT,
   max: REQUEST_RATE_LIMIT,
   message: {
-    message: REQUEST_LIMIT,
-  },
+    message: REQUEST_LIMIT
+  }
 });
 
 module.exports = limiter;

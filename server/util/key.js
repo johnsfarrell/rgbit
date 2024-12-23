@@ -37,5 +37,5 @@ function generateUniqueKey() {
 
 module.exports = {
   verifySignature,
-  generateUniqueKey,
+  generateUniqueKey
 };

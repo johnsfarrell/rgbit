@@ -23,7 +23,7 @@ def predict(img, MODEL):
     upscaled_rgb = upscale_color(img, colored_lab)
     return upscaled_rgb
 
-def load_model(model="models/model.h5"):
+def load_model(model="../models/model.h5"):
     """
     Load the model.
 

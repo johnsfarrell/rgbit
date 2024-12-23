@@ -9,12 +9,13 @@ import { FAILED_FETCH_BALANCE, FAILED_FETCH_IMAGE, NO_API_KEY } from "./desc";
  * @returns {data is { status: 200 | 403 | 402 | 500, remainingBalance: number, refresh: Date, redirect: string }} Returns true if the data is of the correct type.
  */
 const checkColorizeResponse = (
-  data: any,
+  data: any
 ): data is {
   status: 200 | 403 | 402 | 500;
   remainingBalance: number;
   refresh: Date;
   redirect: string;
+  imageId: string;
 } => {
   return (
     (data.status === 200 ||
@@ -24,7 +25,8 @@ const checkColorizeResponse = (
     typeof data.remainingBalance === "number" &&
     typeof data.refresh === "string" &&
     new Date(data.refresh) instanceof Date &&
-    typeof data.redirect === "string"
+    typeof data.redirect === "string" &&
+    typeof data.imageId === "string"
   );
 };
 
@@ -37,10 +39,15 @@ const checkColorizeResponse = (
  * If user's balance > 0, colorizes image, returns 200.
  *
  * @param file The image to colorize.
- * @returns {Promise<{ status: 200 | 403 | 402 | 500, remainingBalance: number, refresh: Date, redirect: string }>} Returns the status and code of the response.
+ * @returns {Promise<{ status: 200 | 403 | 402 | 500, remainingBalance: number, refresh: Date, redirect: string, imageId: string }>} Returns the status and code of the response.
  */
 export const colorizePost = async (file?: File) => {
-  const failure = { remainingBalance: -1, refresh: new Date(), redirect: "" };
+  const failure = {
+    remainingBalance: -1,
+    refresh: new Date(),
+    redirect: "",
+    imageId: ""
+  };
 
   if (!file) return { status: 400, ...failure };
 
@@ -50,7 +57,7 @@ export const colorizePost = async (file?: File) => {
 
   try {
     const res = await axios.post(COLORIZE_URI + getKey(), formData, {
-      headers,
+      headers
     });
 
     if (checkColorizeResponse(res.data)) {
@@ -72,7 +79,7 @@ export const colorizePost = async (file?: File) => {
  * @returns {data is { balance: number, refresh: Date }} Returns true if the data is of the correct type.
  */
 const checkTypeBalance = (
-  data: any,
+  data: any
 ): data is { balance: number; refresh: Date } => {
   return (
     typeof data.balance === "number" &&
@@ -106,7 +113,7 @@ export const getBalance = async (): Promise<{
  * @returns {status is 200 | 203 | 400 | 403 | 500} Returns true if the status is of the correct type.
  */
 const checkTypeCreateUserStatus = (
-  status: any,
+  status: any
 ): status is 200 | 203 | 400 | 403 | 500 => {
   return (
     status === 200 ||
@@ -133,7 +140,7 @@ const checkTypeCreateUserStatus = (
  */
 export const createUser = async (
   key: string,
-  encryptedKey: string,
+  encryptedKey: string
 ): Promise<200 | 203 | 400 | 403 | 500> => {
   const query = `${process.env.REACT_APP_API_URL}/user/create`;
   const res = await axios.post(query, { key, encryptedKey });

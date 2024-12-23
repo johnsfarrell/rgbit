@@ -7,7 +7,7 @@ const {
   MISSING_IMAGE,
   COLORIZE_FAILED,
   IMAGE_CREATION_FAILED,
-  IMAGE_NOT_FOUND,
+  IMAGE_NOT_FOUND
 } = require("../config/messages");
 const { getRefreshTime } = require("../util/time");
 const { generateUniqueKey } = require("../util/key");
@@ -41,7 +41,7 @@ module.exports.getImage = async (req, res) => {
   return res.send({
     status: 200,
     message: SUCCESS,
-    colored: colored,
+    colored: colored
   });
 };
 
@@ -94,12 +94,12 @@ module.exports.colorizeImage = async (req, res) => {
     await ImageModel({
       id,
       key,
-      colored,
+      colored
     }).save();
 
     await ImageLogModel({
       id,
-      key,
+      key
     }).save();
   } catch (error) {
     res.status(500).send({ message: IMAGE_CREATION_FAILED });
@@ -119,7 +119,7 @@ module.exports.colorizeImage = async (req, res) => {
     message: SUCCESS,
     imageId: id,
     download: `${process.env.SERVER_URL}/api/image/get/${id}`,
-    redirect: `${process.env.CLIENT_URL}/#image=${id}`,
+    redirect: `${process.env.CLIENT_URL}/#image=${id}`
   });
 };
 
