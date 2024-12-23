@@ -33,10 +33,11 @@ const ColorizeBalance = ({ props }: Props) => {
   return (
     <Tooltip label={BALANCE_DESCRIPTION} hasArrow>
       <Button
+        size="xs"
         pos="fixed"
         left="50%"
         transform="translateX(-50%)"
-        bottom={countdown > 0 ? 8 : -10}
+        bottom={countdown > 0 ? 12 : -10}
         transition="all 0.2s"
         fontFamily="monospace"
         gap={1}
