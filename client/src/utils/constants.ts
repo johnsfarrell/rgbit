@@ -33,7 +33,16 @@ export const GALLERY_IMAGES: string[] = [
   "einstein.jpeg",
   "ali.webp",
   "valley.jpg",
-  "mermaid.webp"
+  "mermaid.webp",
+  "swift.jpg",
+  "horse.jpg",
+  "elephant.jpg",
+  "child.webp",
+  "lion.webp",
+  "panda.jpg",
+  "disney.jpg",
+  "portrait.webp",
+  "desert.jpg"
 ].map(img => `${GALLERY_PATH}${img}`);
 
 export const MAX_FILE_SIZE = 5000000; // 5MB
