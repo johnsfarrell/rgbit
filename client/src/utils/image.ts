@@ -10,7 +10,7 @@ export const imageHasColor = (file: File): Promise<boolean> => {
   return new Promise((resolve, reject) => {
     const reader = new FileReader();
 
-    reader.onload = (e) => {
+    reader.onload = e => {
       const img = new Image();
       img.onload = () => {
         const canvas = document.createElement("canvas");
@@ -88,11 +88,15 @@ export async function urlToFile(url: string, filename: string): Promise<File> {
 
 /**
  * Gets n random elements from an array.
+ *
+ * If n is none, return shuffled array
+ *
  * @param {any[]} arr - array of strings
- * @param {number} n - number of elements to get
+ * @param {number?} n - number of elements to get
  * @returns {any[]} - array of n random elements from arr
  */
-export const getRandomElements = (arr: any[], n: number) => {
+export const getRandomElements = (arr: any[], n?: number) => {
+  if (!n) n = arr.length;
   let result = new Array(n),
     len = arr.length,
     taken = new Array(len);
@@ -136,7 +140,7 @@ export function isJPEG(file: File | undefined | null): boolean {
 async function heicToJPEG(file: File): Promise<File> {
   const heicConversionResult = await heic2any({
     blob: file,
-    toType: "image/jpeg",
+    toType: "image/jpeg"
   });
 
   const heicBlob = Array.isArray(heicConversionResult)
@@ -145,7 +149,7 @@ async function heicToJPEG(file: File): Promise<File> {
 
   file = new File([heicBlob], file.name.replace(/\.[^/.]+$/, ".jpeg"), {
     type: "image/jpeg",
-    lastModified: Date.now(),
+    lastModified: Date.now()
   });
 
   return file;
@@ -174,14 +178,14 @@ export async function convertToJPEG(file: File): Promise<File> {
         const ctx = canvas.getContext("2d");
         if (ctx) ctx.drawImage(img, 0, 0);
 
-        canvas.toBlob((blob) => {
+        canvas.toBlob(blob => {
           if (blob) {
             const jpegFile = new File(
               [blob],
               file.name.replace(/\.[^/.]+$/, ".jpeg"),
               {
                 type: "image/jpeg",
-                lastModified: Date.now(),
+                lastModified: Date.now()
               }
             );
             resolve(jpegFile);
@@ -242,11 +246,11 @@ export async function limitJPEGSize(
 
       ctx.drawImage(image, 0, 0, canvas.width, canvas.height);
 
-      canvas.toBlob((blob) => {
+      canvas.toBlob(blob => {
         if (blob) {
           const resizedFile = new File([blob], file.name, {
             type: file.type,
-            lastModified: Date.now(),
+            lastModified: Date.now()
           });
           resolve(resizedFile);
         } else {
@@ -291,11 +295,11 @@ export async function grayscaleJPEG(file: File): Promise<File> {
 
           ctx.putImageData(imageData, 0, 0);
 
-          canvas.toBlob((blob) => {
+          canvas.toBlob(blob => {
             if (blob) {
               const grayscaleFile = new File([blob], file.name, {
                 type: file.type,
-                lastModified: Date.now(),
+                lastModified: Date.now()
               });
               resolve(grayscaleFile);
             } else {

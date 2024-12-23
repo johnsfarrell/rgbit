@@ -14,7 +14,7 @@ const Terms = () => {
     <TextShell>
       {TERMS_AND_CONDITIONS.map(({ heading, text, list }, index) => (
         <div key={index}>
-          <Heading>{heading}</Heading>
+          <Heading textTransform="capitalize">{heading}</Heading>
           <Text>{text}</Text>
           <List styleType="disc" pl={5}>
             {list.map((item, index) => (

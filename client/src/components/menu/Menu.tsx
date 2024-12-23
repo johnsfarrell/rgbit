@@ -3,10 +3,10 @@ import MenuButton from "./MenuButton";
 import { MENU_ITEMS } from "../../utils/constants";
 
 interface MenuProps {
-  hashtag: string;
+  hash: string;
 }
 
-const Menu = ({ hashtag }: MenuProps) => {
+const Menu = ({ hash }: MenuProps) => {
   const isDesktop = window.innerWidth > 600;
 
   return (
@@ -14,7 +14,7 @@ const Menu = ({ hashtag }: MenuProps) => {
       position="absolute"
       transform={{
         base: "translateX(50%)",
-        sm: "none",
+        sm: "none"
       }}
       right={{ base: "50%", sm: 0 }}
       w="max-content"
@@ -26,7 +26,7 @@ const Menu = ({ hashtag }: MenuProps) => {
               key={text}
               text={text}
               link={link}
-              isHighlighted={link.replace("#", "") === hashtag.replace("#", "")}
+              isActive={link.replace(/[#/]/g, "") === hash.replace(/[#/]/g, "")}
             />
           );
         }

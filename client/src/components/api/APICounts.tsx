@@ -16,7 +16,11 @@ const APICounts = () => {
   }, []);
 
   return (
-    <Skeleton isLoaded={!!totalUsers && !!totalImages} color="gray.400">
+    <Skeleton
+      isLoaded={!!totalUsers && !!totalImages}
+      color="gray.400"
+      display={{ base: "none", md: "block" }}
+    >
       {totalUsers} {totalImages}
     </Skeleton>
   );

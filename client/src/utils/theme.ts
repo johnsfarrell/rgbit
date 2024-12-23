@@ -8,35 +8,33 @@ const TooltipConfig = {
     color: "white",
     px: 3,
     py: 2,
-    [$arrowBg.variable]: "colors.gray.900",
-  },
+    [$arrowBg.variable]: "colors.gray.900"
+  }
 };
 
 const ButtonConfig = {
   baseStyle: {
     transition: "all 0.1s",
-    fontFamily: "DM Sans",
-    textTransform: "lowercase",
-  },
+    fontFamily: "Reddit Sans"
+  }
 };
 
 const LinkConfig = {
   baseStyle: {
-    fontFamily: "DM Sans",
-  },
+    fontFamily: "Reddit Sans"
+  }
 };
 
 const HeadingConfig = {
   baseStyle: {
     mt: 5,
-    mb: 2,
-    textTransform: "lowercase",
+    mb: 2
   },
   sizes: {
     xl: {
-      fontSize: "xl",
-    },
-  },
+      fontSize: "xl"
+    }
+  }
 };
 
 const theme = extendTheme({
@@ -44,11 +42,11 @@ const theme = extendTheme({
     Tooltip: TooltipConfig,
     Button: ButtonConfig,
     Link: LinkConfig,
-    Heading: HeadingConfig,
+    Heading: HeadingConfig
   },
   fonts: {
-    heading: "DM Sans",
-  },
+    heading: "Reddit Sans"
+  }
 });
 
 export { theme };

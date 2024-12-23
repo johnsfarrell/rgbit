@@ -6,7 +6,7 @@ const fetch = require("node-fetch");
  * @param {Buffer} imageBuffer Buffer of the image to colorize
  * @returns {Promise<Buffer>} Promise resolving to the buffer of the colorized image
  */
-const colorize = async (imageBuffer) => {
+const colorize = async imageBuffer => {
   const formData = new FormData();
   formData.append("file", imageBuffer, "image.jpg");
   const headers = formData.getHeaders();
@@ -15,8 +15,9 @@ const colorize = async (imageBuffer) => {
     const response = await fetch(process.env.COLORIZE_FLASK_URL, {
       method: "POST",
       body: formData,
-      headers: headers,
+      headers: headers
     });
+
     const colorizedBuffer = await response.buffer();
     return colorizedBuffer;
   } catch (error) {

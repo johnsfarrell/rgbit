@@ -24,7 +24,7 @@ const ColorizeBalance = ({ props }: Props) => {
 
     // Decrement countdown every second
     const intervalId = setInterval(() => {
-      setCoundown((countdown) => Math.max(0, countdown - 1000));
+      setCoundown(countdown => Math.max(0, countdown - 1000));
     }, 1000);
 
     return () => clearInterval(intervalId);
@@ -33,12 +33,14 @@ const ColorizeBalance = ({ props }: Props) => {
   return (
     <Tooltip label={BALANCE_DESCRIPTION} hasArrow>
       <Button
-        pos="absolute"
+        size="xs"
+        pos="fixed"
         left="50%"
         transform="translateX(-50%)"
-        bottom={countdown > 0 ? 2 : -10}
+        bottom={countdown > 0 ? 12 : -10}
         transition="all 0.2s"
         fontFamily="monospace"
+        gap={1}
       >
         {millisecondsToMMSS(countdown)}
       </Button>

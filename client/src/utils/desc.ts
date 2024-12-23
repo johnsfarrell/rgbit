@@ -6,12 +6,12 @@ export const TERMS_AND_CONDITIONS = [
   {
     heading: "Terms and Conditions",
     text: `Welcome to RGBIT Website! By accessing or using our website or using our API service, you agree to be bound by these terms and conditions.`,
-    list: [],
+    list: []
   },
   {
     heading: "Acceptance of Terms",
     text: `By submitting images, uploading images, and restoring color to images, you acknowledge and agree to these terms and conditions in full. If you disagree with these terms and conditions or any part of these terms and conditions, you must not use this website and API service.`,
-    list: [],
+    list: []
   },
   {
     heading: "User Submitted Images",
@@ -19,23 +19,23 @@ export const TERMS_AND_CONDITIONS = [
     list: [
       `Users retain ownership of the images they upload but grant us, RGBIT, a worldwide, irrevocable, non-exclusive, royalty-free license to use, reproduce, adapt, publish, translate and distribute their images in any existing or future media.`,
       `You warrant and represent that the images do not infringe on any third party's rights (including intellectual property rights) and that they comply with all applicable laws and regulations.`,
-      `You are responsible for any claims brought against us, RGBIT, arising out of or related to the images you submit.`,
-    ],
+      `You are responsible for any claims brought against us, RGBIT, arising out of or related to the images you submit.`
+    ]
   },
   {
     heading: "Acceptance of Terms",
     text: `The images you upload will be stored on our servers as part of our service offering. While we endeavor to ensure the security of all data, we cannot guarantee the complete security of data sent over the internet.`,
-    list: [],
+    list: []
   },
   {
     heading: "Sharing of Images",
     text: `The images you upload may be shared with other users of this site. By using this website, you agree to the sharing of your images with other users.`,
-    list: [],
+    list: []
   },
   {
     heading: "Amendments",
     text: `We reserve the right to amend these terms and conditions at any time. Amendments will be effective immediately upon posting on this website. Your continued use of this website will constitute your acceptance of the amended terms and conditions.`,
-    list: [],
+    list: []
   },
   {
     heading: "Limitation of Liability",
@@ -43,14 +43,14 @@ export const TERMS_AND_CONDITIONS = [
     list: [
       `for any direct loss;`,
       `for any indirect, special or consequential loss; or`,
-      `for any business losses, loss of revenue, income, profits or anticipated savings, loss of contracts or business relationships, loss of reputation or goodwill, or loss or corruption of information or data.`,
-    ],
+      `for any business losses, loss of revenue, income, profits or anticipated savings, loss of contracts or business relationships, loss of reputation or goodwill, or loss or corruption of information or data.`
+    ]
   },
   {
     heading: "Contact Us",
     text: `If you have any questions about these terms and conditions, please contact us. john_farrell@brown.edu`,
-    list: [],
-  },
+    list: []
+  }
 ];
 
 export const BALANCE_DESCRIPTION = "Color restoration on cooldown!";
@@ -62,7 +62,7 @@ export const GALLERY_TRY_IMAGE = "Try this image!";
 
 export const SERVER_ERROR = "Server error, please try again.";
 
-export const BALANCE_API = `GET https://api.rgbit.io/api/user/balance/:api_key
+export const BALANCE_API = `GET https://api.rgbit.johnfarrell.io/api/user/balance/:api_key
 Content-Type: application/json
 Body: None
 
@@ -78,7 +78,7 @@ Invalid Response: {
 ‎  message: string,
 }`;
 
-export const COLORIZE_API = `POST https://api.rgbit.io/api/image/colorize/:api_key
+export const COLORIZE_API = `POST https://api.rgbit.johnfarrell.io/api/image/colorize/:api_key
 Content-Type: multipart/form-data
 Body: { image: File }
 
@@ -96,7 +96,7 @@ Invalid Response: {
  ‎ message: string,
 }`;
 
-export const IMAGE_API = `POST https://api.rgbit.io/api/image/get/:image_id
+export const IMAGE_API = `POST https://api.rgbit.johnfarrell.io/api/image/get/:image_id
 Content-Type: multipart/form-data
 Body: None
 
@@ -170,7 +170,7 @@ export const API_KEY_GENERATION_STEPS = [
   "To create an API key, we generate a unique device-browser fingerprint using FingerprintJS. This fingerprint is unique to device and browser, meaning every browser on every device gets its own API key. This fingerprint is then encrypted using MD5 for privacy and security. The encrypted fingerprint is the API key.",
   "The next step is to verify the API key. To verify the API key, we create a signature using RSA-OAEP encryption. We use a client key to encrypt the API key - this is our signature. We then send the API key and signature to the server to be verified.",
   "The server verifies the API key by decrypting the signature using the server key. If the API key and the decrypted signature match, the API key is authentic. Both the client and server keys are kept secret, although the server key could be made public. The client key must remain private, as it is used to sign the API key.",
-  "Now that the server has verified the API key, it is stored to our database, and the user is given access to the API.",
+  "Now that the server has verified the API key, it is stored to our database, and the user is given access to the API."
 ];
 
 export const PHOTO_PROCESSING_QUESTION = "How are user photos processed?";
@@ -184,18 +184,18 @@ export const PHOTO_PROCESSING_STEPS = [
   "The 3x224x224 tensor (in LAB color space format) is then upscaled to the original image size.",
   "The original image L channel is concatenated with the upscaled ab channels to create a 3xWxH tensor, where W and H are the width and height of the original image.",
   "The 3xWxH tensor is converted to RGB format and saved to our database, cloud hosted on MongoDB.",
-  "The server returns a redirect to the user, who can view the colorized image. The user's balance is decremented by one.",
+  "The server returns a redirect to the user, who can view the colorized image. The user's balance is decremented by one."
 ];
 
 export const FAQS: { question: string; answer: string[] }[] = [
   {
     question: API_KEY_GENERATION_QUESTION,
-    answer: API_KEY_GENERATION_STEPS,
+    answer: API_KEY_GENERATION_STEPS
   },
   {
     question: PHOTO_PROCESSING_QUESTION,
-    answer: PHOTO_PROCESSING_STEPS,
-  },
+    answer: PHOTO_PROCESSING_STEPS
+  }
 ];
 
 export const NO_API_KEY = "No API key found.";
@@ -210,16 +210,16 @@ export const API_DOCUMENTATION_CONTENT = [
   {
     heading: "Colorize",
     text: API_COLORIZE_BLURB,
-    code: COLORIZE_API,
+    code: COLORIZE_API
   },
   {
     heading: "Balance",
     text: API_BALANCE_BLURB,
-    code: BALANCE_API,
+    code: BALANCE_API
   },
   {
     heading: "Image",
     text: API_IMAGE_BLURB,
-    code: IMAGE_API,
-  },
+    code: IMAGE_API
+  }
 ];

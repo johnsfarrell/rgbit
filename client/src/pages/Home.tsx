@@ -1,8 +1,8 @@
-import { Center, useDisclosure } from "@chakra-ui/react";
+import { Box, Center, useDisclosure } from "@chakra-ui/react";
 import { useState } from "react";
 import { FILE_RESIZE, Injection } from "../utils/constants";
 import { Gallery } from "../components/gallery";
-import { ColorizeBalance, ColorizeModal } from "../components/colorize";
+import { ColorizeBalance, ColorizeWizard } from "../components/colorize";
 import { UploadDropbox } from "../components/upload";
 import Div100vh from "react-div-100vh";
 import { convertToJPEG, grayscaleJPEG, limitJPEGSize } from "../utils/image";
@@ -45,18 +45,24 @@ const Home = () => {
     setFile: handleSetFile,
     isOpen,
     onOpen,
-    onClose,
+    onClose
   };
 
   return (
-    <Center w="100vw" overflow="hidden">
+    <Center
+      w="100vw"
+      overflow="hidden"
+      // bg="radial-gradient(circle at 50% 50%, rgb(0,0,0,0), rgb(0, 0, 0, 0.25))"
+    >
       <Div100vh>
-        <Center h="100%" flexDir="column" maxW={600} gap={5}>
-          <Gallery props={{ hide: true, ...injections }} />
+        <Center h="100%" flexDir="column" maxW={600} gap={10}>
+          <Box h="50px" />
           <UploadDropbox props={injections} />
           <Gallery props={injections} />
         </Center>
-        <ColorizeModal props={injections} />
+
+        <ColorizeWizard props={injections} />
+
         <ColorizeBalance props={injections} />
       </Div100vh>
     </Center>

@@ -15,6 +15,7 @@ const checkColorizeResponse = (
   remainingBalance: number;
   refresh: Date;
   redirect: string;
+  imageId: string;
 } => {
   return (
     (data.status === 200 ||
@@ -24,7 +25,8 @@ const checkColorizeResponse = (
     typeof data.remainingBalance === "number" &&
     typeof data.refresh === "string" &&
     new Date(data.refresh) instanceof Date &&
-    typeof data.redirect === "string"
+    typeof data.redirect === "string" &&
+    typeof data.imageId === "string"
   );
 };
 
@@ -37,10 +39,15 @@ const checkColorizeResponse = (
  * If user's balance > 0, colorizes image, returns 200.
  *
  * @param file The image to colorize.
- * @returns {Promise<{ status: 200 | 403 | 402 | 500, remainingBalance: number, refresh: Date, redirect: string }>} Returns the status and code of the response.
+ * @returns {Promise<{ status: 200 | 403 | 402 | 500, remainingBalance: number, refresh: Date, redirect: string, imageId: string }>} Returns the status and code of the response.
  */
 export const colorizePost = async (file?: File) => {
-  const failure = { remainingBalance: -1, refresh: new Date(), redirect: "" };
+  const failure = {
+    remainingBalance: -1,
+    refresh: new Date(),
+    redirect: "",
+    imageId: ""
+  };
 
   if (!file) return { status: 400, ...failure };
 
@@ -50,7 +57,7 @@ export const colorizePost = async (file?: File) => {
 
   try {
     const res = await axios.post(COLORIZE_URI + getKey(), formData, {
-      headers,
+      headers
     });
 
     if (checkColorizeResponse(res.data)) {

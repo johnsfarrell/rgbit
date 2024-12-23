@@ -7,7 +7,7 @@ const {
   MISSING_IMAGE,
   COLORIZE_FAILED,
   IMAGE_CREATION_FAILED,
-  IMAGE_NOT_FOUND,
+  IMAGE_NOT_FOUND
 } = require("../config/messages");
 const { getRefreshTime } = require("../util/time");
 const { generateUniqueKey } = require("../util/key");
@@ -16,7 +16,7 @@ const fs = require("fs");
 const colorize = require("../util/api");
 const ImageLogModel = require("../models/ImageLogModel");
 const cache = require("../util/cache");
-const { TOTAL_IMAGES_CACHE_KEY } = require("../config/const");
+const { TOTAL_IMAGES_CACHE_KEY, REFRESH_BALANCE } = require("../config/const");
 
 /**
  * Get image from database by id.
@@ -41,7 +41,7 @@ module.exports.getImage = async (req, res) => {
   return res.send({
     status: 200,
     message: SUCCESS,
-    colored: colored,
+    colored: colored
   });
 };
 
@@ -67,6 +67,8 @@ module.exports.colorizeImage = async (req, res) => {
     res.status(403).send({ message: INVALID_KEY });
     return;
   }
+
+  if (!user.balance && user.refresh < Date.now()) user.balance = 3;
 
   if (user.balance <= 0) {
     res.status(402).send({ message: INSUFFICIENT_BALANCE });
@@ -94,12 +96,12 @@ module.exports.colorizeImage = async (req, res) => {
     await ImageModel({
       id,
       key,
-      colored,
+      colored
     }).save();
 
     await ImageLogModel({
       id,
-      key,
+      key
     }).save();
   } catch (error) {
     res.status(500).send({ message: IMAGE_CREATION_FAILED });
@@ -119,7 +121,7 @@ module.exports.colorizeImage = async (req, res) => {
     message: SUCCESS,
     imageId: id,
     download: `${process.env.SERVER_URL}/api/image/get/${id}`,
-    redirect: `${process.env.CLIENT_URL}/#image=${id}`,
+    redirect: `${process.env.CLIENT_URL}/#image=${id}`
   });
 };
 

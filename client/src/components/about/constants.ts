@@ -46,10 +46,6 @@ export const FETCH_URI = `${process.env.REACT_APP_API_URL}/image/get/`;
 
 export const BALANCE_URI = `${process.env.REACT_APP_API_URL}/user/balance/`;
 
-export const REPORT_PATH = `${RESEARCH_PATH}report.pdf`;
-
-export const POSTER_PATH = `${RESEARCH_PATH}poster.pdf`;
-
 export interface Injection {
   file: File | undefined;
   setFile: (file: File | undefined) => Promise<boolean>;
@@ -72,8 +68,8 @@ interface ItemProps {
 }
 
 export const MENU_ITEMS: ItemProps[] = [
-  { text: "Home", link: "/" },
-  { text: "API", link: "#api" },
-  { text: "Report", link: RESEARCH_PATH + "report.pdf" },
-  { text: "GitHub", link: GITHUB_URL }
+  { text: "home", link: "/" },
+  { text: "api", link: "#api" },
+  { text: "report", link: RESEARCH_PATH + "report.pdf" },
+  { text: "github", link: GITHUB_URL }
 ];
