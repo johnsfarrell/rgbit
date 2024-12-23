@@ -18,13 +18,19 @@ const Gallery = ({ props }: GalleryProps) => {
   const { hide, setFile, onOpen, file } = props;
 
   const [images, setImages] = useState<string[]>([]);
-
+  const [loadedCount, setLoadedCount] = useState<number>(0);
   const [hover, setHover] = useState<boolean>(false);
 
   useEffect(() => {
     const shuffledImages = getRandomElements(GALLERY_IMAGES);
     setImages([...shuffledImages, ...shuffledImages]);
   }, []);
+
+  const handleImageLoad = () => {
+    setLoadedCount(prev => prev + 1);
+  };
+
+  const allImagesLoaded = loadedCount === images.length && images.length > 0;
 
   return (
     <HStack
@@ -40,7 +46,7 @@ const Gallery = ({ props }: GalleryProps) => {
       onMouseLeave={() => setHover(false)}
       gap={0}
       transition="all 0.2s"
-      opacity={!file ? 1 : 0}
+      opacity={!file && allImagesLoaded ? 1 : 0}
     >
       {!hide &&
         images &&
@@ -48,6 +54,7 @@ const Gallery = ({ props }: GalleryProps) => {
           <GalleryImage
             key={idx}
             src={img}
+            onLoad={handleImageLoad}
             setFile={setFile}
             onOpen={onOpen}
             file={file}
