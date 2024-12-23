@@ -2,9 +2,7 @@ import { ChakraProvider } from "@chakra-ui/react";
 import { useEffect, useMemo, useState } from "react";
 import { cookieAPI } from "./utils/cookie";
 import { API, Home, ImageView, Terms } from "./pages";
-import { AboutResearchToast } from "./components/about";
 import { Menu, MenuTitle } from "./components/menu";
-import { Footer } from "./components/footer";
 import { theme } from "./utils/theme";
 
 export const App = () => {
@@ -14,14 +12,14 @@ export const App = () => {
     return hash;
   };
 
-  const [hashtag, setHashtag] = useState<string>(getHash());
+  const [hash, sethash] = useState<string>(getHash());
 
   useEffect(() => {
     cookieAPI();
 
     const handleHashChange = () => {
       window.scrollTo(0, 0);
-      setHashtag(getHash());
+      sethash(getHash());
     };
 
     window.onhashchange = handleHashChange;
@@ -38,18 +36,16 @@ export const App = () => {
         "#": Home,
         "#tos": Terms,
         "#api": API,
-        "#image": ImageView,
-      }[hashtag] || Home;
+        "#image": ImageView
+      }[hash] || Home;
     return <RouteComponent />;
-  }, [hashtag]);
+  }, [hash]);
 
   return (
     <ChakraProvider theme={theme}>
-      <AboutResearchToast />
       <MenuTitle />
-      <Menu hashtag={hashtag} />
+      <Menu hash={hash} />
       {Page}
-      <Footer />
     </ChakraProvider>
   );
 };

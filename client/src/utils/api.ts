@@ -9,7 +9,7 @@ import { FAILED_FETCH_BALANCE, FAILED_FETCH_IMAGE, NO_API_KEY } from "./desc";
  * @returns {data is { status: 200 | 403 | 402 | 500, remainingBalance: number, refresh: Date, redirect: string }} Returns true if the data is of the correct type.
  */
 const checkColorizeResponse = (
-  data: any
+  data: any,
 ): data is {
   status: 200 | 403 | 402 | 500;
   remainingBalance: number;
@@ -72,7 +72,7 @@ export const colorizePost = async (file?: File) => {
  * @returns {data is { balance: number, refresh: Date }} Returns true if the data is of the correct type.
  */
 const checkTypeBalance = (
-  data: any
+  data: any,
 ): data is { balance: number; refresh: Date } => {
   return (
     typeof data.balance === "number" &&
@@ -106,7 +106,7 @@ export const getBalance = async (): Promise<{
  * @returns {status is 200 | 203 | 400 | 403 | 500} Returns true if the status is of the correct type.
  */
 const checkTypeCreateUserStatus = (
-  status: any
+  status: any,
 ): status is 200 | 203 | 400 | 403 | 500 => {
   return (
     status === 200 ||
@@ -133,7 +133,7 @@ const checkTypeCreateUserStatus = (
  */
 export const createUser = async (
   key: string,
-  encryptedKey: string
+  encryptedKey: string,
 ): Promise<200 | 203 | 400 | 403 | 500> => {
   const query = `${process.env.REACT_APP_API_URL}/user/create`;
   const res = await axios.post(query, { key, encryptedKey });

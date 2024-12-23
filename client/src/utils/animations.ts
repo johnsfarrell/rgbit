@@ -28,7 +28,7 @@ export const HUE_ROTATE = `${keyframes`
 export const ACTIVE_HOVER = {
   transform: "scale(1.075)",
   letterSpacing: "-0.75px",
-  filter: "brightness(0.95)",
+  filter: "brightness(0.95)"
 };
 
 /**
@@ -54,3 +54,11 @@ export const GALLERY_OPEN = `${keyframes`
 export const GALLERY_ACTIONS_OPEN = `${keyframes`
     from { bottom: -20vh }
   `} 1s ease`;
+
+/**
+ * Animation for gallery scroll.
+ */
+export const GALLERY_SCROLL = `${keyframes`
+    from { transform: translateX(-25%) }
+    to { transform: translateX(25%) }
+  `} 100s linear infinite`;

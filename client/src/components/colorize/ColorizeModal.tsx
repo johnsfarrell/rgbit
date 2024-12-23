@@ -1,85 +1,93 @@
-import {
-  Button,
-  Image,
-  Modal,
-  ModalBody,
-  ModalContent,
-  ModalFooter,
-  ModalOverlay,
-  Progress,
-  Skeleton,
-  Spinner,
-  useToast,
-} from "@chakra-ui/react";
-import { useState } from "react";
-import { colorizePost } from "../../utils/api";
+import { Box, Button, Image, useToast } from "@chakra-ui/react";
+import { useState, useEffect } from "react";
 import APIDisclaimerText from "../api/APIDisclaimerText";
 import { Props } from "../../utils/constants";
+import { MenuArrow } from "../menu";
 import {
   API_LIMIT_TOAST,
   LOW_BALANCE_TOAST,
   RESTORE_ERROR_TOAST,
-  VERIFICATION_ERROR_TOAST,
+  VERIFICATION_ERROR_TOAST
 } from "../../utils/toasts";
-import { ACTIVE_HOVER } from "../../utils/animations";
+import { colorizePost } from "../../utils/api";
 
 const ColorizeModal = ({ props }: Props) => {
-  const { isOpen, onClose, file } = props;
+  const { file, setFile } = props;
 
-  const [isLoading, setIsLoading] = useState<boolean>(false);
-
+  const [isLoading, setIsLoading] = useState(false);
+  const [currentFile, setCurrentFile] = useState<File | undefined>(file);
+  const [isColorized, setIsColorized] = useState(false);
   const toast = useToast();
+  const [hover, setHover] = useState(false);
 
-  const handleOnClose = () => {
-    if (isLoading) return;
-    onClose();
-  };
+  useEffect(() => {
+    setCurrentFile(file);
+  }, [file]);
 
   const handleRestore = async () => {
     setIsLoading(true);
 
-    const { status, redirect } = await colorizePost(file);
-    if (status === 200) window.location.href = redirect;
-    if (status === 402) toast(LOW_BALANCE_TOAST);
-    if (status === 403) toast(VERIFICATION_ERROR_TOAST);
-    if (status === 429) toast(API_LIMIT_TOAST);
-    if (status === 500 || status === 400) toast(RESTORE_ERROR_TOAST);
+    const { status } = await colorizePost(file);
+
+    if (status === 200) {
+      setIsColorized(true);
+      setCurrentFile(file);
+    } else if (status === 402) toast(LOW_BALANCE_TOAST);
+    else if (status === 403) toast(VERIFICATION_ERROR_TOAST);
+    else if (status === 429) toast(API_LIMIT_TOAST);
+    else if (status >= 400) toast(RESTORE_ERROR_TOAST);
 
     setIsLoading(false);
   };
 
-  return (
-    <Modal isOpen={isOpen} onClose={handleOnClose} size="fit-content">
-      <ModalOverlay display="flex" alignItems="center" justifyContent="center">
-        <Spinner color="white" size="lg" hidden={!!file} />
-      </ModalOverlay>
-      <ModalContent w="fit-content">
-        <Skeleton hidden={!file} isLoaded={!!file}>
-          <ModalBody p="1.5em 1.5em 0.5em 1.5em">
-            <Image
-              src={file && URL.createObjectURL(file)}
-              alt={file && file.name}
-              maxH="60vh"
-              minW={250}
-              rounded="md"
-            />
-          </ModalBody>
+  const clearFiles = () => {
+    setFile(undefined);
+    setCurrentFile(undefined);
+    setIsColorized(false);
+  };
 
-          <ModalFooter justifyContent="center" flexDir="column" gap={2}>
-            <Button
-              onClick={handleRestore}
-              isLoading={isLoading}
-              colorScheme="purple"
-              _hover={ACTIVE_HOVER}
-            >
-              Restore Color
-            </Button>
-            <APIDisclaimerText customText="By clicking above, you agree to our " />
-          </ModalFooter>
-          <Progress size="sm" isIndeterminate={isLoading} roundedBottom="md" />
-        </Skeleton>
-      </ModalContent>
-    </Modal>
+  return (
+    <>
+      <Image
+        src={currentFile && URL.createObjectURL(currentFile)}
+        alt={currentFile ? currentFile.name : ""}
+        maxH="60vh"
+        minW={250}
+        rounded="md"
+        position="absolute"
+        transition="filter 1s ease, opacity 0.5s ease, transform 0.3s ease"
+        left="50%"
+        top="50%"
+        transform="translate(-50%, -50%)"
+        filter={isColorized ? "none" : "grayscale(100%)"}
+        opacity={currentFile ? 1 : 0}
+        zIndex={2}
+      />
+
+      <Button
+        onClick={isColorized ? clearFiles : handleRestore}
+        isLoading={isLoading}
+        colorScheme="purple"
+        onMouseEnter={() => setHover(true)}
+        onMouseLeave={() => setHover(false)}
+        pos="absolute"
+        left="50%"
+        bottom={20}
+        opacity={file ? 1 : 0}
+        transition="0.3s all"
+        transform="translateX(-50%)"
+        zIndex={2}
+      >
+        {isColorized ? "Return Home" : "Restore Color"}
+        <MenuArrow hover={hover} />
+      </Button>
+
+      {currentFile && !isColorized && (
+        <Box pos="absolute" left="50%" transform="translateX(-50%)" bottom={2}>
+          <APIDisclaimerText customText="By clicking above, you agree to the " />
+        </Box>
+      )}
+    </>
   );
 };
 

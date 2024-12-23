@@ -4,7 +4,7 @@ import UploadBox from "./UploadBox";
 import {
   Props,
   ACCEPTED_FILE_TYPES,
-  MAX_FILE_SIZE,
+  MAX_FILE_SIZE
 } from "../../utils/constants";
 import { FAILED_IMAGE_TOAST, FILE_REJECTED_TOAST } from "../../utils/toasts";
 
@@ -40,7 +40,7 @@ const UploadDropbox = ({ props }: Props) => {
         <section>
           <div {...getRootProps()}>
             <input {...getInputProps()} />
-            <UploadBox isDragActive={isDragActive} />
+            <UploadBox isDragActive={isDragActive} file={props.file} />
           </div>
         </section>
       )}

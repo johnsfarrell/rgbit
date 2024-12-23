@@ -8,13 +8,14 @@ interface TextShellProps {
 const TextShell = ({ children, isCentered }: TextShellProps) => {
   const center = css({
     display: "flex",
-    justifyContent: "center",
+    justifyContent: "center"
   });
 
   return (
     <Center>
       <Box
-        py={20}
+        pt={20}
+        pb={5}
         minH="calc(100vh - 4em)" // 4em is the height of the footer
         maxW={800}
         css={isCentered && center}
