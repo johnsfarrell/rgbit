@@ -96,7 +96,7 @@ Invalid Response: {
  ‎ message: string,
 }`;
 
-export const IMAGE_API = `POST https://api.rgbit.johnfarrell.io/api/image/get/:image_id
+export const IMAGE_API = `GET https://api.rgbit.johnfarrell.io/api/image/get/:image_id
 Content-Type: multipart/form-data
 Body: None
 
@@ -127,7 +127,7 @@ export const API_BALANCE_BLURB = `To check your remaining balance, send a GET re
 endpoint. The response will contain the remaining balance. The
 refresh is the time remaining until your balance is restored.`;
 
-export const API_IMAGE_BLURB = `To retrieve a colorized image, send a POST request to the following
+export const API_IMAGE_BLURB = `To retrieve a colorized image, send a GET request to the following
 endpoint. The response will contain the colorized image as a buffer. Keep in mind that the we only
 temporarily store images, so be sure to save the image after retrieving it.`;
 
