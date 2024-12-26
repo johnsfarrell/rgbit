@@ -79,7 +79,7 @@ const ColorizeWizard = ({ props }: Props) => {
           src={fileSrc}
           alt={fileSrc}
           maxH="60vh"
-          minW={250}
+          maxW="85vw"
           rounded="md"
         />
 
