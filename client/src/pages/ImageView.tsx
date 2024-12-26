@@ -75,7 +75,7 @@ const ImageView = () => {
                 src={image}
                 alt={image}
                 maxH="60vh"
-                minW={250}
+                minW="85vw"
                 rounded="md"
               />
             )}
