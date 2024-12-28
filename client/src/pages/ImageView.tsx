@@ -75,7 +75,7 @@ const ImageView = () => {
               <Image
                 src={image}
                 alt={image}
-                maxH="60vh"
+                maxH="50vh"
                 maxW="85vw"
                 rounded="md"
               />
