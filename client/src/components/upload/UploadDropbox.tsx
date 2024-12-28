@@ -35,6 +35,7 @@ const UploadDropbox = ({ props }: Props) => {
       maxSize={MAX_FILE_SIZE}
       accept={ACCEPTED_FILE_TYPES}
       multiple={false}
+      disabled={props.file !== undefined}
     >
       {({ getRootProps, getInputProps, isDragActive }) => (
         <section>

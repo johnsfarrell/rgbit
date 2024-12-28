@@ -27,7 +27,7 @@ const UploadBox = ({ isDragActive, file }: UploadBoxProps) => {
       transition="all 0.2s"
       _hover={{
         filter: "brightness(0.975)",
-        cursor: "pointer",
+        cursor: file ? "default" : "pointer",
         letterSpacing: "-0.5px",
         transform: "scale(1.05)"
       }}

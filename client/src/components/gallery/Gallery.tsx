@@ -47,6 +47,7 @@ const Gallery = ({ props }: GalleryProps) => {
       gap={0}
       transition="all 0.2s"
       opacity={!file && allImagesLoaded ? 1 : 0}
+      pointerEvents={!file && allImagesLoaded ? "all" : "none"}
     >
       {!hide &&
         images &&
