@@ -1,4 +1,4 @@
-import { Box, Button, Icon, Image, useToast } from "@chakra-ui/react";
+import { Box, Button, Image, useToast } from "@chakra-ui/react";
 import { useState, useEffect } from "react";
 import APIDisclaimerText from "../api/APIDisclaimerText";
 import { Props } from "../../utils/constants";
@@ -10,6 +10,7 @@ import {
 } from "../../utils/toasts";
 import { colorizePost, fetchImage } from "../../utils/api";
 import { AtSignIcon, DownloadIcon } from "@chakra-ui/icons";
+import ColorizeButton from "./ColorizeButton";
 
 const ColorizeWizard = ({ props }: Props) => {
   const { file, setFile } = props;
@@ -81,6 +82,7 @@ const ColorizeWizard = ({ props }: Props) => {
           maxH="60vh"
           maxW="85vw"
           rounded="md"
+          pointerEvents="none"
         />
 
         <Box
@@ -95,15 +97,11 @@ const ColorizeWizard = ({ props }: Props) => {
             { onClick: handleDownload, icon: DownloadIcon },
             { onClick: handleShare, icon: AtSignIcon }
           ].map(({ onClick, icon }) => (
-            <Button
-              colorScheme="blackAlpha"
-              size="xs"
+            <ColorizeButton
               onClick={onClick}
-              transition="opacity 0.5s 0.5s, background 0.1s"
-              opacity={isColorized ? 1 : 0}
-            >
-              <Icon as={icon} />
-            </Button>
+              icon={icon}
+              isColorized={isColorized}
+            />
           ))}
         </Box>
       </Box>

@@ -26,7 +26,7 @@ const GalleryImage = ({ src, setFile, file, onLoad }: GalleryImageProps) => {
         alt={src}
         rounded="md"
         objectFit="cover"
-        h={{ base: "75px", sm: "100px" }}
+        h="15vh"
         transition="all 0.1s"
         opacity={0.75}
         _hover={{

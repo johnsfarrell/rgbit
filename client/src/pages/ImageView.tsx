@@ -1,9 +1,10 @@
 import { useEffect, useState } from "react";
-import { Box, Button, Flex, Icon, Image, Spinner } from "@chakra-ui/react";
+import { Box, Flex, Image, Spinner } from "@chakra-ui/react";
 import { fetchImage } from "../utils/api";
 import { TextShell } from "../components/text";
 import { DownloadIcon } from "@chakra-ui/icons";
 import { IMAGE_VIEW_OPEN } from "../utils/animations";
+import { ColorizeButton } from "../components/colorize";
 
 /**
  * View Image page
@@ -90,15 +91,11 @@ const ImageView = () => {
             >
               {[{ onClick: handleDownload, icon: DownloadIcon }].map(
                 ({ onClick, icon }) => (
-                  <Button
-                    colorScheme="blackAlpha"
-                    size="xs"
+                  <ColorizeButton
                     onClick={onClick}
-                    transition="opacity 0.5s 0.5s, background 0.1s"
-                    opacity={isColorized ? 1 : 0}
-                  >
-                    <Icon as={icon} />
-                  </Button>
+                    icon={icon}
+                    isColorized={isColorized}
+                  />
                 )
               )}
             </Box>
