@@ -79,7 +79,7 @@ const ColorizeWizard = ({ props }: Props) => {
         <Image
           src={fileSrc}
           alt={fileSrc}
-          maxH="60vh"
+          maxH="50vh"
           maxW="85vw"
           rounded="md"
           pointerEvents="none"
